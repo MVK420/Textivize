@@ -14,13 +14,11 @@ struct ContentView: View {
     @State var detailPresented = false
     @ObservedObject var containers:Container = Container()
     @State var inputText:String = ""
-    
-    ///Rotation
-    //@State private var offset = CGSize.zero
     @GestureState private var position = CGSize.zero
     
     ///Selected Object
-    @State private var selected: TextBox? = nil
+    @State private var selectedGesture: TextBox? = nil
+    @State private var selectedCustomize : TextBox? = nil
     
     ///Builds the Input Text Field
     fileprivate func inputTextField() -> some View {
@@ -52,7 +50,6 @@ struct ContentView: View {
      .font(.title)
      }
      */
-    
     
     ///Builds the Circle Button
     fileprivate func circleButton() -> some View {
@@ -86,22 +83,25 @@ struct ContentView: View {
                     }
                 }
                     ///VStack properties: offset gesture is for drag, rotationEffect for rotation
-                    .offset(self.containers.ls[i].addToPositionReturn(translation: self.position)).scaledToFit()
-                    //.offset(x: self.selected == self.containers.ls[i] ? self.position.width : 0, y: self.selected == self.containers.ls[i] ? self.position.height : 0)
+                    //.offset(self.containers.ls[i].addToPositionReturn(translation: self.position)).scaledToFit()
+                    .offset(self.selectedGesture == self.containers.ls[i] ? self.position : self.containers.ls[i].position).scaledToFit()
                     .gesture(DragGesture(minimumDistance: 10)
                         .updating(self.$position, body: { (value, state, translation) in
-                            if nil == self.selected {
-                                self.selected = self.containers.ls[i]
+                            if nil == self.selectedGesture {
+                                self.selectedGesture = self.containers.ls[i]
+                            } else {
+                                let aux = self.containers.ls[i].position
+                                let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
+                                state = res
+                                print("2: ", self.containers.ls[i].position)
                             }
-                            state = value.translation
                         })
- 
-                        //.onChanged { value in
-                         //   self.containers.ls[i].position = value.translation
-                    //}
                     .onEnded() { value in
-                        self.selected = nil
-                        self.containers.ls[i].addToPosition(translation: value.translation)
+                        if self.selectedGesture == self.containers.ls[i] {
+                            self.containers.ls[i].appendToPosition(translation: value.translation)
+                        }
+                        self.selectedGesture = nil
+                        //self.containers.ls[i].addToPosition(translation: value.translation)
                     })
                     .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState))
                     .gesture(RotationGesture()
@@ -109,6 +109,7 @@ struct ContentView: View {
                             self.containers.ls[i].rotateState = value.degrees
                             self.containers.objectWillChange.send()
                     })
+                
             }
         }
     }

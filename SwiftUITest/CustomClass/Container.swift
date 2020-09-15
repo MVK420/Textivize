@@ -10,6 +10,6 @@ import SwiftUI
 
 class Container: ObservableObject {
     
-    @Published var ls:[TextBox] = []
+    @Published var ls:[TextBox] = [TextBox]()
     
 }

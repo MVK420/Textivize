@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-struct TextBox: Identifiable {
+struct TextBox: Identifiable, Equatable {
     
-    var id: Int = 1
-    var words:[Word]
+    var id = UUID()
+    var words:[Word] = [Word]()
     var minFontSize:CGFloat = 20
     var maxFontSize:CGFloat = 80
     var avgFontSize:CGFloat = 40
@@ -87,6 +87,14 @@ struct TextBox: Identifiable {
     func addToPositionReturn(translation: CGSize) -> CGSize{
         let aux = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
         return aux
+    }
+    
+    mutating func appendToPosition(translation:CGSize) {
+        self.position = CGSize(width: self.position.width + translation.width, height: self.position.height + translation.height)
+    }
+    
+    func combineCGSize(cg1:CGSize, cg2:CGSize) -> CGSize {
+        return CGSize(width: cg1.width + cg2.width, height: cg1.height + cg2.height)
     }
     
     mutating func setRotateState(degrees:Double) {
