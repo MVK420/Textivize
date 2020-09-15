@@ -12,28 +12,25 @@ import Combine
 struct ContentView: View {
     
     @State var detailPresented = false
-    @ObservedObject var textBox:TextBox = TextBox(words: [])
+    @ObservedObject var containers:Container = Container()
     @State var inputText:String = ""
     
     ///Rotation
     //@State private var offset = CGSize.zero
-    //@GestureState private var position = CGSize.zero
+    @GestureState private var position = CGSize.zero
     
     ///Selected Object
-    @ObservedObject var containers:Container = Container()
-    //var containers:[TextBox] = []
-    //private var selectedObject:[
+    @State private var selected: TextBox? = nil
     
     ///Builds the Input Text Field
     fileprivate func inputTextField() -> some View {
         return TextField("Text", text: $inputText, onEditingChanged: { (changed) in
             ///When editing is happening, do nothing
         }) {
-            //print(self.inputText)
             ///When editing is finished, call func to insert text into a textbox
-            self.containers.ls.append(TextBox(words: []))
-            self.containers.ls.last?.parseInput(text: self.inputText)
-            //self.textBox.parseInput(text: self.inputText)
+            var tBox = TextBox(words: [])
+            tBox.parseInput(text: self.inputText)
+            self.containers.ls.append(tBox)
             ///Empty Text Field
             self.inputText = ""
         }
@@ -45,14 +42,17 @@ struct ContentView: View {
     }
     
     ///Builds the Gradient Button
-    fileprivate func gradientButton() -> some View {
-        return Button(action: self.textBox.calcFont) {
-            Text("GR")
-        }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        .padding(.all)
-        .font(.title)
-    }
+    /*
+     fileprivate func gradientButton() -> some View {
+     return Button(action: self.containers.ls[0].calcFont) {
+     Text("GR")
+     }
+     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+     .padding(.all)
+     .font(.title)
+     }
+     */
+    
     
     ///Builds the Circle Button
     fileprivate func circleButton() -> some View {
@@ -79,42 +79,44 @@ struct ContentView: View {
                             .sheet(isPresented: self.$detailPresented) { DetailView(detailPresented: self.$detailPresented) }
                             .onTapGesture {
                                 //Remove this eventually
-                                self.containers.ls[i].changeColor(index: i)
+                                self.containers.ls[i].changeColor(index: j)
                                 //---
                                 //self.detailPresented = true
                         }
                     }
                 }
                     ///VStack properties: offset gesture is for drag, rotationEffect for rotation
-                    .offset(self.addToPosition(textBox: self.containers.ls[i], translation:
-                        self.containers.ls[i].position)).scaledToFit()
-                    .gesture(DragGesture(minimumDistance: 10).updating(self.containers.ls[i].$position, body: {
-                        (value, state , translation) in
-                        state = value.translation
-                        self.containers.objectWillChange.send()
-                    }).onEnded({(value) in
-                        self.containers.ls[i].offset = self.addToPosition(textBox: self.containers.ls[i], translation: value.translation)
-                        self.containers.objectWillChange.send()
-                    })
-                        .onChanged({(value) in
-                            self.containers.objectWillChange.send()
+                    .offset(self.containers.ls[i].addToPositionReturn(translation: self.position)).scaledToFit()
+                    //.offset(x: self.selected == self.containers.ls[i] ? self.position.width : 0, y: self.selected == self.containers.ls[i] ? self.position.height : 0)
+                    .gesture(DragGesture(minimumDistance: 10)
+                        .updating(self.$position, body: { (value, state, translation) in
+                            if nil == self.selected {
+                                self.selected = self.containers.ls[i]
+                            }
+                            state = value.translation
                         })
-                )
+ 
+                        //.onChanged { value in
+                         //   self.containers.ls[i].position = value.translation
+                    //}
+                    .onEnded() { value in
+                        self.selected = nil
+                        self.containers.ls[i].addToPosition(translation: value.translation)
+                    })
                     .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState))
                     .gesture(RotationGesture()
                         .onChanged { value in
                             self.containers.ls[i].rotateState = value.degrees
                             self.containers.objectWillChange.send()
-                            //self.containers.ls[i].setRotateState(degrees: value.degrees)
-                        }
-                )
+                    })
             }
         }
     }
     
     ///Function for rotation
     ///Source: https://www.youtube.com/watch?v=rp9azVjwk-8
-    func addToPosition(textBox: TextBox, translation: CGSize) -> CGSize {
+    func addToPosition2(textBox: TextBox, translation: CGSize) -> CGSize {
+        //self.containers.objectWillChange.send()
         return CGSize(width: textBox.offset.width + translation.width, height: textBox.offset.height + translation.height)
     }
     
@@ -123,7 +125,7 @@ struct ContentView: View {
         ZStack() {
             HStack(){
                 inputTextField()
-                gradientButton()
+                //gradientButton()
                 circleButton()
             }
             VStackTextBox()

@@ -8,39 +8,40 @@
 
 import SwiftUI
 
-class TextBox:ObservableObject {
+struct TextBox: Identifiable {
     
+    var id: Int = 1
     var words:[Word]
-    private var minFontSize:CGFloat = 20
-    private var maxFontSize:CGFloat = 80
-    private var avgFontSize:CGFloat
-    private var grState: Int = 0
-    private var standardFontSize:CGFloat = 40
+    var minFontSize:CGFloat = 20
+    var maxFontSize:CGFloat = 80
+    var avgFontSize:CGFloat = 40
+    var grState: Int = 0
+    var standardFontSize:CGFloat = 40
     var rotateState: Double = 0
     var offset = CGSize.zero
-    @GestureState var position = CGSize.zero
+    var position = CGSize.zero
     
     init(words:[Word]) {
         self.words = words
         self.avgFontSize = maxFontSize - minFontSize
     }
     
-    func parseInput(text:String) {
+    mutating func parseInput(text:String) {
         let array = text.components(separatedBy: " ")
         for word in array {
             let wordObj:Word = Word(text: word, fontSize: self.standardFontSize)
             self.words.append(wordObj)
         }
-        objectWillChange.send()
+        //objectWillChange.send()
     }
     
-    func changeColor(index:Int) {
+    mutating func changeColor(index:Int) {
         self.words[index].fontColor = .red
-        objectWillChange.send()
+        //objectWillChange.send()
     }
     
     ///On first call: gradually increase fontsize, on second: decrease, on third: reset
-    func calcFont() {
+    mutating func calcFont() {
         if self.grState == 0 {
             self.increasingFontSize()
         } else if grState == 1 {
@@ -51,11 +52,11 @@ class TextBox:ObservableObject {
             self.resetFontSize()
         }
         self.grState += 1
-        objectWillChange.send()
+        //objectWillChange.send()
     }
     
     /// Calculate font for each word in array, to gradually increase them
-    func increasingFontSize() {
+    mutating func increasingFontSize() {
         for (index, _) in self.words.enumerated() {
             let step = Int(self.avgFontSize) / (self.words.count - 1)
             let res = (step * index) + Int(minFontSize)
@@ -64,7 +65,7 @@ class TextBox:ObservableObject {
     }
     
     /// Calculate font for each word in array, to gradually decrease them
-    func decreasingFontSize() {
+    mutating func decreasingFontSize() {
         for (index, _) in self.words.enumerated() {
             let step = Int(self.avgFontSize) / (self.words.count - 1)
             let res = (step * index) + Int(minFontSize)
@@ -72,18 +73,26 @@ class TextBox:ObservableObject {
         }
     }
     
-    func resetFontSize() {
+    mutating func resetFontSize() {
         for (index, _) in self.words.enumerated() {
             self.words[index].fontSize = self.standardFontSize
             
         }
     }
     
-    func setRotateState(degrees:Double) {
-        self.rotateState = degrees
-        objectWillChange.send()
+    mutating func addToPosition(translation: CGSize) {
+        self.offset = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
     }
     
+    func addToPositionReturn(translation: CGSize) -> CGSize{
+        let aux = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
+        return aux
+    }
+    
+    mutating func setRotateState(degrees:Double) {
+        self.rotateState = degrees
+        //objectWillChange.send()
+    }
 }
 
 
