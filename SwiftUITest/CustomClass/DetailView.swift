@@ -31,7 +31,9 @@ struct DetailView: View {
     
     
     var body: some View {
+        Color.clear.opacity(0)
+            .overlay(
         Text("ALMAFA")
-    }
+        )}
 }
 

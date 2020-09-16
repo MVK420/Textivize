@@ -52,7 +52,6 @@ struct TextBox: Identifiable, Equatable {
             self.resetFontSize()
         }
         self.grState += 1
-        //objectWillChange.send()
     }
     
     /// Calculate font for each word in array, to gradually increase them
