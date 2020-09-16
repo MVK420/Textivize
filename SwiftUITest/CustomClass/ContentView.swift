@@ -45,7 +45,7 @@ struct ContentView: View {
         }
         .onReceive(Just(inputText)) { inputText in
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .frame(minWidth: 50, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(.all)
         .font(.title)
     }
@@ -53,13 +53,13 @@ struct ContentView: View {
     ///Builds the Gradient Button
     fileprivate func gradientButton() -> some View {
         return Button(action: {
-            if self.selectedCustomize != nil {
+            if self.selectedCustomizeIndex != nil {
                 self.containers.ls[self.selectedCustomizeIndex!].calcFont()
             }})
         {
-            Text("GR")
+            Text("G")
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .frame(minWidth: 10, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(.all)
         .font(.title)
     }
@@ -85,23 +85,24 @@ struct ContentView: View {
                         ///Create a Text for each word
                         ///setup font, color, onClick to Detail,
                         Text(self.containers.ls[i].words[j].text)
-                            .font(.system(size: self.containers.ls[i].words[j].fontSize))
+                            .font(.custom(self.containers.ls[i].words[j].fontStyle, size: self.containers.ls[i].words[j].fontSize))
+                            //.font(.system(size: self.containers.ls[i].words[j].fontSize))
                             .foregroundColor(self.containers.ls[i].words[j].fontColor)
                             .sheet(isPresented: self.$detailPresented) { DetailView(detailPresented: self.$detailPresented) }
                             .onTapGesture {
                                 //Remove this eventually
-                                self.containers.ls[i].changeColor(index: j)
+                                //self.containers.ls[i].changeColor(index: j)
                                 //---
                                 //self.detailPresented = true
                                 self.selectedCustomize = self.containers.ls[i]
                                 self.selectedCustomizeIndex = i
                                 
                                 print("selected: ",i)
-                            
+                                
                         }
                     }
                 }
-                .border(Color.black)
+                .border(self.selectedCustomizeIndex == i ? Color.black : Color.clear)
                     ///VStack properties: offset gesture is for drag, rotationEffect for rotation
                     //.offset(self.containers.ls[i].addToPositionReturn(translation: self.position)).scaledToFit()
                     .offset(self.selectedGesture == self.containers.ls[i] ? self.position : self.containers.ls[i].position).scaledToFit()
@@ -139,50 +140,66 @@ struct ContentView: View {
         return CGSize(width: textBox.offset.width + translation.width, height: textBox.offset.height + translation.height)
     }
     
+    fileprivate func fontScrollView() -> some View {
+        return ScrollView(.vertical) {
+            VStack {
+                ForEach(0..<self.fontList.count, id: \.self) { i in
+                    Text("\(self.fontList[i])")
+                        .font(.custom(self.fontList[i], size: 20))
+                        .foregroundColor(self.selectedFont == i ? .red : .black)
+                        .lineLimit(nil)
+                        .frame(width: 500, height: 20)
+                        .gesture(TapGesture().onEnded({
+                            if self.selectedCustomizeIndex != nil {
+                                self.containers.ls[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
+                            }
+                            self.selectedFont = i }))
+                }
+            }
+        }
+        .frame(width: 200)
+        .isHidden(self.fontPresented)
+    }
+    
+    fileprivate func fontButton() -> some View {
+        return Button(action: {
+            self.fontPresented = true
+        }) {
+            Text("F")
+        }
+            
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        .padding(.all)
+        .font(.title)
+    }
+    
     var body : some View {
         ///Main body
-        ZStack() {
-            HStack(){
-                inputTextField()
-                
-                ScrollView(.vertical) {
-                    VStack {
-                            ForEach(0..<self.fontList.count, id: \.self) { i in
-                                Text("\(self.fontList[i])")
-                                    .font(.custom(self.fontList[i], size: 20))
-                                    .foregroundColor(self.selectedFont == i ? .red : .black)
-                                    .lineLimit(nil)
-                                    .frame(width: 500, height: 20)
-                                    .gesture(TapGesture().onEnded({ self.selectedFont = i }))
-                            }
-                        }
-                }
-                .frame(width: 200)
-                .isHidden(self.fontPresented)
+        NavigationView {
+            ZStack() {
                 HStack(){
+                    fontScrollView()
+
+                    
+                }
+                VStackTextBox()
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                self.selectedCustomizeIndex = nil
+                self.fontPresented = false
+                //self.selectedGesture = nil
+                print("deselected")
+            }
+            .navigationBarItems(leading:
+                HStack(){
+                    inputTextField()
                     gradientButton()
                     circleButton()
-                    Button(action: {
-                        self.fontPresented = true
-                    }) {
-                        Text("F")
-                    }
- 
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-                    .padding(.all)
-                    .font(.title)
-
+                    fontButton()
+                    
                 }
-                
-            }
-            
-            VStackTextBox()
-        }
-        .contentShape(Rectangle())
-        .onTapGesture {
-            self.selectedCustomizeIndex = nil
-            self.selectedGesture = nil
-            print("deselected")
+            )
         }
     }
 }
@@ -214,7 +231,7 @@ extension View {
     ///   - hidden: Set to `false` to show the view. Set to `true` to hide the view.
     ///   - remove: Boolean value indicating whether or not to remove the view.
     @ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {
-        if hidden {
+        if !hidden {
             if remove {
                 self.hidden()
             }

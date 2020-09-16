@@ -100,6 +100,13 @@ struct TextBox: Identifiable, Equatable {
         self.rotateState = degrees
         //objectWillChange.send()
     }
+    
+    mutating func setAllFonts(font:String) {
+        for i in self.words.indices {
+            self.words[i].fontStyle = font
+        }
+        print("AMHEREFonting")
+    }
 }
 
 
