@@ -13,6 +13,7 @@ struct ContentView: View {
     
     @State var detailPresented = false
     @State private var fontPresented = false
+    //@State private var circlePresented = false
     @State private var selectedFont = 1
     
     private var fontList = ["Georgia","American Typewriter","Apple SD Gothic Neo","Arial","Avenir","Bodoni 72"]
@@ -27,8 +28,51 @@ struct ContentView: View {
     ///Selected Object to drag
     @State private var selectedGesture: TextBox? = nil
     ///Selected Object to customize
-    @State private var selectedCustomize : TextBox? = nil
+    //@State private var selectedCustomize : TextBox? = nil
     @State private var selectedCustomizeIndex:Int? = nil
+    
+    ///CIRCLESTUFF
+    
+    private var texts: [(offset: Int, element:Character)]  {
+        
+        return Array(self.containers.ls[self.selectedCustomizeIndex!].text.enumerated())
+    }
+    
+    @State var textSizes: [Int:Double] = [:]
+    
+    func returnCircle(radius:Double,text:String,kerning:CGFloat) -> some View {
+        return ZStack {
+            ForEach(  self.texts, id: \.self.offset) { (offset, element) in
+                VStack {
+                    Text(String(element))
+                        .kerning(kerning)
+                        ///FIX index
+                        .foregroundColor(self.containers.ls[0].words[0].fontColor)
+                        .background(Sizeable())
+                        .font(.custom(self.fontList[0], size: 20))
+                        .onPreferenceChange(WidthPreferenceKey.self, perform: { size in
+                            self.textSizes[offset] = Double(size)
+                        })
+                    Spacer()
+                }
+                .rotationEffect(self.angle(at: offset, radius: radius))
+                
+            }
+        }.rotationEffect(-self.angle(at: self.texts.count-1, radius: radius)/2)
+        
+        .frame(width: 300, height: 300, alignment: .center)
+    }
+    
+    private func angle(at index: Int, radius:Double) -> Angle {
+        guard let labelSize = textSizes[index] else {return .radians(0)}
+        let percentOfLabelInCircle = labelSize / radius.perimeter
+        let labelAngle = 2 * Double.pi * percentOfLabelInCircle
+        let totalSizeOfPreChars = textSizes.filter{$0.key < index}.map{$0.value}.reduce(0,+)
+        let percenOfPreCharInCircle = totalSizeOfPreChars / radius.perimeter
+        let angleForPreChars = 2 * Double.pi * percenOfPreCharInCircle
+        return .radians(angleForPreChars + labelAngle)
+    }
+    ///ENDOFCIRCLESTUFF
     
     
     
@@ -38,7 +82,7 @@ struct ContentView: View {
             ///When editing is happening, do nothing
         }) {
             ///When editing is finished, call func to insert text into a textbox
-            var tBox = TextBox(words: [])
+            var tBox = TextBox(words: [],fullText: self.inputText)
             tBox.parseInput(text: self.inputText)
             self.containers.ls.append(tBox)
             ///Empty Text Field
@@ -65,14 +109,18 @@ struct ContentView: View {
         .font(.title)
     }
     
-    
     ///Builds the Circle Button
     fileprivate func circleButton() -> some View {
-        return Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+        return Button(action: {
+            if self.selectedCustomizeIndex != nil {
+                self.containers.ls[self.selectedCustomizeIndex!].circleBool = !self.containers.ls[self.selectedCustomizeIndex!].circleBool
+            }
+        }) {
             Image(systemName: "circle")
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        .padding(.all)
+        .padding(.leading)
+        .padding(.top)
         .font(.title)
     }
     
@@ -81,58 +129,64 @@ struct ContentView: View {
         return Group{
             ///Loop through each word in textbox.words
             ForEach(self.containers.ls.indices, id: \.self) { i in
-                VStack {
+                VStack (alignment: .leading, spacing: 20) {
+                    if self.containers.ls[i].circleBool == true{
+                        returnCircle(radius: 90, text: "Trump For President 2020", kerning: 9)
+                     //   CircleText(radius: 90, text: "Lorem ipsum dolor",kerning: 9)
+                    } else {
                     ForEach(self.containers.ls[i].words.indices, id: \.self) { j in
                         ///Create a Text for each word
                         ///setup font, color, onClick to Detail,
                         Text(self.containers.ls[i].words[j].text)
+                            .kerning(20)
                             .font(.custom(self.containers.ls[i].words[j].fontStyle, size: self.containers.ls[i].words[j].fontSize))
                             .minimumScaleFactor(0.1)
                             .lineLimit(1)
                             .foregroundColor(self.containers.ls[i].words[j].fontColor)
+                            
                             .sheet(isPresented: self.$detailPresented) { DetailView(detailPresented: self.$detailPresented) }
                             .onTapGesture {
                                 //Remove this eventually
                                 //self.containers.ls[i].changeColor(index: j)
                                 //---
                                 //self.detailPresented = true
-                                self.selectedCustomize = self.containers.ls[i]
+                                //self.selectedCustomize = self.containers.ls[i]
                                 self.selectedCustomizeIndex = i
-                                
-                                print("selected: ",i)
-                                
+                        
                             }
+                            
+                    }
                     }
                 }
-                .frame(width: self.containers.ls[i].sameWidth == true ? self.containers.ls[i].standardFontSize*2.2 : 160)
-                //.fixedSize(horizontal:false, vertical: true)
-                .border(self.selectedCustomizeIndex == i ? Color.black : Color.clear)
-                ///VStack properties: offset gesture is for drag, rotationEffect for rotation
-                //.offset(self.containers.ls[i].addToPositionReturn(translation: self.position)).scaledToFit()
-                .offset(self.selectedGesture == self.containers.ls[i] ? self.position : self.containers.ls[i].position).scaledToFit()
-                .gesture(DragGesture(minimumDistance: 10)
-                            .updating(self.$position, body: { (value, state, translation) in
-                                if nil == self.selectedGesture {
-                                    self.selectedGesture = self.containers.ls[i]
-                                } else {
-                                    let aux = self.containers.ls[i].position
-                                    let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
-                                    state = res
-                                }
-                            })
-                            .onEnded() { value in
-                                if self.selectedGesture == self.containers.ls[i] {
-                                    self.containers.ls[i].appendToPosition(translation: value.translation)
-                                }
-                                self.selectedGesture = nil
-                                //self.containers.ls[i].addToPosition(translation: value.translation)
-                            })
-                .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState))
-                .gesture(RotationGesture()
-                            .onChanged { value in
-                                self.containers.ls[i].rotateState = value.degrees
-                                self.containers.objectWillChange.send()
-                            })
+                    .frame(width: self.containers.ls[i].sameWidth == true ? self.containers.ls[i].standardFontSize*2.2 : 160)
+                    //.fixedSize(horizontal:false, vertical: true)
+                    .border(self.selectedCustomizeIndex == i ? Color.black : Color.clear)
+                    ///VStack properties: offset gesture is for drag, rotationEffect for rotation
+                    //.offset(self.containers.ls[i].addToPositionReturn(translation: self.position)).scaledToFit()
+                    .offset(self.selectedGesture == self.containers.ls[i] ? self.position : self.containers.ls[i].position).scaledToFit()
+                    .gesture(DragGesture(minimumDistance: 10)
+                                .updating(self.$position, body: { (value, state, translation) in
+                                    if nil == self.selectedGesture {
+                                        self.selectedGesture = self.containers.ls[i]
+                                    } else {
+                                        let aux = self.containers.ls[i].position
+                                        let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
+                                        state = res
+                                    }
+                                })
+                                .onEnded() { value in
+                                    if self.selectedGesture == self.containers.ls[i] {
+                                        self.containers.ls[i].appendToPosition(translation: value.translation)
+                                    }
+                                    self.selectedGesture = nil
+                                    //self.containers.ls[i].addToPosition(translation: value.translation)
+                                })
+                    .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState))
+                    .gesture(RotationGesture()
+                                .onChanged { value in
+                                    self.containers.ls[i].rotateState = value.degrees
+                                    self.containers.objectWillChange.send()
+                                })
             }
         }
     }
@@ -153,11 +207,17 @@ struct ContentView: View {
                         .foregroundColor(self.selectedFont == i ? .red : .black)
                         .lineLimit(nil)
                         .frame(width: 500, height: 20)
-                        .gesture(TapGesture().onEnded({
-                                                        if self.selectedCustomizeIndex != nil {
-                                                            self.containers.ls[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
-                                                        }
-                                                        self.selectedFont = i }))
+                        .gesture(TapGesture()
+                                    .onEnded(
+                                        {
+                                            if self.selectedCustomizeIndex != nil {
+                                                self.containers.ls[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
+                                            }
+                                            self.selectedFont = i
+                                            
+                                        }
+                                    )
+                        )
                 }
             }
         }
@@ -171,7 +231,6 @@ struct ContentView: View {
         }) {
             Text("F")
         }
-        
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(.all)
         .font(.title)
@@ -189,6 +248,8 @@ struct ContentView: View {
         })
     }
     
+    
+    
     var body : some View {
         ///Main body
         NavigationView {
@@ -197,8 +258,6 @@ struct ContentView: View {
                     .edgesIgnoringSafeArea(.all)
                 HStack(){
                     fontScrollView()
-                    
-                    
                 }
                 VStackTextBox()
             }
@@ -220,6 +279,8 @@ struct ContentView: View {
             )
         }
     }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

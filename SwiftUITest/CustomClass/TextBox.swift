@@ -12,6 +12,7 @@ struct TextBox: Identifiable, Equatable {
     
     var id = UUID()
     var words:[Word] = [Word]()
+    var text:String = ""
     var minFontSize:CGFloat = 20
     var maxFontSize:CGFloat = 80
     var avgFontSize:CGFloat = 40
@@ -21,8 +22,10 @@ struct TextBox: Identifiable, Equatable {
     var offset = CGSize.zero
     var position = CGSize.zero
     var sameWidth:Bool = false
+    var circleBool:Bool = false
     
-    init(words:[Word]) {
+    init(words:[Word], fullText:String) {
+        self.text = fullText
         self.words = words
         self.avgFontSize = maxFontSize - minFontSize
     }

@@ -11,43 +11,55 @@ import SwiftUI
 ///Source: https://medium.com/dwarves-foundation/create-circular-text-using-swiftui-32cd7e5b6414
 struct CircleText_Preview: PreviewProvider {
     static var previews: some View {
-        CircleText(radius: 200, text: "Dwarves Foundation Looking for Golang, FE candidates")
+        CircleText(text: "Dwarves Foundation Looking for Golang, FE candidates")
     }
 }
 
+
+func presentCircle(radius:Double,text:[String],kerning:CGFloat) {
+    
+}
+
+
+
+
 //MARK: - CircleLabel
 struct CircleText: View {
-    var radius: Double
-    var text: String
-    var kerning: CGFloat = 5.0
     
-    private var texts: [(offset: Int, element:Character)] {
+    var text: String
+    
+    private var texts: [(offset: Int, element:Character)]  {
+        
         return Array(text.enumerated())
     }
     
     @State var textSizes: [Int:Double] = [:]
     
-    var body: some View {
-        ZStack {
-            ForEach(self.texts, id: \.self.offset) { (offset, element) in
+    func returnCircle(radius:Double,text:String,kerning:CGFloat) -> some View {
+        return ZStack {
+            ForEach(  self.texts, id: \.self.offset) { (offset, element) in
                 VStack {
                     Text(String(element))
-                        .kerning(self.kerning)
+                        .kerning(kerning)
                         .background(Sizeable())
                         .onPreferenceChange(WidthPreferenceKey.self, perform: { size in
                             self.textSizes[offset] = Double(size)
                         })
                     Spacer()
                 }
-                .rotationEffect(self.angle(at: offset))
+                .rotationEffect(self.angle(at: offset, radius: radius))
                 
             }
-        }.rotationEffect(-self.angle(at: self.texts.count-1)/2)
-            
+        }.rotationEffect(-self.angle(at: self.texts.count-1, radius: radius)/2)
+        
         .frame(width: 300, height: 300, alignment: .center)
     }
     
-    private func angle(at index: Int) -> Angle {
+    var body: some View {
+        returnCircle(radius: 90, text: "", kerning: 9)
+    }
+    
+    private func angle(at index: Int, radius:Double) -> Angle {
         guard let labelSize = textSizes[index] else {return .radians(0)}
         let percentOfLabelInCircle = labelSize / radius.perimeter
         let labelAngle = 2 * Double.pi * percentOfLabelInCircle
