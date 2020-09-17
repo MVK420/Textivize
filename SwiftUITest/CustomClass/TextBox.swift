@@ -20,6 +20,7 @@ struct TextBox: Identifiable, Equatable {
     var rotateState: Double = 0
     var offset = CGSize.zero
     var position = CGSize.zero
+    var sameWidth:Bool = false
     
     init(words:[Word]) {
         self.words = words
@@ -105,7 +106,12 @@ struct TextBox: Identifiable, Equatable {
         for i in self.words.indices {
             self.words[i].fontStyle = font
         }
-        print("AMHEREFonting")
+    }
+    
+    mutating func setAllFontsSize(font:CGFloat) {
+        for i in self.words.indices {
+            self.words[i].fontSize = font
+        }
     }
 }
 

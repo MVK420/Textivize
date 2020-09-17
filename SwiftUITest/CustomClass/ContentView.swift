@@ -14,6 +14,7 @@ struct ContentView: View {
     @State var detailPresented = false
     @State private var fontPresented = false
     @State private var selectedFont = 1
+    
     private var fontList = ["Georgia","American Typewriter","Apple SD Gothic Neo","Arial","Avenir","Bodoni 72"]
     
     ///Array containing textboxes
@@ -41,7 +42,7 @@ struct ContentView: View {
             tBox.parseInput(text: self.inputText)
             self.containers.ls.append(tBox)
             ///Empty Text Field
-            self.inputText = ""
+            self.inputText = "Trump For President 2020"
         }
         .onReceive(Just(inputText)) { inputText in
         }
@@ -53,9 +54,9 @@ struct ContentView: View {
     ///Builds the Gradient Button
     fileprivate func gradientButton() -> some View {
         return Button(action: {
-            if self.selectedCustomizeIndex != nil {
-                self.containers.ls[self.selectedCustomizeIndex!].calcFont()
-            }})
+                        if self.selectedCustomizeIndex != nil {
+                            self.containers.ls[self.selectedCustomizeIndex!].calcFont()
+                        }})
         {
             Text("G")
         }
@@ -86,7 +87,8 @@ struct ContentView: View {
                         ///setup font, color, onClick to Detail,
                         Text(self.containers.ls[i].words[j].text)
                             .font(.custom(self.containers.ls[i].words[j].fontStyle, size: self.containers.ls[i].words[j].fontSize))
-                            //.font(.system(size: self.containers.ls[i].words[j].fontSize))
+                            .minimumScaleFactor(0.1)
+                            .lineLimit(1)
                             .foregroundColor(self.containers.ls[i].words[j].fontColor)
                             .sheet(isPresented: self.$detailPresented) { DetailView(detailPresented: self.$detailPresented) }
                             .onTapGesture {
@@ -99,36 +101,38 @@ struct ContentView: View {
                                 
                                 print("selected: ",i)
                                 
-                        }
+                            }
                     }
                 }
+                .frame(width: self.containers.ls[i].sameWidth == true ? self.containers.ls[i].standardFontSize*2.2 : 160)
+                //.fixedSize(horizontal:false, vertical: true)
                 .border(self.selectedCustomizeIndex == i ? Color.black : Color.clear)
-                    ///VStack properties: offset gesture is for drag, rotationEffect for rotation
-                    //.offset(self.containers.ls[i].addToPositionReturn(translation: self.position)).scaledToFit()
-                    .offset(self.selectedGesture == self.containers.ls[i] ? self.position : self.containers.ls[i].position).scaledToFit()
-                    .gesture(DragGesture(minimumDistance: 10)
-                        .updating(self.$position, body: { (value, state, translation) in
-                            if nil == self.selectedGesture {
-                                self.selectedGesture = self.containers.ls[i]
-                            } else {
-                                let aux = self.containers.ls[i].position
-                                let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
-                                state = res
-                            }
-                        })
-                        .onEnded() { value in
-                            if self.selectedGesture == self.containers.ls[i] {
-                                self.containers.ls[i].appendToPosition(translation: value.translation)
-                            }
-                            self.selectedGesture = nil
-                            //self.containers.ls[i].addToPosition(translation: value.translation)
-                    })
-                    .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState))
-                    .gesture(RotationGesture()
-                        .onChanged { value in
-                            self.containers.ls[i].rotateState = value.degrees
-                            self.containers.objectWillChange.send()
-                    })
+                ///VStack properties: offset gesture is for drag, rotationEffect for rotation
+                //.offset(self.containers.ls[i].addToPositionReturn(translation: self.position)).scaledToFit()
+                .offset(self.selectedGesture == self.containers.ls[i] ? self.position : self.containers.ls[i].position).scaledToFit()
+                .gesture(DragGesture(minimumDistance: 10)
+                            .updating(self.$position, body: { (value, state, translation) in
+                                if nil == self.selectedGesture {
+                                    self.selectedGesture = self.containers.ls[i]
+                                } else {
+                                    let aux = self.containers.ls[i].position
+                                    let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
+                                    state = res
+                                }
+                            })
+                            .onEnded() { value in
+                                if self.selectedGesture == self.containers.ls[i] {
+                                    self.containers.ls[i].appendToPosition(translation: value.translation)
+                                }
+                                self.selectedGesture = nil
+                                //self.containers.ls[i].addToPosition(translation: value.translation)
+                            })
+                .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState))
+                .gesture(RotationGesture()
+                            .onChanged { value in
+                                self.containers.ls[i].rotateState = value.degrees
+                                self.containers.objectWillChange.send()
+                            })
             }
         }
     }
@@ -150,10 +154,10 @@ struct ContentView: View {
                         .lineLimit(nil)
                         .frame(width: 500, height: 20)
                         .gesture(TapGesture().onEnded({
-                            if self.selectedCustomizeIndex != nil {
-                                self.containers.ls[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
-                            }
-                            self.selectedFont = i }))
+                                                        if self.selectedCustomizeIndex != nil {
+                                                            self.containers.ls[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
+                                                        }
+                                                        self.selectedFont = i }))
                 }
             }
         }
@@ -167,19 +171,33 @@ struct ContentView: View {
         }) {
             Text("F")
         }
-            
+        
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(.all)
         .font(.title)
+    }
+    
+    fileprivate func sameWidthButton() -> Button<Text> {
+        return Button(action: {
+            if self.selectedCustomizeIndex != nil {
+                let font:CGFloat =  self.containers.ls[self.selectedCustomizeIndex!].sameWidth == true ? 40 : 140
+                self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
+                self.containers.ls[self.selectedCustomizeIndex!].sameWidth = !self.containers.ls[self.selectedCustomizeIndex!].sameWidth
+            }
+        }, label: {
+            Text("W")
+        })
     }
     
     var body : some View {
         ///Main body
         NavigationView {
             ZStack() {
+                Color.white
+                    .edgesIgnoringSafeArea(.all)
                 HStack(){
                     fontScrollView()
-
+                    
                     
                 }
                 VStackTextBox()
@@ -192,13 +210,13 @@ struct ContentView: View {
                 print("deselected")
             }
             .navigationBarItems(leading:
-                HStack(){
-                    inputTextField()
-                    gradientButton()
-                    circleButton()
-                    fontButton()
-                    
-                }
+                                    HStack(){
+                                        inputTextField()
+                                        gradientButton()
+                                        fontButton()
+                                        sameWidthButton()
+                                        circleButton()
+                                    }
             )
         }
     }
