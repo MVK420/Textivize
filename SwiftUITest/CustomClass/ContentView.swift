@@ -27,7 +27,6 @@ struct ContentView: View {
     @State var inputText:String = "Alma a fa alatt"
     ///DragGesture values
     @GestureState private var position = CGSize.zero
-    
     ///Selected Object to drag
     @State private var selectedGesture: TextBox? = nil
     ///Selected Object to customize
@@ -35,7 +34,6 @@ struct ContentView: View {
     @State private var selectedCustomizeIndex:Int? = nil
     
     ///CIRCLESTUFF
-    
     @State var textSizes: [Int:Double] = [:]
     
     func returnCircle(index:Int,radius:Double,text:String,kerning:CGFloat) -> some View {
@@ -218,8 +216,11 @@ struct ContentView: View {
                 }
             }
         }
-        .frame(width: 200, height: 200)
+        .frame(width: 250, height: 220)
         .isHidden(self.fontPresented)
+        .border(Color.orange, width: 2)
+        .clipShape(Rectangle())
+        
     }
     
     fileprivate func fontButton() -> some View {
@@ -232,7 +233,6 @@ struct ContentView: View {
         .padding(.all)
         .font(.title)
     }
-    
     
     fileprivate func sameWidthButton() -> Button<Text> {
         return Button(action: {
@@ -258,8 +258,10 @@ struct ContentView: View {
             ZStack() {
                 Color.white
                     .edgesIgnoringSafeArea(.all)
-                HStack(){
+                VStack(){
                     fontScrollView()
+                    ///Spacer to push ScrollView to the top of the screen
+                    Spacer()
                 }
                 VStackTextBox()
             }
