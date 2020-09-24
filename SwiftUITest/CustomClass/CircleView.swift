@@ -11,7 +11,7 @@ import SwiftUI
 ///Source: https://medium.com/dwarves-foundation/create-circular-text-using-swiftui-32cd7e5b6414
 struct CircleText_Preview: PreviewProvider {
     static var previews: some View {
-        CircleText(text: "Dwarves Foundation Looking for Golang, FE candidates")
+        CircleText(text: "")
     }
 }
 
@@ -26,7 +26,7 @@ func presentCircle(radius:Double,text:[String],kerning:CGFloat) {
 //MARK: - CircleLabel
 struct CircleText: View {
     
-    var text: String
+    var text: String = "Alma fa 2"
     
     private var texts: [(offset: Int, element:Character)]  {
         
@@ -41,6 +41,8 @@ struct CircleText: View {
                 VStack {
                     Text(String(element))
                         .kerning(kerning)
+                        .foregroundColor(Color.blue)
+                        .font(.custom("Georgia",size: 50))
                         .background(Sizeable())
                         .onPreferenceChange(WidthPreferenceKey.self, perform: { size in
                             self.textSizes[offset] = Double(size)
@@ -56,7 +58,7 @@ struct CircleText: View {
     }
     
     var body: some View {
-        returnCircle(radius: 90, text: "", kerning: 9)
+        returnCircle(radius: 90, text: "Hellobello", kerning: 9)
     }
     
     private func angle(at index: Int, radius:Double) -> Angle {

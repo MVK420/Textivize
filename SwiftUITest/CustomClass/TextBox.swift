@@ -14,15 +14,25 @@ struct TextBox: Identifiable, Equatable {
     var words:[Word] = [Word]()
     var text:String = ""
     var minFontSize:CGFloat = 20
-    var maxFontSize:CGFloat = 80
+    var maxFontSize:CGFloat = 80 ///Todo: set this manually
     var avgFontSize:CGFloat = 40
     var grState: Int = 0
-    var standardFontSize:CGFloat = 40
+    var standardFontSize:CGFloat = 40 ///Todo: set this manually
     var rotateState: Double = 0
     var offset = CGSize.zero
     var position = CGSize.zero
     var sameWidth:Bool = false
     var circleBool:Bool = false
+    var kerningBool:Bool = false
+    var spacingBool:Bool = false
+    var kerning:CGFloat = 20 ///Todo: set this manually
+    var spacing:CGFloat = 40 ///Todo: set this manually
+    var scaleFact:CGFloat = 0.1
+    /// Text for Circle
+    
+    var texts: [(offset: Int, element:Character)]  {
+        return Array(self.text.enumerated())
+    }
     
     init(words:[Word], fullText:String) {
         self.text = fullText
@@ -42,6 +52,43 @@ struct TextBox: Identifiable, Equatable {
     mutating func changeColor(index:Int) {
         self.words[index].fontColor = .red
         //objectWillChange.send()
+    }
+    
+    func fontForTextBox() -> CGFloat {
+        if self.sameWidth == true {
+            return 160
+        } else {
+            return self.standardFontSize
+        }
+    }
+    
+    func scaleFactorForTextBox() -> CGFloat {
+        return self.sameWidth ? self.scaleFact : 1
+    }
+    
+    ///If SameWidth is true, return specific width for TextBox
+    func widthForTextBox() -> CGFloat {
+        if self.sameWidth == true {
+            return 100
+        } else {
+            return 300
+        }
+    }
+    
+    ///If kerningBool is true, return specific kerning for TextBox
+    func kerningForTextBox() -> CGFloat {
+        return self.kerningBool ? self.kerning : 0
+    }
+    
+    ///If spacingBool is true, return specific spacing for TextBox
+    func spacingForTextBox() -> CGFloat {
+        return self.spacingBool ? self.spacing : 0
+    }
+    
+    ///Function to figure out middle of view, to make rotation work
+    ///Not Working yet
+    func rotationAnchor() -> UnitPoint {
+        return UnitPoint(x: self.offset.width, y: self.offset.height)
     }
     
     ///On first call: gradually increase fontsize, on second: decrease, on third: reset
@@ -119,3 +166,9 @@ struct TextBox: Identifiable, Equatable {
 }
 
 
+
+struct TextBox_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}
