@@ -11,7 +11,8 @@ import SwiftUI
 struct Word:Hashable {
     
     var id = UUID()
-    var text: String
+    var text:String
+    var ogText:String
     var fontSize:CGFloat
     var fontColor:Color = .black
     var fontStyle:String = "Papyrus"

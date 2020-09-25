@@ -17,6 +17,7 @@ struct TextBox: Identifiable, Equatable {
     var maxFontSize:CGFloat = 80 ///Todo: set this manually
     var avgFontSize:CGFloat = 40
     var grState: Int = 0
+    var allCapsState: Int = 0
     var standardFontSize:CGFloat = 40 ///Todo: set this manually
     var rotateState: Double = 0
     var offset = CGSize.zero
@@ -38,15 +39,47 @@ struct TextBox: Identifiable, Equatable {
         self.text = fullText
         self.words = words
         self.avgFontSize = maxFontSize - minFontSize
+        //self.setOgText()
     }
     
     mutating func parseInput(text:String) {
         let array = text.components(separatedBy: " ")
         for word in array {
-            let wordObj:Word = Word(text: word, fontSize: self.standardFontSize)
+            let wordObj:Word = Word(text: word, ogText: word, fontSize: self.standardFontSize)
             self.words.append(wordObj)
         }
         //objectWillChange.send()
+    }
+    
+    mutating func setOgText() {
+        for i in self.words.indices {
+            self.words[i].ogText = self.words[i].text
+            print(self.words[i].ogText)
+        }
+    }
+    
+    
+    ///This is ugly, fix this shit
+    mutating func allCaps() {
+        if allCapsState == 0 {
+            for i in self.words.indices {
+                self.words[i].text = self.words[i].text.uppercased()
+            }
+            self.allCapsState += 1
+            return
+        } else if allCapsState == 1 {
+            for i in self.words.indices {
+                self.words[i].text = self.words[i].text.lowercased()
+            }
+            self.allCapsState += 1
+            return
+        } else {
+            for i in self.words.indices {
+                self.words[i].text = self.words[i].ogText
+            }
+            self.allCapsState = 0
+            return
+        }
     }
     
     mutating func changeColor(index:Int) {

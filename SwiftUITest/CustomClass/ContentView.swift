@@ -13,7 +13,6 @@ struct ContentView: View {
     
     ///Notused
     @State var detailPresented = false
-    
     @State var displayEditList = false
     ///Bool that checks if Font List needs to be presented
     @State private var fontPresented = false
@@ -49,6 +48,9 @@ struct ContentView: View {
                             self.textSizes[offset] = Double(size)
                         })
                     Spacer()
+                }
+                .onTapGesture {
+                    self.selectedCustomizeIndex = index
                 }
                 .rotationEffect(self.angle(at: offset, radius: radius))
                 
@@ -220,7 +222,6 @@ struct ContentView: View {
         .border(Color.orange, width: 4)
         .cornerRadius(7)
         .clipShape(Rectangle())
-        
     }
     
     fileprivate func fontButton() -> some View {
@@ -254,7 +255,7 @@ struct ContentView: View {
     
     fileprivate func editListButton() -> some View {
         return Button(action: {self.displayEditList = !self.displayEditList}) {
-                Image(systemName: "questionmark")
+                Image(systemName: "scope")
             }
             .frame(width: 25.0, height: 25.0)
             .border(Color.orange, width: 2)
@@ -278,6 +279,8 @@ struct ContentView: View {
                             gradientButton()
                             fontButton()
                             sameWidthButton()
+                            KerningButton()
+                            AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex)
                             circleButton()
                         }.isHidden(self.displayEditList)
                         .frame(width: 50)
@@ -299,7 +302,6 @@ struct ContentView: View {
                                     HStack(){
                                         inputTextField()
                                         editListButton()
-
                                     }
             )
         }
