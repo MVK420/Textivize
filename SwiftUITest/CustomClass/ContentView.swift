@@ -11,16 +11,15 @@ import Combine
 
 struct ContentView: View {
     
-    var circtxt:CircleText = CircleText()
-    
     ///Notused
     @State var detailPresented = false
+    
+    @State var displayEditList = false
     ///Bool that checks if Font List needs to be presented
     @State private var fontPresented = false
     //@State private var circlePresented = false
     @State private var selectedFont = 1
     private let fontList = UIFont.familyNames
-    //private var fontList = ["Georgia","American Typewriter","Apple SD Gothic Neo","Arial","Avenir","Bodoni 72"]
     ///Array containing textboxes
     @ObservedObject var containers:Container = Container()
     ///Input Text Field value
@@ -218,14 +217,15 @@ struct ContentView: View {
         }
         .frame(width: 250, height: 220)
         .isHidden(self.fontPresented)
-        .border(Color.orange, width: 2)
+        .border(Color.orange, width: 4)
+        .cornerRadius(7)
         .clipShape(Rectangle())
         
     }
     
     fileprivate func fontButton() -> some View {
         return Button(action: {
-            self.fontPresented = true
+            self.fontPresented = !self.fontPresented
         }) {
             Text("F")
         }
@@ -252,16 +252,39 @@ struct ContentView: View {
         })
     }
     
+    fileprivate func editListButton() -> some View {
+        return Button(action: {self.displayEditList = !self.displayEditList}) {
+                Image(systemName: "questionmark")
+            }
+            .frame(width: 25.0, height: 25.0)
+            .border(Color.orange, width: 2)
+            .cornerRadius(8)
+    }
+    
     var body : some View {
         ///Main body
         NavigationView {
             ZStack() {
                 Color.white
                     .edgesIgnoringSafeArea(.all)
-                VStack(){
-                    fontScrollView()
-                    ///Spacer to push ScrollView to the top of the screen
-                    Spacer()
+                ZStack{
+                    HStack{
+                        fontScrollView()
+                        Spacer()
+                    }
+                    HStack{
+                        Spacer()
+                        VStack {
+                            gradientButton()
+                            fontButton()
+                            sameWidthButton()
+                            circleButton()
+                        }.isHidden(self.displayEditList)
+                        .frame(width: 50)
+                        .border(Color.orange, width: 2)
+                        ///Spacer to push ScrollView to the top of the screen
+                    }
+                    
                 }
                 VStackTextBox()
             }
@@ -275,10 +298,8 @@ struct ContentView: View {
             .navigationBarItems(leading:
                                     HStack(){
                                         inputTextField()
-                                        gradientButton()
-                                        fontButton()
-                                        sameWidthButton()
-                                        circleButton()
+                                        editListButton()
+
                                     }
             )
         }
