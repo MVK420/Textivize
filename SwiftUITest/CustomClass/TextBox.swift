@@ -18,6 +18,7 @@ struct TextBox: Identifiable, Equatable {
     var avgFontSize:CGFloat = 40
     var grState: Int = 0
     var allCapsState: Int = 0
+    var capitaState:Int = 0
     var standardFontSize:CGFloat = 40 ///Todo: set this manually
     var rotateState: Double = 0
     var offset = CGSize.zero
@@ -58,6 +59,26 @@ struct TextBox: Identifiable, Equatable {
         }
     }
     
+    ///TODO: First Case, if words ends with . ? ! then capitalize next word.
+    mutating func capitalize() {
+        if self.capitaState == 0 {
+            self.words[0].text = self.words[0].text.capitalized
+            self.capitaState += 1
+            return
+        } else if self.capitaState == 1 {
+            for i in self.words.indices {
+                self.words[i].text = self.words[i].text.capitalized
+            }
+            self.capitaState += 1
+            return
+        } else {
+            for i in self.words.indices {
+                self.words[i].text = self.words[i].ogText
+            }
+            self.capitaState = 0
+            return
+        }
+    }
     
     ///This is ugly, fix this shit
     mutating func allCaps() {

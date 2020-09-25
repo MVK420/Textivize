@@ -14,6 +14,7 @@ struct ContentView: View {
     ///Notused
     @State var detailPresented = false
     @State var displayEditList = false
+    @State var displayKerningBox = false
     ///Bool that checks if Font List needs to be presented
     @State private var fontPresented = false
     //@State private var circlePresented = false
@@ -43,7 +44,7 @@ struct ContentView: View {
                         ///FIX index
                         .foregroundColor(self.containers.ls[0].words[0].fontColor)
                         .background(Sizeable())
-                        .font(.custom(self.fontList[0], size: 20))
+                        .font(.custom(self.fontList[0], size: 40))
                         .onPreferenceChange(WidthPreferenceKey.self, perform: { size in
                             self.textSizes[offset] = Double(size)
                         })
@@ -84,7 +85,7 @@ struct ContentView: View {
         }
         .onReceive(Just(inputText)) { inputText in
         }
-        .frame(minWidth: 50, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        //.frame(minWidth: 50, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(.all)
         .font(.title)
     }
@@ -100,7 +101,7 @@ struct ContentView: View {
         {
             Text("G")
         }
-        .frame(minWidth: 10, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        //.frame(minWidth: 10, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)//, alignment: .topLeading)
         .padding(.all)
         .font(.title)
     }
@@ -116,9 +117,10 @@ struct ContentView: View {
         }) {
             Image(systemName: "circle")
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        .padding(.leading)
-        .padding(.top)
+        //.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        //.padding(.leading)
+        //.padding(.top)
+        .padding(.all)
         .font(.title)
     }
     
@@ -219,6 +221,7 @@ struct ContentView: View {
         }
         .frame(width: 250, height: 220)
         .isHidden(self.fontPresented)
+        .background(Color.gray)
         .border(Color.orange, width: 4)
         .cornerRadius(7)
         .clipShape(Rectangle())
@@ -230,7 +233,7 @@ struct ContentView: View {
         }) {
             Text("F")
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
+        //.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(.all)
         .font(.title)
     }
@@ -274,13 +277,20 @@ struct ContentView: View {
                         Spacer()
                     }
                     HStack{
+                        KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex)
+                            .isHidden(self.displayKerningBox)
+                        Spacer()
+                    }
+
+                    HStack{
                         Spacer()
                         VStack {
                             gradientButton()
                             fontButton()
                             sameWidthButton()
-                            KerningButton()
-                            AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex)
+                            KerningButton(displayKerningBox: self.$displayKerningBox)
+                            AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex,allCaps:true)
+                            AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex, allCaps: false)
                             circleButton()
                         }.isHidden(self.displayEditList)
                         .frame(width: 50)

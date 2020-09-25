@@ -17,7 +17,7 @@
 		1B32A3EF25000AE3005709DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B32A3EE25000AE3005709DC /* Assets.xcassets */; };
 		1B32A3F225000AE3005709DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B32A3F125000AE3005709DC /* Preview Assets.xcassets */; };
 		1B32A3F525000AE3005709DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B32A3F325000AE3005709DC /* LaunchScreen.storyboard */; };
-		1B69013F251DE00C0008B0F5 /* KerningButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69013E251DE00C0008B0F5 /* KerningButton.swift */; };
+		1B69013F251DE00C0008B0F5 /* Kerning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69013E251DE00C0008B0F5 /* Kerning.swift */; };
 		1B690142251DF3880008B0F5 /* AllCapsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B690141251DF3880008B0F5 /* AllCapsButton.swift */; };
 		1B8654B4250D536400AAF38B /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8654B3250D536400AAF38B /* Container.swift */; };
 /* End PBXBuildFile section */
@@ -35,7 +35,7 @@
 		1B32A3F125000AE3005709DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1B32A3F425000AE3005709DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B32A3F625000AE3005709DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B69013E251DE00C0008B0F5 /* KerningButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KerningButton.swift; sourceTree = "<group>"; };
+		1B69013E251DE00C0008B0F5 /* Kerning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kerning.swift; sourceTree = "<group>"; };
 		1B690141251DF3880008B0F5 /* AllCapsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCapsButton.swift; sourceTree = "<group>"; };
 		1B8654B3250D536400AAF38B /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,7 +60,7 @@
 				1B8654B3250D536400AAF38B /* Container.swift */,
 				1B257FE02508CEAB00A26854 /* TextBox.swift */,
 				1B257FDE2506C8AA00A26854 /* Word.swift */,
-				1B69013E251DE00C0008B0F5 /* KerningButton.swift */,
+				1B69013E251DE00C0008B0F5 /* Kerning.swift */,
 				1B690141251DF3880008B0F5 /* AllCapsButton.swift */,
 			);
 			path = CustomClass;
@@ -182,7 +182,7 @@
 				1B128BD62509707F0096ACBC /* DetailView.swift in Sources */,
 				1B32A3EB25000ADF005709DC /* SceneDelegate.swift in Sources */,
 				1B8654B4250D536400AAF38B /* Container.swift in Sources */,
-				1B69013F251DE00C0008B0F5 /* KerningButton.swift in Sources */,
+				1B69013F251DE00C0008B0F5 /* Kerning.swift in Sources */,
 				1B257FE12508CEAB00A26854 /* TextBox.swift in Sources */,
 				1B32A3ED25000ADF005709DC /* ContentView.swift in Sources */,
 			);
