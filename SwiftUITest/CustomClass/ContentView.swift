@@ -13,13 +13,17 @@ struct ContentView: View {
     
     ///Notused
     @State var detailPresented = false
+    ///Bool that checks if all the buttons to edit TextBox need to be presented
     @State var displayEditList = false
+    ///Bool that checks if the kerning editor needs to be peresnted
     @State var displayKerningBox = false
     ///Bool that checks if Font List needs to be presented
     @State private var fontPresented = false
     //@State private var circlePresented = false
-    @State private var selectedFont = 1
+    ///List of fonts in system
     private let fontList = UIFont.familyNames
+    ///In the font list the selected one will be colored
+    @State private var selectedFont = 1
     ///Array containing textboxes
     @ObservedObject var containers:Container = Container()
     ///Input Text Field value
@@ -30,6 +34,7 @@ struct ContentView: View {
     @State private var selectedGesture: TextBox? = nil
     ///Selected Object to customize
     //@State private var selectedCustomize : TextBox? = nil
+    ///Index of selected TextBox
     @State private var selectedCustomizeIndex:Int? = nil
     
     ///CIRCLESTUFF
@@ -40,11 +45,11 @@ struct ContentView: View {
             ForEach(  self.containers.ls[index].texts, id: \.self.offset) { (offset, element) in
                 VStack {
                     Text(String(element))
-                        .kerning(kerning)
-                        ///FIX index
-                        .foregroundColor(self.containers.ls[0].words[0].fontColor)
+                        .kerning(self.containers.ls[index].kerning)
+                        .foregroundColor(self.containers.ls[index].words[0].fontColor)
                         .background(Sizeable())
-                        .font(.custom(self.fontList[0], size: 40))
+                        .font(.custom(self.containers.ls[index].words[0].fontStyle, size: self.containers.ls[index].words[0].fontSize))
+                        .font(.custom(self.fontList[index], size: 40))
                         .onPreferenceChange(WidthPreferenceKey.self, perform: { size in
                             self.textSizes[offset] = Double(size)
                         })
@@ -99,7 +104,7 @@ struct ContentView: View {
                             self.containers.ls[self.selectedCustomizeIndex!].calcFont()
                         }})
         {
-            Text("G")
+            Image(systemName: "g.circle.fill")
         }
         //.frame(minWidth: 10, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)//, alignment: .topLeading)
         .padding(.all)
@@ -118,8 +123,6 @@ struct ContentView: View {
             Image(systemName: "circle")
         }
         //.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        //.padding(.leading)
-        //.padding(.top)
         .padding(.all)
         .font(.title)
     }
@@ -191,10 +194,12 @@ struct ContentView: View {
     
     ///Function for rotation
     ///Source: https://www.youtube.com/watch?v=rp9azVjwk-8
-    func addToPosition2(textBox: TextBox, translation: CGSize) -> CGSize {
-        //self.containers.objectWillChange.send()
-        return CGSize(width: textBox.offset.width + translation.width, height: textBox.offset.height + translation.height)
-    }
+    /*
+     func addToPosition2(textBox: TextBox, translation: CGSize) -> CGSize {
+     //self.containers.objectWillChange.send()
+     return CGSize(width: textBox.offset.width + translation.width, height: textBox.offset.height + translation.height)
+     }
+     */
     
     fileprivate func fontScrollView() -> some View {
         return ScrollView(.vertical) {
@@ -207,12 +212,11 @@ struct ContentView: View {
                         .frame(width: 500, height: 20)
                         .gesture(TapGesture()
                                     .onEnded(
-                                        {
-                                            if self.selectedCustomizeIndex != nil {
-                                                self.containers.ls[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
-                                            }
-                                            self.selectedFont = i
-                                            
+                                        {if self.selectedCustomizeIndex != nil {
+                                            self.containers.ls[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
+                                        }
+                                        self.selectedFont = i
+                                        
                                         }
                                     )
                         )
@@ -231,20 +235,21 @@ struct ContentView: View {
         return Button(action: {
             self.fontPresented = !self.fontPresented
         }) {
-            Text("F")
+            Image(systemName: "f.circle.fill")
         }
         //.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(.all)
         .font(.title)
     }
     
-    fileprivate func sameWidthButton() -> Button<Text> {
+    fileprivate func sameWidthButton() -> some View {
         return Button(action: {
             ///If there's a Textbox that is selected to customize
             if self.selectedCustomizeIndex != nil {
                 ///Set other bools to false
                 self.containers.ls[self.selectedCustomizeIndex!].circleBool = false
                 self.containers.ls[self.selectedCustomizeIndex!].grState = 0
+                self.containers.ls[self.selectedCustomizeIndex!].kerningBool = false
                 ///SameWidth = !SameWidth
                 self.containers.ls[self.selectedCustomizeIndex!].sameWidth = !self.containers.ls[self.selectedCustomizeIndex!].sameWidth
                 ///Get font size (standard for textbox if sameWidth = false, 160 if true, that will be scaled down)
@@ -252,17 +257,19 @@ struct ContentView: View {
                 self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
             }
         }, label: {
-            Text("W")
-        })
+
+            Image(systemName: "w.circle.fill")
+        }).font(.title)
+        
     }
     
     fileprivate func editListButton() -> some View {
         return Button(action: {self.displayEditList = !self.displayEditList}) {
-                Image(systemName: "scope")
-            }
-            .frame(width: 25.0, height: 25.0)
-            .border(Color.orange, width: 2)
-            .cornerRadius(8)
+            Image(systemName: "scope")
+        }
+        .frame(width: 25.0, height: 25.0)
+        .border(Color.orange, width: 2)
+        .cornerRadius(8)
     }
     
     var body : some View {
@@ -271,6 +278,7 @@ struct ContentView: View {
             ZStack() {
                 Color.white
                     .edgesIgnoringSafeArea(.all)
+                ///PopUp Editors
                 ZStack{
                     HStack{
                         fontScrollView()
@@ -281,14 +289,15 @@ struct ContentView: View {
                             .isHidden(self.displayKerningBox)
                         Spacer()
                     }
-
+                    
                     HStack{
                         Spacer()
+                        ///Edit buttons
                         VStack {
                             gradientButton()
                             fontButton()
                             sameWidthButton()
-                            KerningButton(displayKerningBox: self.$displayKerningBox)
+                            KerningButton(displayKerningBox: self.$displayKerningBox, containers:self._containers, selected: self.$selectedCustomizeIndex)
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex,allCaps:true)
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex, allCaps: false)
                             circleButton()
@@ -305,6 +314,7 @@ struct ContentView: View {
             .onTapGesture {
                 self.selectedCustomizeIndex = nil
                 self.fontPresented = false
+                self.displayKerningBox = false
                 //self.selectedGesture = nil
                 print("deselected")
             }

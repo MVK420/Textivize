@@ -26,6 +26,7 @@ struct AllCapsButton: View {
             Image(systemName: self.allCaps == true ?"textformat.size" : "arrowtriangle.up.square.fill")
         }
         .padding(.all)
+        .font(.title)
     }
     
     init(containers:ObservedObject<Container>, selected:Binding<Int?>,allCaps:Bool) {

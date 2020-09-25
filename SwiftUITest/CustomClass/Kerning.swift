@@ -11,15 +11,23 @@ import SwiftUI
 struct KerningButton: View {
     
     @Binding var displayKerningBox:Bool
+    @Binding var selectedCustomizeIndex:Int?
+    @ObservedObject var containers:Container
     
     var body: some View {
-        Button(action: {self.displayKerningBox = !self.displayKerningBox}) {
+        Button(action: {self.displayKerningBox = !self.displayKerningBox
+            self.containers.ls[self.selectedCustomizeIndex!].kerningBool = true
+            
+        }) {
             Image(systemName: "k.circle.fill")
         }.padding(.all)
+        .font(.title)
     }
     
-    init(displayKerningBox:Binding<Bool>) {
+    init(displayKerningBox:Binding<Bool>,containers:ObservedObject<Container>, selected:Binding<Int?>) {
         self._displayKerningBox = displayKerningBox
+        self._containers = containers
+        self._selectedCustomizeIndex = selected
     }
 }
 
@@ -33,16 +41,20 @@ struct KerningSelectBox:View {
             Text("Kerning")
                 .font(.custom("Helvetica", size: 30))
             HStack() {
-                Button(action: {}) {
+                Button(action: {self.containers.ls[self.selectedCustomizeIndex!].addToKerning(val: 1)}) {
                     Text("+").font(.custom("Helvetica", size: 30))
                 }
-                Text("12").font(.custom("Helvetica", size: 30))
-                Button(action: {}) {
+                Text(self.containers.ls[self.selectedCustomizeIndex!].getKerningString()
+                ).font(.custom("Helvetica", size: 30))
+                    
+                    
+                Button(action: {self.containers.ls[self.selectedCustomizeIndex!].addToKerning(val: -1)}) {
                     Text("-").font(.custom("Helvetica", size: 30))
                 }
             }
         }.border(Color.orange, width: 2)
     }
+    
     
     init(containers:ObservedObject<Container>, selected:Binding<Int?>) {
         self._containers = containers

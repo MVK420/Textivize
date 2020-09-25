@@ -217,6 +217,15 @@ struct TextBox: Identifiable, Equatable {
             self.words[i].fontSize = font
         }
     }
+    
+    func getKerningString() -> String {
+        return self.kerning.description
+    }
+    
+    mutating func addToKerning(val:CGFloat) {
+        self.kerning += val
+    }
+    
 }
 
 
