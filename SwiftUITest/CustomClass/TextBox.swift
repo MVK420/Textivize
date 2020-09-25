@@ -27,11 +27,10 @@ struct TextBox: Identifiable, Equatable {
     var circleBool:Bool = false
     var kerningBool:Bool = false
     var spacingBool:Bool = false
-    var kerning:CGFloat = 20 ///Todo: set this manually
+    var kerning:CGFloat = 20
     var spacing:CGFloat = 40 ///Todo: set this manually
     var scaleFact:CGFloat = 0.1
     /// Text for Circle
-    
     var texts: [(offset: Int, element:Character)]  {
         return Array(self.text.enumerated())
     }
@@ -40,7 +39,6 @@ struct TextBox: Identifiable, Equatable {
         self.text = fullText
         self.words = words
         self.avgFontSize = maxFontSize - minFontSize
-        //self.setOgText()
     }
     
     mutating func parseInput(text:String) {
@@ -50,13 +48,6 @@ struct TextBox: Identifiable, Equatable {
             self.words.append(wordObj)
         }
         //objectWillChange.send()
-    }
-    
-    mutating func setOgText() {
-        for i in self.words.indices {
-            self.words[i].ogText = self.words[i].text
-            print(self.words[i].ogText)
-        }
     }
     
     ///TODO: First Case, if words ends with . ? ! then capitalize next word.
@@ -184,7 +175,7 @@ struct TextBox: Identifiable, Equatable {
         }
     }
     
-    mutating func addToPosition(translation: CGSize) {
+    mutating func addToPosition(translation:CGSize) {
         self.offset = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
     }
     

@@ -19,7 +19,6 @@ struct ContentView: View {
     @State var displayKerningBox = false
     ///Bool that checks if Font List needs to be presented
     @State private var fontPresented = false
-    //@State private var circlePresented = false
     ///List of fonts in system
     private let fontList = UIFont.familyNames
     ///In the font list the selected one will be colored
@@ -257,12 +256,12 @@ struct ContentView: View {
                 self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
             }
         }, label: {
-
             Image(systemName: "w.circle.fill")
         }).font(.title)
         
     }
     
+    ///Button that presents the options
     fileprivate func editListButton() -> some View {
         return Button(action: {self.displayEditList = !self.displayEditList}) {
             Image(systemName: "scope")
@@ -274,6 +273,7 @@ struct ContentView: View {
     
     var body : some View {
         ///Main body
+        ///Header
         NavigationView {
             ZStack() {
                 Color.white
