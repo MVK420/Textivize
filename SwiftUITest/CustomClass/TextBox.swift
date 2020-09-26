@@ -13,6 +13,7 @@ struct TextBox: Identifiable, Equatable {
     var id = UUID()
     var words:[Word] = [Word]()
     var text:String = ""
+    var selectedFontColor:Color = .black
     var minFontSize:CGFloat = 20
     var maxFontSize:CGFloat = 80 ///Todo: set this manually
     var avgFontSize:CGFloat = 40
@@ -97,6 +98,13 @@ struct TextBox: Identifiable, Equatable {
     mutating func changeColor(index:Int) {
         self.words[index].fontColor = .red
         //objectWillChange.send()
+    }
+    
+    
+    mutating func setAllWordColor() {
+        for i in self.words.indices {
+            self.words[i].fontColor = self.selectedFontColor
+        }
     }
     
     func fontForTextBox() -> CGFloat {

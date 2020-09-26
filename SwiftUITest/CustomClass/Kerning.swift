@@ -15,9 +15,12 @@ struct KerningButton: View {
     @ObservedObject var containers:Container
     
     var body: some View {
-        Button(action: {self.displayKerningBox = !self.displayKerningBox
-            self.containers.ls[self.selectedCustomizeIndex!].kerningBool = true
-            
+        Button(action: {
+            if self.selectedCustomizeIndex != nil {
+                self.displayKerningBox = !self.displayKerningBox
+                self.containers.ls[self.selectedCustomizeIndex!].sameWidth = false
+                self.containers.ls[self.selectedCustomizeIndex!].kerningBool = true
+            }
         }) {
             Image(systemName: "k.circle.fill")
         }.padding(.all)

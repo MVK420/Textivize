@@ -282,7 +282,12 @@ struct ContentView: View {
                 ZStack{
                     HStack{
                         fontScrollView()
-                        Spacer()
+                        //Spacer()
+                        /*if #available(iOS 14.0, *) {
+                            ColorPicker("Title", selection: self.containers.ls[self.selectedCustomizeIndex].selectedFontColor)
+                        } else {
+                            // Fallback on earlier versions
+                        }*/
                     }
                     HStack{
                         KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex)

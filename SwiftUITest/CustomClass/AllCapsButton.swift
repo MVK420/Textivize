@@ -15,7 +15,7 @@ struct AllCapsButton: View {
     var allCaps:Bool
     
     var body: some View {
-        Button(action: {if self.allCaps == true {
+        Button(action: {if self.allCaps == true && (self.selectedCustomizeIndex != nil) {
             self.containers.ls[self.selectedCustomizeIndex!].allCaps()
         } else {
             self.containers.ls[self.selectedCustomizeIndex!].capitalize()
