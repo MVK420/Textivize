@@ -120,9 +120,12 @@ struct ContentView: View {
     fileprivate func circleButton() -> some View {
         return Button(action: {
             if self.selectedCustomizeIndex != nil {
+                
                 self.containers.ls[self.selectedCustomizeIndex!].sameWidth = false
                 self.containers.ls[self.selectedCustomizeIndex!].grState = 0
                 self.containers.ls[self.selectedCustomizeIndex!].circleBool = !self.containers.ls[self.selectedCustomizeIndex!].circleBool
+                self.displayRadiusBox = self.containers.ls[self.selectedCustomizeIndex!].circleBool
+                self.displayKerningBox = self.containers.ls[self.selectedCustomizeIndex!].circleBool
             }
         }) {
             Image(systemName: "circle")
@@ -289,7 +292,14 @@ struct ContentView: View {
             .frame(width: 25.0, height: 25.0)
             .padding(.all)
             .font(.title)
-            
+        
+    }
+    
+    private func selectedAndCircle() -> Bool {
+        if self.selectedCustomizeIndex != nil {
+            return self.containers.ls[self.selectedCustomizeIndex!].circleBool
+        }
+        return false
     }
     
     var body : some View {
@@ -301,35 +311,39 @@ struct ContentView: View {
                     .edgesIgnoringSafeArea(.all)
                 ///PopUp Editors
                 ZStack{
-                    HStack{
-                        fontScrollView()
-                        //Spacer()
-
-                    }
-                    HStack{
-                        KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Kerning")
-                            .isHidden(self.displayKerningBox)
-                        KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Radius")
-                            .isHidden(self.displayRadiusBox)
-                        KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Spacing")
-                            .isHidden(self.displaySpacingBox)
+                    VStack{
                         Spacer()
+                        fontScrollView()                        
+                    }
+                    VStack{
+                        Spacer()
+                        HStack{
+                            
+                            KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Kerning")
+                                .isHidden(self.displayKerningBox)
+                            KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Radius")
+                                .isHidden(self.displayRadiusBox)
+                            KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Spacing")
+                                .isHidden(self.displaySpacingBox)
+                            
+                        }.frame(alignment: .bottomTrailing)
                     }
                     
                     HStack{
                         Spacer()
                         ///Edit buttons
                         VStack {
-                            gradientButton()
+                            gradientButton().isHidden(!self.selectedAndCircle())
                             fontButton()
-                            sameWidthButton()
-                            KerningButton(displayKerningBox: self.$displayKerningBox, containers:self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Kerning")
-                            KerningButton(displayKerningBox: self.$displayRadiusBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Radius")
-                            KerningButton(displayKerningBox: self.$displaySpacingBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Spacing")
+                            sameWidthButton().isHidden(!self.selectedAndCircle())
+                            KerningButton(displayBox: self.$displayKerningBox, containers:self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Kerning")
+                            KerningButton(displayBox: self.$displayRadiusBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Radius")
+                                .isHidden(self.selectedAndCircle())
+                            KerningButton(displayBox: self.$displaySpacingBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Spacing").isHidden(!self.selectedAndCircle())
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex,allCaps:true)
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex, allCaps: false)
                             circleButton()
-
+                            
                         }.isHidden(self.displayEditList)
                         .frame(width: 50)
                         .border(Color.orange, width: 2)

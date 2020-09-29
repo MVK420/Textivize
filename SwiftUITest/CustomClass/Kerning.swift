@@ -10,7 +10,7 @@ import SwiftUI
 
 struct KerningButton: View {
     
-    @Binding var displayKerningBox:Bool
+    @Binding var displayBox:Bool
     @Binding var selectedCustomizeIndex:Int?
     @ObservedObject var containers:Container
     var caseBox:String
@@ -18,7 +18,7 @@ struct KerningButton: View {
     var body: some View {
         Button(action: {
             if self.selectedCustomizeIndex != nil {
-                self.displayKerningBox = !self.displayKerningBox
+                self.displayBox = !self.displayBox
                 self.containers.ls[self.selectedCustomizeIndex!].sameWidth = false
                 self.activateCaseBool()
             }
@@ -28,8 +28,8 @@ struct KerningButton: View {
         .font(.title)
     }
     
-    init(displayKerningBox:Binding<Bool>,containers:ObservedObject<Container>, selected:Binding<Int?>,caseBox: String) {
-        self._displayKerningBox = displayKerningBox
+    init(displayBox:Binding<Bool>,containers:ObservedObject<Container>, selected:Binding<Int?>,caseBox: String) {
+        self._displayBox = displayBox
         self._containers = containers
         self._selectedCustomizeIndex = selected
         self.caseBox = caseBox
