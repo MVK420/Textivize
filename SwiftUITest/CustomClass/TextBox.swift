@@ -13,7 +13,7 @@ struct TextBox: Identifiable, Equatable {
     var id = UUID()
     var words:[Word] = [Word]()
     var text:String = ""
-    var selectedFontColor:Color = .black
+    var selectedFontColor:Color = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
     var minFontSize:CGFloat = 20
     var maxFontSize:CGFloat = 80 ///Todo: set this manually
     var avgFontSize:CGFloat = 40
@@ -27,7 +27,9 @@ struct TextBox: Identifiable, Equatable {
     var sameWidth:Bool = false
     var circleBool:Bool = false
     var kerningBool:Bool = false
+    var radiusBool:Bool = false
     var spacingBool:Bool = false
+    var radius:Double = 180
     var kerning:CGFloat = 20
     var spacing:CGFloat = 40 ///Todo: set this manually
     var scaleFact:CGFloat = 0.1
@@ -217,12 +219,20 @@ struct TextBox: Identifiable, Equatable {
         }
     }
     
-    func getKerningString() -> String {
-        return self.kerning.description
+    func getString(caseBox:String) -> String {
+        if caseBox == "Kerning"{
+            return self.kerning.description
+        } else {
+            return self.radius.description
+        }
     }
     
     mutating func addToKerning(val:CGFloat) {
         self.kerning += val
+    }
+    
+    mutating func addToRadius(val:Double) {
+        self.radius += val
     }
     
 }

@@ -13,10 +13,14 @@ struct ContentView: View {
     
     ///Notused
     @State var detailPresented = false
+    ///selectedColor
+    @State var selectedColor = Color(.black)
     ///Bool that checks if all the buttons to edit TextBox need to be presented
     @State var displayEditList = false
     ///Bool that checks if the kerning editor needs to be peresnted
     @State var displayKerningBox = false
+    ///Bool that checks if the radius editor needs to be peresnted
+    @State var displayRadiusBox = false
     ///Bool that checks if Font List needs to be presented
     @State private var fontPresented = false
     ///List of fonts in system
@@ -133,7 +137,7 @@ struct ContentView: View {
             ForEach(self.containers.ls.indices, id: \.self) { i in
                 VStack (spacing: self.containers.ls[i].spacingForTextBox()){//(alignment: .leading, spacing: 20) {
                     if self.containers.ls[i].circleBool == true{
-                        returnCircle(index: i, radius: 90, text: "Trump For President 2020", kerning: 9)
+                        returnCircle(index: i, radius: self.containers.ls[i].radius, text: "Trump For President 2020", kerning: 9)
                     } else {
                         ForEach(self.containers.ls[i].words.indices, id: \.self) { j in
                             ///Create a Text for each word
@@ -271,6 +275,21 @@ struct ContentView: View {
         .cornerRadius(8)
     }
     
+    @available(iOS 14.0, *)
+    fileprivate func ColorPick() -> some View {
+        return ColorPicker("", selection: $selectedColor).frame(height: 200)
+            .onChange(of: self.selectedColor, perform: { value in
+                if self.selectedCustomizeIndex != nil {
+                    self.containers.ls[selectedCustomizeIndex!].selectedFontColor = self.selectedColor
+                    self.containers.ls[selectedCustomizeIndex!].setAllWordColor()
+                }
+            })
+            .frame(width: 25.0, height: 25.0)
+            .padding(.all)
+            .font(.title)
+            
+    }
+    
     var body : some View {
         ///Main body
         ///Header
@@ -283,15 +302,13 @@ struct ContentView: View {
                     HStack{
                         fontScrollView()
                         //Spacer()
-                        /*if #available(iOS 14.0, *) {
-                            ColorPicker("Title", selection: self.containers.ls[self.selectedCustomizeIndex].selectedFontColor)
-                        } else {
-                            // Fallback on earlier versions
-                        }*/
+
                     }
                     HStack{
-                        KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex)
+                        KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Kerning")
                             .isHidden(self.displayKerningBox)
+                        KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Radius")
+                            .isHidden(self.displayRadiusBox)
                         Spacer()
                     }
                     
@@ -302,10 +319,12 @@ struct ContentView: View {
                             gradientButton()
                             fontButton()
                             sameWidthButton()
-                            KerningButton(displayKerningBox: self.$displayKerningBox, containers:self._containers, selected: self.$selectedCustomizeIndex)
+                            KerningButton(displayKerningBox: self.$displayKerningBox, containers:self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Kerning")
+                            KerningButton(displayKerningBox: self.$displayRadiusBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Radius")
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex,allCaps:true)
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex, allCaps: false)
                             circleButton()
+
                         }.isHidden(self.displayEditList)
                         .frame(width: 50)
                         .border(Color.orange, width: 2)
@@ -326,6 +345,11 @@ struct ContentView: View {
             .navigationBarItems(leading:
                                     HStack(){
                                         inputTextField()
+                                        if #available(iOS 14.0, *) {
+                                            ColorPick()
+                                        } else {
+                                            // Fallback on earlier versions
+                                        }
                                         editListButton()
                                     }
             )
