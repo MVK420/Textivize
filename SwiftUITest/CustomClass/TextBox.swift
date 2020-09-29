@@ -156,10 +156,22 @@ struct TextBox: Identifiable, Equatable {
         self.grState += 1
     }
     
+    mutating func calcFontForGr() {
+        if self.grState == 0 {
+            self.increasingFontSize()
+        } else if grState == 1 {
+            self.decreasingFontSize()
+        }
+        if self.grState == 2 {
+            self.resetFontSize()
+        }
+    }
+    
     /// Calculate font for each word in array, to gradually increase them
     mutating func increasingFontSize() {
         for (index, _) in self.words.enumerated() {
-            let step = Int(self.avgFontSize) / (self.words.count - 1)
+            //let step = Int(self.avgFontSize) / (self.words.count - 1)
+            let step = Int(self.maxFontSize - self.minFontSize) / (self.words.count - 1)
             let res = (step * index) + Int(minFontSize)
             self.words[index].fontSize = CGFloat(res)
         }
@@ -168,7 +180,8 @@ struct TextBox: Identifiable, Equatable {
     /// Calculate font for each word in array, to gradually decrease them
     mutating func decreasingFontSize() {
         for (index, _) in self.words.enumerated() {
-            let step = Int(self.avgFontSize) / (self.words.count - 1)
+            //let step = Int(self.avgFontSize) / (self.words.count - 1)
+            let step = Int(self.maxFontSize - self.minFontSize) / (self.words.count - 1)
             let res = (step * index) + Int(minFontSize)
             self.words[self.words.count - 1 - index].fontSize = CGFloat(res)
         }
@@ -232,20 +245,15 @@ struct TextBox: Identifiable, Equatable {
             return self.radius.description
         case "Spacing":
             return self.spacing.description
+        case "Min Gr":
+            return self.minFontSize.description
+        case "Max Gr":
+            return self.maxFontSize.description
         default:
             return ""
         }
     }
     
-//
-//    mutating func addToKerning(val:CGFloat) {
-//        self.kerning += val
-//    }
-//
-//    mutating func addToRadius(val:Double) {
-//        self.radius += val
-//    }
-//
     mutating func addToCase<T:BinaryInteger>(caseBox:String, val: T) {
         switch caseBox {
         case "Kerning":
@@ -254,6 +262,12 @@ struct TextBox: Identifiable, Equatable {
             self.radius += Double(val*10)
         case "Spacing":
             self.spacing += CGFloat(val)
+        case "Min Gr":
+            self.minFontSize += CGFloat(val)
+            self.calcFontForGr()
+        case "Max Gr":
+            self.maxFontSize += CGFloat(val)
+            self.calcFontForGr()
         default:
             return
         }

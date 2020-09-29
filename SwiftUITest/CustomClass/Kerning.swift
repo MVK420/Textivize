@@ -98,7 +98,9 @@ struct KerningSelectBox:View {
                     Text("-").font(.custom("Helvetica", size: 30))
                 }
             }
+            .background(Color.secondary)
         }.border(Color.orange, width: 2)
+        .background(Color.secondary)
     }
     
     

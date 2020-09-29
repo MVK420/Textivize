@@ -25,6 +25,8 @@ struct ContentView: View {
     @State var displaySpacingBox = false
     ///Bool that checks if Font List needs to be presented
     @State private var fontPresented = false
+    ///Bool that checks if the gradient min max editor needs to be presented
+    @State private var minMaxGradientPresented = false
     ///List of fonts in system
     private let fontList = UIFont.familyNames
     ///In the font list the selected one will be colored
@@ -104,6 +106,11 @@ struct ContentView: View {
     fileprivate func gradientButton() -> some View {
         return Button(action: {
                         if self.selectedCustomizeIndex != nil {
+                            if self.containers.ls[self.selectedCustomizeIndex!].grState < 2 {
+                                self.minMaxGradientPresented = true//!self.minMaxGradientPresented
+                            } else {
+                                self.minMaxGradientPresented = false
+                            }
                             self.containers.ls[self.selectedCustomizeIndex!].sameWidth = false
                             self.containers.ls[self.selectedCustomizeIndex!].circleBool = false
                             self.containers.ls[self.selectedCustomizeIndex!].calcFont()
@@ -325,6 +332,10 @@ struct ContentView: View {
                                 .isHidden(self.displayRadiusBox)
                             KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Spacing")
                                 .isHidden(self.displaySpacingBox)
+                            KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Min Gr")
+                                .isHidden(self.minMaxGradientPresented)
+                            KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Max Gr")
+                                .isHidden(self.minMaxGradientPresented)
                             
                         }.frame(alignment: .bottomTrailing)
                     }
