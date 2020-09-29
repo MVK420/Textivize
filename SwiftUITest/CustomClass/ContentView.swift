@@ -96,8 +96,8 @@ struct ContentView: View {
         .onReceive(Just(inputText)) { inputText in
         }
         //.frame(minWidth: 50, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        .padding(.all)
-        .font(.title)
+        //.padding(.all)
+        .font(.headline)
     }
     
     ///Builds the Gradient Button
@@ -361,17 +361,14 @@ struct ContentView: View {
                 //self.selectedGesture = nil
                 print("deselected")
             }
-            .navigationBarItems(leading:
-                                    HStack(){
-                                        inputTextField()
-                                        if #available(iOS 14.0, *) {
-                                            ColorPick()
-                                        } else {
-                                            // Fallback on earlier versions
-                                        }
-                                        editListButton()
+            .navigationBarItems(leading: inputTextField()
+                                ,trailing: HStack(){editListButton()
+                                    if #available(iOS 14.0, *) {
+                                    ColorPick()
+                                    } else {
+                                    // Fallback on earlier versions
                                     }
-            )
+                                })
         }
     }
 }
