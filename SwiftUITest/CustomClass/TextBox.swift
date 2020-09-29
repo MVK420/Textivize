@@ -30,7 +30,7 @@ struct TextBox: Identifiable, Equatable {
     var radiusBool:Bool = false
     var spacingBool:Bool = false
     var radius:Double = 180
-    var kerning:CGFloat = 20
+    var kerning:CGFloat = 0
     var spacing:CGFloat = 0
     var scaleFact:CGFloat = 0.1
     /// Text for Circle
@@ -44,6 +44,7 @@ struct TextBox: Identifiable, Equatable {
         self.avgFontSize = maxFontSize - minFontSize
     }
     
+    ///Called when something was entered in textfield and creates a struct for each word
     mutating func parseInput(text:String) {
         let array = text.components(separatedBy: " ")
         for word in array {
@@ -97,24 +98,23 @@ struct TextBox: Identifiable, Equatable {
         }
     }
     
-    mutating func changeColor(index:Int) {
-        self.words[index].fontColor = .red
-        //objectWillChange.send()
-    }
+    ///
+//    mutating func changeColor(index:Int) {
+//        self.words[index].fontColor = .red
+//        //objectWillChange.send()
+//    }
+//
     
-    
+    ///Set every words color to the selected
     mutating func setAllWordColor() {
         for i in self.words.indices {
             self.words[i].fontColor = self.selectedFontColor
         }
     }
     
+    ///Calculate
     func fontForTextBox() -> CGFloat {
-        if self.sameWidth == true {
-            return 160
-        } else {
-            return self.standardFontSize
-        }
+        return self.sameWidth == true ? 160 : self.standardFontSize
     }
     
     func scaleFactorForTextBox() -> CGFloat {
@@ -123,11 +123,7 @@ struct TextBox: Identifiable, Equatable {
     
     ///If SameWidth is true, return specific width for TextBox
     func widthForTextBox() -> CGFloat {
-        if self.sameWidth == true {
-            return 100
-        } else {
-            return 300
-        }
+        return self.sameWidth == true ? 100 : 300
     }
     
     ///If kerningBool is true, return specific kerning for TextBox
@@ -178,6 +174,7 @@ struct TextBox: Identifiable, Equatable {
         }
     }
     
+    ///Set each words font to the preset standard
     mutating func resetFontSize() {
         for (index, _) in self.words.enumerated() {
             self.words[index].fontSize = self.standardFontSize
@@ -185,40 +182,48 @@ struct TextBox: Identifiable, Equatable {
         }
     }
     
-    mutating func addToPosition(translation:CGSize) {
-        self.offset = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
-    }
-    
-    func addToPositionReturn(translation: CGSize) -> CGSize{
-        let aux = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
-        return aux
-    }
-    
-    mutating func appendToPosition(translation:CGSize) {
-        self.position = CGSize(width: self.position.width + translation.width, height: self.position.height + translation.height)
-    }
-    
-    func combineCGSize(cg1:CGSize, cg2:CGSize) -> CGSize {
-        return CGSize(width: cg1.width + cg2.width, height: cg1.height + cg2.height)
-    }
-    
-    mutating func setRotateState(degrees:Double) {
-        self.rotateState = degrees
-        //objectWillChange.send()
-    }
-    
-    mutating func setAllFonts(font:String) {
-        for i in self.words.indices {
-            self.words[i].fontStyle = font
-        }
-    }
-    
+    ///Set all each words font to one in parameter
     mutating func setAllFontsSize(font:CGFloat) {
         for i in self.words.indices {
             self.words[i].fontSize = font
         }
     }
     
+    ///Used on dragging textbox
+    mutating func addToPosition(translation:CGSize) {
+        self.offset = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
+    }
+    
+    ///Used on dragging textbox
+    func addToPositionReturn(translation: CGSize) -> CGSize{
+        let aux = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
+        return aux
+    }
+    
+    ///Used on dragging textbox
+    mutating func appendToPosition(translation:CGSize) {
+        self.position = CGSize(width: self.position.width + translation.width, height: self.position.height + translation.height)
+    }
+    
+    ///Used on dragging textbox
+    func combineCGSize(cg1:CGSize, cg2:CGSize) -> CGSize {
+        return CGSize(width: cg1.width + cg2.width, height: cg1.height + cg2.height)
+    }
+    
+    ///Used on rotate
+    mutating func setRotateState(degrees:Double) {
+        self.rotateState = degrees
+        //objectWillChange.send()
+    }
+    
+    ///Set each words font to the one received as parameter
+    mutating func setAllFonts(font:String) {
+        for i in self.words.indices {
+            self.words[i].fontStyle = font
+        }
+    }
+    
+    ///For caseBox, return the value of respective variable
     func getString(caseBox:String) -> String {
         switch caseBox {
         case "Kerning":
@@ -232,14 +237,15 @@ struct TextBox: Identifiable, Equatable {
         }
     }
     
-    mutating func addToKerning(val:CGFloat) {
-        self.kerning += val
-    }
-    
-    mutating func addToRadius(val:Double) {
-        self.radius += val
-    }
-    
+//
+//    mutating func addToKerning(val:CGFloat) {
+//        self.kerning += val
+//    }
+//
+//    mutating func addToRadius(val:Double) {
+//        self.radius += val
+//    }
+//
     mutating func addToCase<T:BinaryInteger>(caseBox:String, val: T) {
         switch caseBox {
         case "Kerning":
@@ -254,11 +260,3 @@ struct TextBox: Identifiable, Equatable {
     }
     
 }
-
-//
-//
-//struct TextBox_Previews: PreviewProvider {
-//    static var previews: some View {
-//        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
-//    }
-//}

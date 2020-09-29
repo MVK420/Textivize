@@ -48,6 +48,7 @@ struct KerningButton: View {
         }
     }
     
+    ///Find the Image for the Button
     private func findImage() -> String {
         switch self.caseBox {
         case "Kerning":
@@ -105,19 +106,5 @@ struct KerningSelectBox:View {
         self._containers = containers
         self._selectedCustomizeIndex = selected
         self.caseBox = caseBox
-    }
-}
-
-/*
- struct KerningButton_Previews: PreviewProvider {
- static var previews: some View {
- KerningButton()
- }
- }
- */
-
-struct Kerning_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }
