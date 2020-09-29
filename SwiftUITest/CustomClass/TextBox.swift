@@ -31,7 +31,7 @@ struct TextBox: Identifiable, Equatable {
     var spacingBool:Bool = false
     var radius:Double = 180
     var kerning:CGFloat = 20
-    var spacing:CGFloat = 40 ///Todo: set this manually
+    var spacing:CGFloat = 0
     var scaleFact:CGFloat = 0.1
     /// Text for Circle
     var texts: [(offset: Int, element:Character)]  {
@@ -220,10 +220,15 @@ struct TextBox: Identifiable, Equatable {
     }
     
     func getString(caseBox:String) -> String {
-        if caseBox == "Kerning"{
+        switch caseBox {
+        case "Kerning":
             return self.kerning.description
-        } else {
+        case "Radius":
             return self.radius.description
+        case "Spacing":
+            return self.spacing.description
+        default:
+            return ""
         }
     }
     
@@ -235,12 +240,25 @@ struct TextBox: Identifiable, Equatable {
         self.radius += val
     }
     
-}
-
-
-
-struct TextBox_Previews: PreviewProvider {
-    static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    mutating func addToCase<T:BinaryInteger>(caseBox:String, val: T) {
+        switch caseBox {
+        case "Kerning":
+            self.kerning += CGFloat(val)
+        case "Radius":
+            self.radius += Double(val*10)
+        case "Spacing":
+            self.spacing += CGFloat(val)
+        default:
+            return
+        }
     }
+    
 }
+
+//
+//
+//struct TextBox_Previews: PreviewProvider {
+//    static var previews: some View {
+//        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+//    }
+//}

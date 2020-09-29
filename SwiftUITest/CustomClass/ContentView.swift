@@ -21,6 +21,8 @@ struct ContentView: View {
     @State var displayKerningBox = false
     ///Bool that checks if the radius editor needs to be peresnted
     @State var displayRadiusBox = false
+    //////Bool that checks if the spacing editor needs to be peresnted
+    @State var displaySpacingBox = false
     ///Bool that checks if Font List needs to be presented
     @State private var fontPresented = false
     ///List of fonts in system
@@ -43,7 +45,7 @@ struct ContentView: View {
     ///CIRCLESTUFF
     @State var textSizes: [Int:Double] = [:]
     
-    func returnCircle(index:Int,radius:Double,text:String,kerning:CGFloat) -> some View {
+    func returnCircle(index:Int) -> some View {
         return ZStack {
             ForEach(  self.containers.ls[index].texts, id: \.self.offset) { (offset, element) in
                 VStack {
@@ -61,10 +63,10 @@ struct ContentView: View {
                 .onTapGesture {
                     self.selectedCustomizeIndex = index
                 }
-                .rotationEffect(self.angle(at: offset, radius: radius))
+                .rotationEffect(self.angle(at: offset, radius: self.containers.ls[index].radius))
                 
             }
-        }.rotationEffect(-self.angle(at: self.containers.ls[index].texts.count-1, radius: radius)/2)
+        }.rotationEffect(-self.angle(at: self.containers.ls[index].texts.count-1, radius: self.containers.ls[index].radius)/2)
         .frame(width: 300, height: 300, alignment: .center)
     }
     
@@ -137,7 +139,7 @@ struct ContentView: View {
             ForEach(self.containers.ls.indices, id: \.self) { i in
                 VStack (spacing: self.containers.ls[i].spacingForTextBox()){//(alignment: .leading, spacing: 20) {
                     if self.containers.ls[i].circleBool == true{
-                        returnCircle(index: i, radius: self.containers.ls[i].radius, text: "Trump For President 2020", kerning: 9)
+                        returnCircle(index: i)
                     } else {
                         ForEach(self.containers.ls[i].words.indices, id: \.self) { j in
                             ///Create a Text for each word
@@ -309,6 +311,8 @@ struct ContentView: View {
                             .isHidden(self.displayKerningBox)
                         KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Radius")
                             .isHidden(self.displayRadiusBox)
+                        KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Spacing")
+                            .isHidden(self.displaySpacingBox)
                         Spacer()
                     }
                     
@@ -321,6 +325,7 @@ struct ContentView: View {
                             sameWidthButton()
                             KerningButton(displayKerningBox: self.$displayKerningBox, containers:self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Kerning")
                             KerningButton(displayKerningBox: self.$displayRadiusBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Radius")
+                            KerningButton(displayKerningBox: self.$displaySpacingBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Spacing")
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex,allCaps:true)
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex, allCaps: false)
                             circleButton()
@@ -328,7 +333,6 @@ struct ContentView: View {
                         }.isHidden(self.displayEditList)
                         .frame(width: 50)
                         .border(Color.orange, width: 2)
-                        ///Spacer to push ScrollView to the top of the screen
                     }
                     
                 }
@@ -339,6 +343,7 @@ struct ContentView: View {
                 self.selectedCustomizeIndex = nil
                 self.fontPresented = false
                 self.displayKerningBox = false
+                self.displayRadiusBox = false
                 //self.selectedGesture = nil
                 print("deselected")
             }

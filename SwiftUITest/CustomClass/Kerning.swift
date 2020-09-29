@@ -20,18 +20,10 @@ struct KerningButton: View {
             if self.selectedCustomizeIndex != nil {
                 self.displayKerningBox = !self.displayKerningBox
                 self.containers.ls[self.selectedCustomizeIndex!].sameWidth = false
-                if caseBox == "Kerning" {
-                    self.containers.ls[self.selectedCustomizeIndex!].kerningBool = true
-                } else {
-                    self.containers.ls[self.selectedCustomizeIndex!].radiusBool = true
-                }
+                self.activateCaseBool()
             }
         }) {
-            if caseBox == "Kerning" {
-                Image(systemName: "k.circle.fill")
-            } else {
-                Image(systemName: "r.circle.fill")
-            }
+            Image(systemName: self.findImage())
         }.padding(.all)
         .font(.title)
     }
@@ -41,6 +33,32 @@ struct KerningButton: View {
         self._containers = containers
         self._selectedCustomizeIndex = selected
         self.caseBox = caseBox
+    }
+    
+    private func activateCaseBool() {
+        switch self.caseBox {
+        case "Kerning":
+            self.containers.ls[self.selectedCustomizeIndex!].kerningBool = true
+        case "Radius":
+            self.containers.ls[self.selectedCustomizeIndex!].radiusBool = true
+        case "Spacing":
+            self.containers.ls[self.selectedCustomizeIndex!].spacingBool = true
+        default:
+            return
+        }
+    }
+    
+    private func findImage() -> String {
+        switch self.caseBox {
+        case "Kerning":
+            return "k.circle.fill"
+        case "Radius":
+            return "r.circle.fill"
+        case "Spacing":
+            return "s.circle.fill"
+        default:
+            return ""
+        }
     }
 }
 
@@ -58,11 +76,7 @@ struct KerningSelectBox:View {
             HStack() {
                 Button(action: {
                     if self.selectedCustomizeIndex != nil {
-                        if self.caseBox == "Kerning" {
-                            self.containers.ls[self.selectedCustomizeIndex!].addToKerning(val: 1)
-                        } else {
-                            self.containers.ls[self.selectedCustomizeIndex!].addToRadius(val: 1)
-                        }
+                        self.containers.ls[self.selectedCustomizeIndex!].addToCase(caseBox: self.caseBox, val: 1)
                     }
                 }) {
                     Text("+").font(.custom("Helvetica", size: 30))
@@ -76,10 +90,8 @@ struct KerningSelectBox:View {
                 
                 Button(action: {
                         if self.selectedCustomizeIndex != nil {
-                            if self.caseBox == "Kerning" {
-                                self.containers.ls[self.selectedCustomizeIndex!].addToKerning(val: -1)
-                            } else {
-                                self.containers.ls[self.selectedCustomizeIndex!].addToRadius(val: -1)
+                            if self.selectedCustomizeIndex != nil {
+                                self.containers.ls[self.selectedCustomizeIndex!].addToCase(caseBox: self.caseBox, val: -1)
                             }
                         }}) {
                     Text("-").font(.custom("Helvetica", size: 30))
@@ -103,3 +115,9 @@ struct KerningSelectBox:View {
  }
  }
  */
+
+struct Kerning_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}
