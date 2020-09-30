@@ -44,7 +44,7 @@ struct TextBox: Identifiable, Equatable {
         self.words = words
         self.avgFontSize = maxFontSize - minFontSize
     }
-    
+
     ///Called when something was entered in textfield and creates a struct for each word
     mutating func parseInput(text:String) {
         let array = text.components(separatedBy: " ")

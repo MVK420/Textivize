@@ -130,6 +130,8 @@ struct ContentView: View {
             if self.selectedCustomizeIndex != nil {
                 
                 self.containers.ls[self.selectedCustomizeIndex!].sameWidth = false
+                let font:CGFloat =  self.containers.ls[self.selectedCustomizeIndex!].fontForTextBox()
+                self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
                 self.containers.ls[self.selectedCustomizeIndex!].grState = 0
                 self.containers.ls[self.selectedCustomizeIndex!].circleBool = !self.containers.ls[self.selectedCustomizeIndex!].circleBool
                 self.displayRadiusBox = self.containers.ls[self.selectedCustomizeIndex!].circleBool
@@ -275,10 +277,11 @@ struct ContentView: View {
                 ///Set other bools to false
                 self.containers.ls[self.selectedCustomizeIndex!].circleBool = false
                 self.containers.ls[self.selectedCustomizeIndex!].grState = 0
-                self.containers.ls[self.selectedCustomizeIndex!].kerningBool = false
+                //self.containers.ls[self.selectedCustomizeIndex!].kerningBool = false
                 ///SameWidth = !SameWidth
                 self.containers.ls[self.selectedCustomizeIndex!].sameWidth = !self.containers.ls[self.selectedCustomizeIndex!].sameWidth
                 ///Get font size (standard for textbox if sameWidth = false, 160 if true, that will be scaled down)
+                
                 let font:CGFloat =  self.containers.ls[self.selectedCustomizeIndex!].fontForTextBox()
                 self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
             }

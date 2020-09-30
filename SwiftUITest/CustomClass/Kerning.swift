@@ -19,7 +19,8 @@ struct KerningButton: View {
         Button(action: {
             if self.selectedCustomizeIndex != nil {
                 self.displayBox = !self.displayBox
-                self.containers.ls[self.selectedCustomizeIndex!].sameWidth = false
+                //let font:CGFloat =  self.containers.ls[self.selectedCustomizeIndex!].fontForTextBox()
+                //self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
                 self.activateCaseBool()
             }
         }) {
