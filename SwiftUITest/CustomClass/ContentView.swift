@@ -34,7 +34,7 @@ struct ContentView: View {
     ///Array containing textboxes
     @ObservedObject var containers:Container = Container()
     ///Input Text Field value
-    @State var inputText:String = "Alma a fa alatt"
+    @State var inputText:String = "Nothing lasts forever"
     ///DragGesture values
     @GestureState private var position = CGSize.zero
     ///Selected Object to drag
@@ -148,7 +148,7 @@ struct ContentView: View {
         return Group{
             ///Loop through each word in textbox.words
             ForEach(self.containers.ls.indices, id: \.self) { i in
-                VStack (spacing: self.containers.ls[i].spacingForTextBox()){//(alignment: .leading, spacing: 20) {
+                VStack (alignment: self.containers.ls[i].alignment, spacing: self.containers.ls[i].spacingForTextBox()){//(alignment: .leading, spacing: 20) {
                     if self.containers.ls[i].circleBool == true{
                         returnCircle(index: i)
                     } else {
@@ -184,18 +184,28 @@ struct ContentView: View {
                                 if nil == self.selectedGesture {
                                     self.selectedGesture = self.containers.ls[i]
                                 } else {
-                                    let aux = self.containers.ls[i].position
-                                    let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
-                                    state = res
+                                    if self.selectedCustomizeIndex == i {
+                                        self.containers.ls[i].alignmentForTextBox(swipeVal: value.translation)
+                                    } else {
+                                        let aux = self.containers.ls[i].position
+                                        let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
+                                        state = res
+                                    }
                                 }
                             })
                             .onEnded() { value in
                                 if self.selectedGesture == self.containers.ls[i] {
+                                    if self.selectedCustomizeIndex == i {
+                                        //self.containers.ls[i].alignmentForTextBox(swipeVal: value.translation)
+                                    } else {
                                     self.containers.ls[i].appendToPosition(translation: value.translation)
+                                    }
                                 }
                                 self.selectedGesture = nil
                                 //self.containers.ls[i].addToPosition(translation: value.translation)
-                            })
+                            }
+                
+                )
                 //.rotationEffect(Angle(degrees: self.containers.ls[i].rotateState))
                 //Fix this for rotationAnchor
                 .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState),anchor: self.containers.ls[i].rotationAnchor())

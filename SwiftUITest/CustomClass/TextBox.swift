@@ -15,7 +15,7 @@ struct TextBox: Identifiable, Equatable {
     var text:String = ""
     var selectedFontColor:Color = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
     var minFontSize:CGFloat = 20
-    var maxFontSize:CGFloat = 80 ///Todo: set this manually
+    var maxFontSize:CGFloat = 80
     var avgFontSize:CGFloat = 40
     var grState: Int = 0
     var allCapsState: Int = 0
@@ -29,6 +29,7 @@ struct TextBox: Identifiable, Equatable {
     var kerningBool:Bool = false
     var radiusBool:Bool = false
     var spacingBool:Bool = false
+    var alignment:HorizontalAlignment = .center
     var radius:Double = 180
     var kerning:CGFloat = 0
     var spacing:CGFloat = 0
@@ -99,11 +100,11 @@ struct TextBox: Identifiable, Equatable {
     }
     
     ///
-//    mutating func changeColor(index:Int) {
-//        self.words[index].fontColor = .red
-//        //objectWillChange.send()
-//    }
-//
+    //    mutating func changeColor(index:Int) {
+    //        self.words[index].fontColor = .red
+    //        //objectWillChange.send()
+    //    }
+    //
     
     ///Set every words color to the selected
     mutating func setAllWordColor() {
@@ -131,6 +132,15 @@ struct TextBox: Identifiable, Equatable {
         return self.kerningBool ? self.kerning : 0
     }
     
+    ///onSwipe adjust alignemnt accordignly
+    mutating func alignmentForTextBox(swipeVal:CGSize) {
+        if swipeVal.width > 0 {
+            self.alignment = self.alignment == .leading ? .center : .trailing
+        } else if swipeVal.width < 0{
+            self.alignment = self.alignment == .trailing ? .center : .leading
+        }
+    }
+    
     ///If spacingBool is true, return specific spacing for TextBox
     func spacingForTextBox() -> CGFloat {
         return self.spacingBool ? self.spacing : 0
@@ -156,6 +166,7 @@ struct TextBox: Identifiable, Equatable {
         self.grState += 1
     }
     
+    ///Recalculated fontsizes when min or max is modifed
     mutating func calcFontForGr() {
         if self.grState == 0 {
             self.increasingFontSize()
@@ -259,7 +270,9 @@ struct TextBox: Identifiable, Equatable {
         case "Kerning":
             self.kerning += CGFloat(val)
         case "Radius":
-            self.radius += Double(val*10)
+            if self.radius > 10 || val == +1 {
+                self.radius += Double(val*10)
+            }
         case "Spacing":
             self.spacing += CGFloat(val)
         case "Min Gr":
