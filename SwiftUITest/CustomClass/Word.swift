@@ -15,6 +15,6 @@ struct Word:Hashable {
     var ogText:String
     var fontSize:CGFloat
     var fontColor:Color = .black
-    var fontStyle:String = "Papyrus"
+    var fontStyle:String = "Helvetica"
 
 }

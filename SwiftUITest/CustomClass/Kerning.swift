@@ -101,6 +101,7 @@ struct KerningSelectBox:View {
             .background(Color.secondary)
         }.border(Color.orange, width: 2)
         .background(Color.secondary)
+        .padding(.bottom)
     }
     
     

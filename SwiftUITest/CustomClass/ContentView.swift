@@ -100,6 +100,7 @@ struct ContentView: View {
         //.frame(minWidth: 50, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         //.padding(.all)
         .font(.headline)
+        .foregroundColor(Color.orange)
     }
     
     ///Builds the Gradient Button
