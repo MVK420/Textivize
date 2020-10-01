@@ -265,7 +265,6 @@ struct ContentView: View {
         }) {
             Image(systemName: "f.circle.fill")
         }
-        //.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(.all)
         .font(.title)
     }
@@ -277,11 +276,9 @@ struct ContentView: View {
                 ///Set other bools to false
                 self.containers.ls[self.selectedCustomizeIndex!].circleBool = false
                 self.containers.ls[self.selectedCustomizeIndex!].grState = 0
-                //self.containers.ls[self.selectedCustomizeIndex!].kerningBool = false
                 ///SameWidth = !SameWidth
                 self.containers.ls[self.selectedCustomizeIndex!].sameWidth = !self.containers.ls[self.selectedCustomizeIndex!].sameWidth
                 ///Get font size (standard for textbox if sameWidth = false, 160 if true, that will be scaled down)
-                
                 let font:CGFloat =  self.containers.ls[self.selectedCustomizeIndex!].fontForTextBox()
                 self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
             }
@@ -339,7 +336,6 @@ struct ContentView: View {
                     VStack{
                         Spacer()
                         HStack{
-                            
                             KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Kerning")
                                 .isHidden(self.displayKerningBox)
                             KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Radius")

@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-struct TextBox: Identifiable, Equatable {
+struct TextBox: Box, Identifiable, Equatable {
     
-    var id = UUID()
+    var id:UUID = UUID()
     var words:[Word] = [Word]()
     var text:String = ""
     var selectedFontColor:Color = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
@@ -211,33 +211,6 @@ struct TextBox: Identifiable, Equatable {
         for i in self.words.indices {
             self.words[i].fontSize = font
         }
-    }
-    
-    ///Used on dragging textbox
-    mutating func addToPosition(translation:CGSize) {
-        self.offset = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
-    }
-    
-    ///Used on dragging textbox
-    func addToPositionReturn(translation: CGSize) -> CGSize{
-        let aux = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
-        return aux
-    }
-    
-    ///Used on dragging textbox
-    mutating func appendToPosition(translation:CGSize) {
-        self.position = CGSize(width: self.position.width + translation.width, height: self.position.height + translation.height)
-    }
-    
-    ///Used on dragging textbox
-    func combineCGSize(cg1:CGSize, cg2:CGSize) -> CGSize {
-        return CGSize(width: cg1.width + cg2.width, height: cg1.height + cg2.height)
-    }
-    
-    ///Used on rotate
-    mutating func setRotateState(degrees:Double) {
-        self.rotateState = degrees
-        //objectWillChange.send()
     }
     
     ///Set each words font to the one received as parameter
