@@ -48,7 +48,7 @@ struct ContentView: View {
     
     ///IMAGESTUFF
     @State var showImagePicker: Bool = false
-    @State var image: UIImage?
+    //@State var image: UIImage?
     
     ///Builds the Input Text Field
     fileprivate func inputTextField() -> some View {
@@ -111,15 +111,6 @@ struct ContentView: View {
         .padding(.all)
         .font(.title)
     }
-    
-    ///Function for rotation
-    ///Source: https://www.youtube.com/watch?v=rp9azVjwk-8
-    /*
-     func addToPosition2(textBox: TextBox, translation: CGSize) -> CGSize {
-     //self.containers.objectWillChange.send()
-     return CGSize(width: textBox.offset.width + translation.width, height: textBox.offset.height + translation.height)
-     }
-     */
     
     fileprivate func fontScrollView() -> some View {
         return ScrollView(.vertical) {
@@ -211,33 +202,7 @@ struct ContentView: View {
         }
         return false
     }
-    
-    fileprivate func ImagePickerButton() -> Button<Image> {
-        return Button(action: {self.showImagePicker.toggle()}) {
-            Image(systemName: "tray")
-        }
-    }
-    
-    fileprivate func VStackImageBox() -> some View {
-        return Group {
-            ForEach(self.containers.images.indices, id: \.self) { i in
-                VStack() {
-                    Image(uiImage: self.containers.images[i].img)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(maxWidth: 100, maxHeight: 100)
 
-                        //
-                        
-                        
-                }
-                .DragImage(i: i, containers: self.containers, position: self.position, selectedImageGesture: self.$selectedImageGesture)
-                //.DragImage(i: i, containers: self.containers)
-                .RotationImage(i: i, containers: self.containers)
-            }
-        }
-    }
-    
     var body : some View {
         ///Main body
         ///Header
@@ -289,8 +254,6 @@ struct ContentView: View {
                     }
                     
                 }
-                //VStackImageBox()
-                //VStackTextBox()
                 TextBoxView(containers: self._containers, selectedCustomizeIndex: self.$selectedCustomizeIndex, selectedGesture: self.$selectedGesture)
                 ImageBoxView(containers: self._containers, selectedCustomizeImageIndex: self.$selectedCustomizeImageIndex, selectedImageGesture: self.$selectedImageGesture)
             }
@@ -307,14 +270,13 @@ struct ContentView: View {
             .sheet(isPresented: $showImagePicker) {
                 ImagePickerView(sourceType: .photoLibrary) { image in
                     self.containers.images.append(ImageBox(img: image))
-                    self.image = image
                 }
             }
             .navigationBarItems(leading: inputTextField()
                                 ,trailing:
                                     HStack(){
                                         editListButton()
-                                        ImagePickerButton()
+                                        ImagePickerButton(showImagePicker: self.$showImagePicker)
                                         if #available(iOS 14.0, *) {
                                             ColorPick()
                                         } else {

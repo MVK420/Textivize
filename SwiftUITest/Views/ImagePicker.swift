@@ -8,6 +8,21 @@
 
 import SwiftUI
 
+struct ImagePickerButton: View {
+
+    @Binding var showImagePicker:Bool
+    
+    var body: some View {
+        Button(action: {self.showImagePicker.toggle()}) {
+            Image(systemName: "tray")
+        }
+    }
+    
+    init(showImagePicker:Binding<Bool>) {
+        self._showImagePicker = showImagePicker
+    }
+}
+
 public struct ImagePickerView: UIViewControllerRepresentable {
 
     private let sourceType: UIImagePickerController.SourceType
