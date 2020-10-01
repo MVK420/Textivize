@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TextBox: Box, Identifiable, Equatable {
+struct TextBox: Box {
     
     var id:UUID = UUID()
     var words:[Word] = [Word]()
@@ -136,12 +136,6 @@ struct TextBox: Box, Identifiable, Equatable {
     ///If spacingBool is true, return specific spacing for TextBox
     func spacingForTextBox() -> CGFloat {
         return self.spacingBool ? self.spacing : 0
-    }
-    
-    ///Function to figure out middle of view, to make rotation work
-    ///Not Working yet
-    func rotationAnchor() -> UnitPoint {
-        return UnitPoint(x: self.offset.width, y: self.offset.height)
     }
     
     ///On first call: gradually increase fontsize, on second: decrease, on third: reset

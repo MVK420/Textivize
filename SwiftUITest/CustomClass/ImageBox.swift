@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ImageBox:Box, Identifiable, Equatable {
+struct ImageBox:Box {
 
     var id = UUID()
     var img:UIImage
