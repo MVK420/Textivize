@@ -31,7 +31,7 @@ struct ContentView: View {
     private let fontList = UIFont.familyNames
     ///In the font list the selected one will be colored
     @State private var selectedFont = 1
-    ///Array containing textboxes
+    ///Array containing textboxes and imageboxes
     @ObservedObject var containers:Container = Container()
     ///Input Text Field value
     @State var inputText:String = "Nothing lasts forever"
@@ -336,15 +336,15 @@ struct ContentView: View {
                     VStack{
                         Spacer()
                         HStack{
-                            KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Kerning")
+                            SpecSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Kerning")
                                 .isHidden(self.displayKerningBox)
-                            KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Radius")
+                            SpecSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Radius")
                                 .isHidden(self.displayRadiusBox)
-                            KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Spacing")
+                            SpecSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Spacing")
                                 .isHidden(self.displaySpacingBox)
-                            KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Min Gr")
+                            SpecSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Min Gr")
                                 .isHidden(self.minMaxGradientPresented)
-                            KerningSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Max Gr")
+                            SpecSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Max Gr")
                                 .isHidden(self.minMaxGradientPresented)
                             
                         }.frame(alignment: .bottomTrailing)
@@ -357,10 +357,10 @@ struct ContentView: View {
                             gradientButton().isHidden(!self.selectedAndCircle())
                             fontButton()
                             sameWidthButton().isHidden(!self.selectedAndCircle())
-                            KerningButton(displayBox: self.$displayKerningBox, containers:self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Kerning")
-                            KerningButton(displayBox: self.$displayRadiusBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Radius")
+                            SpecButton(displayBox: self.$displayKerningBox, containers:self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Kerning")
+                            SpecButton(displayBox: self.$displayRadiusBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Radius")
                                 .isHidden(self.selectedAndCircle())
-                            KerningButton(displayBox: self.$displaySpacingBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Spacing").isHidden(!self.selectedAndCircle())
+                            SpecButton(displayBox: self.$displaySpacingBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Spacing").isHidden(!self.selectedAndCircle())
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex,allCaps:true)
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex, allCaps: false)
                             circleButton()

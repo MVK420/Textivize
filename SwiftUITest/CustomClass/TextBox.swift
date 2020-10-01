@@ -17,23 +17,23 @@ struct TextBox: Box, Identifiable, Equatable {
     var minFontSize:CGFloat = 20
     var maxFontSize:CGFloat = 80
     var avgFontSize:CGFloat = 40
-    var grState: Int = 0
-    var allCapsState: Int = 0
-    var capitaState:Int = 0
     var standardFontSize:CGFloat = 40 ///Todo: set this manually
-    var rotateState: Double = 0
-    var offset = CGSize.zero
-    var position = CGSize.zero
-    var sameWidth:Bool = false
-    var circleBool:Bool = false
-    var kerningBool:Bool = false
-    var radiusBool:Bool = false
-    var spacingBool:Bool = false
     var alignment:HorizontalAlignment = .center
     var radius:Double = 180
     var kerning:CGFloat = 0
     var spacing:CGFloat = 0
     var scaleFact:CGFloat = 0.1
+    var rotateState: Double = 0
+    var offset = CGSize.zero
+    var position = CGSize.zero
+    var grState: Int = 0
+    var allCapsState: Int = 0
+    var capitaState:Int = 0
+    var sameWidth:Bool = false
+    var circleBool:Bool = false
+    var kerningBool:Bool = false
+    var radiusBool:Bool = false
+    var spacingBool:Bool = false
     /// Text for Circle
     var texts: [(offset: Int, element:Character)]  {
         return Array(self.text.enumerated())
@@ -52,7 +52,6 @@ struct TextBox: Box, Identifiable, Equatable {
             let wordObj:Word = Word(text: word, ogText: word, fontSize: self.standardFontSize)
             self.words.append(wordObj)
         }
-        //objectWillChange.send()
     }
     
     ///TODO: First Case, if words ends with . ? ! then capitalize next word.
@@ -99,13 +98,6 @@ struct TextBox: Box, Identifiable, Equatable {
         }
     }
     
-    ///
-    //    mutating func changeColor(index:Int) {
-    //        self.words[index].fontColor = .red
-    //        //objectWillChange.send()
-    //    }
-    //
-    
     ///Set every words color to the selected
     mutating func setAllWordColor() {
         for i in self.words.indices {
@@ -132,7 +124,7 @@ struct TextBox: Box, Identifiable, Equatable {
         return self.kerningBool ? self.kerning : 0
     }
     
-    ///onSwipe adjust alignemnt accordignly
+    ///onSwipe adjust alignement accordignly
     mutating func alignmentForTextBox(swipeVal:CGSize) {
         if swipeVal.width > 0 {
             self.alignment = self.alignment == .leading ? .center : .trailing
@@ -154,14 +146,16 @@ struct TextBox: Box, Identifiable, Equatable {
     
     ///On first call: gradually increase fontsize, on second: decrease, on third: reset
     mutating func calcFont() {
-        if self.grState == 0 {
+        switch self.grState {
+        case 0:
             self.increasingFontSize()
-        } else if grState == 1 {
+        case 1:
             self.decreasingFontSize()
-        }
-        if self.grState == 2 {
-            self.grState = -1
+        case 2:
             self.resetFontSize()
+            self.grState = -1
+        default:
+            return
         }
         self.grState += 1
     }
@@ -180,29 +174,26 @@ struct TextBox: Box, Identifiable, Equatable {
     
     /// Calculate font for each word in array, to gradually increase them
     mutating func increasingFontSize() {
-        for (index, _) in self.words.enumerated() {
-            //let step = Int(self.avgFontSize) / (self.words.count - 1)
+        for i in self.words.indices {
             let step = Int(self.maxFontSize - self.minFontSize) / (self.words.count - 1)
-            let res = (step * index) + Int(minFontSize)
-            self.words[index].fontSize = CGFloat(res)
+            let res = (step * i) + Int(minFontSize)
+            self.words[i].fontSize = CGFloat(res)
         }
     }
     
     /// Calculate font for each word in array, to gradually decrease them
     mutating func decreasingFontSize() {
-        for (index, _) in self.words.enumerated() {
-            //let step = Int(self.avgFontSize) / (self.words.count - 1)
+        for i in self.words.indices {
             let step = Int(self.maxFontSize - self.minFontSize) / (self.words.count - 1)
-            let res = (step * index) + Int(minFontSize)
-            self.words[self.words.count - 1 - index].fontSize = CGFloat(res)
+            let res = (step * i) + Int(minFontSize)
+            self.words[self.words.count - 1 - i].fontSize = CGFloat(res)
         }
     }
     
     ///Set each words font to the preset standard
     mutating func resetFontSize() {
-        for (index, _) in self.words.enumerated() {
-            self.words[index].fontSize = self.standardFontSize
-            
+        for i in self.words.indices {
+            self.words[i].fontSize = self.standardFontSize
         }
     }
     

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct KerningButton: View {
+struct SpecButton: View {
     
     @Binding var displayBox:Bool
     @Binding var selectedCustomizeIndex:Int?
@@ -64,7 +64,7 @@ struct KerningButton: View {
     }
 }
 
-struct KerningSelectBox:View {
+struct SpecSelectBox:View {
     
     @Binding var selectedCustomizeIndex:Int?
     @ObservedObject var containers:Container
