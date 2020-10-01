@@ -12,21 +12,21 @@ import Combine
 struct ContentView: View {
     
     ///Notused
-    @State var detailPresented = false
+    @State var detailPresented:Bool = false
     ///selectedColor
     @State var selectedColor = Color(.black)
     ///Bool that checks if all the buttons to edit TextBox need to be presented
-    @State var displayEditList = false
+    @State var displayEditList:Bool = false
     ///Bool that checks if the kerning editor needs to be peresnted
-    @State var displayKerningBox = false
+    @State var displayKerningBox:Bool = false
     ///Bool that checks if the radius editor needs to be peresnted
-    @State var displayRadiusBox = false
+    @State var displayRadiusBox:Bool = false
     //////Bool that checks if the spacing editor needs to be peresnted
-    @State var displaySpacingBox = false
+    @State var displaySpacingBox:Bool = false
     ///Bool that checks if Font List needs to be presented
-    @State private var fontPresented = false
+    @State private var fontPresented:Bool = false
     ///Bool that checks if the gradient min max editor needs to be presented
-    @State private var minMaxGradientPresented = false
+    @State private var minMaxGradientPresented:Bool = false
     ///List of fonts in system
     private let fontList = UIFont.familyNames
     ///In the font list the selected one will be colored
@@ -38,15 +38,15 @@ struct ContentView: View {
     ///DragGesture values
     @GestureState private var position = CGSize.zero
     ///Selected Object to drag
-    @State private var selectedGesture: TextBox? = nil
-    @State private var selectedImageGesture: ImageBox? = nil
+    @State private var selectedGesture:TextBox? = nil
+    @State private var selectedImageGesture:ImageBox? = nil
     ///Selected Object to customize
     //@State private var selectedCustomize : TextBox? = nil
     ///Index of selected TextBox
     @State private var selectedCustomizeImageIndex:Int? = nil
     @State private var selectedCustomizeIndex:Int? = nil
     ///IMAGESTUFF
-    @State var showImagePicker: Bool = false
+    @State var showImagePicker:Bool = false
     
     ///Builds the Input Text Field
     fileprivate func inputTextField() -> some View {
@@ -196,7 +196,7 @@ struct ContentView: View {
         }
         return false
     }
-
+    
     var body : some View {
         ///Main body
         ///Header
@@ -251,7 +251,7 @@ struct ContentView: View {
                 TextBoxView(containers: self._containers, selectedCustomizeIndex: self.$selectedCustomizeIndex, selectedGesture: self.$selectedGesture)
                 ImageBoxView(containers: self._containers, selectedCustomizeImageIndex: self.$selectedCustomizeImageIndex, selectedImageGesture: self.$selectedImageGesture)
             }
-            
+            .background(Color.clear.opacity(0.1))
             .contentShape(Rectangle())
             .onTapGesture {
                 self.selectedCustomizeIndex = nil
@@ -278,6 +278,7 @@ struct ContentView: View {
                                             // Fallback on earlier versions
                                         }
                                     })
+            
         }
     }
 }

@@ -22,6 +22,7 @@ struct RotationModifierImage: ViewModifier {
                         })
     }
 }
+
 struct MaginificationModifierImage: ViewModifier {
     
     var i:Int
