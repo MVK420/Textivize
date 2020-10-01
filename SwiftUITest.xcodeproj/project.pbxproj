@@ -10,7 +10,7 @@
 		1B128BD62509707F0096ACBC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B128BD52509707F0096ACBC /* DetailView.swift */; };
 		1B257FDF2506C8AA00A26854 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B257FDE2506C8AA00A26854 /* Word.swift */; };
 		1B257FE12508CEAB00A26854 /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B257FE02508CEAB00A26854 /* TextBox.swift */; };
-		1B257FE425095D3700A26854 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B257FE325095D3700A26854 /* CircleView.swift */; };
+		1B257FE425095D3700A26854 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B257FE325095D3700A26854 /* Circle.swift */; };
 		1B32A3E925000ADF005709DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B32A3E825000ADF005709DC /* AppDelegate.swift */; };
 		1B32A3EB25000ADF005709DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B32A3EA25000ADF005709DC /* SceneDelegate.swift */; };
 		1B32A3ED25000ADF005709DC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B32A3EC25000ADF005709DC /* ContentView.swift */; };
@@ -33,7 +33,7 @@
 		1B128BD52509707F0096ACBC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		1B257FDE2506C8AA00A26854 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		1B257FE02508CEAB00A26854 /* TextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
-		1B257FE325095D3700A26854 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		1B257FE325095D3700A26854 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		1B32A3E525000ADF005709DC /* SwiftUITest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUITest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B32A3E825000ADF005709DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B32A3EA25000ADF005709DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,10 +68,10 @@
 		1B257FE225094A3700A26854 /* CustomClass */ = {
 			isa = PBXGroup;
 			children = (
-				1B257FDE2506C8AA00A26854 /* Word.swift */,
-				1B257FE02508CEAB00A26854 /* TextBox.swift */,
-				1BB670192526181D00FF2AA9 /* ImageBox.swift */,
 				1B8654B3250D536400AAF38B /* Container.swift */,
+				1BB670192526181D00FF2AA9 /* ImageBox.swift */,
+				1B257FE02508CEAB00A26854 /* TextBox.swift */,
+				1B257FDE2506C8AA00A26854 /* Word.swift */,
 			);
 			path = CustomClass;
 			sourceTree = "<group>";
@@ -119,15 +119,14 @@
 		1B98EC4B25267BB900A13242 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1B98EC4F2526803B00A13242 /* ViewModifiers */,
-				1B32A3EC25000ADF005709DC /* ContentView.swift */,
-				1B98EC4825267BB400A13242 /* TextBoxView.swift */,
-				1B98EC57252680DD00A13242 /* ImageBoxView.swift */,
-				1B257FE325095D3700A26854 /* CircleView.swift */,
-				1B69013E251DE00C0008B0F5 /* Spec.swift */,
 				1B690141251DF3880008B0F5 /* AllCapsButton.swift */,
-				1B98EC3F2526584000A13242 /* ImagePicker.swift */,
+				1B32A3EC25000ADF005709DC /* ContentView.swift */,
 				1B128BD52509707F0096ACBC /* DetailView.swift */,
+				1B98EC57252680DD00A13242 /* ImageBoxView.swift */,
+				1B98EC3F2526584000A13242 /* ImagePicker.swift */,
+				1B69013E251DE00C0008B0F5 /* Spec.swift */,
+				1B98EC4825267BB400A13242 /* TextBoxView.swift */,
+				1B98EC4F2526803B00A13242 /* ViewModifiers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -135,6 +134,7 @@
 		1B98EC4D25267BE100A13242 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				1B257FE325095D3700A26854 /* Circle.swift */,
 				1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */,
 			);
 			path = Protocol;
@@ -143,8 +143,8 @@
 		1B98EC4F2526803B00A13242 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
-				1B98EC502526804B00A13242 /* TextBoxModifiers.swift */,
 				1B98EC542526809400A13242 /* ImageBoxModifiers.swift */,
+				1B98EC502526804B00A13242 /* TextBoxModifiers.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -225,7 +225,7 @@
 				1B98EC402526584000A13242 /* ImagePicker.swift in Sources */,
 				1BB6701A2526181D00FF2AA9 /* ImageBox.swift in Sources */,
 				1B690142251DF3880008B0F5 /* AllCapsButton.swift in Sources */,
-				1B257FE425095D3700A26854 /* CircleView.swift in Sources */,
+				1B257FE425095D3700A26854 /* Circle.swift in Sources */,
 				1B98EC512526804B00A13242 /* TextBoxModifiers.swift in Sources */,
 				1B32A3E925000ADF005709DC /* AppDelegate.swift in Sources */,
 				1B257FDF2506C8AA00A26854 /* Word.swift in Sources */,

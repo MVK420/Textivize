@@ -14,8 +14,10 @@ protocol Box:Identifiable, Equatable {
     var rotateState:Double {get set}
     var offset:CGSize {get set}
     var position:CGSize {get set}
+    
 }
 
+///Drag and Rotate functions
 extension Box {
     
     ///Used on rotate

@@ -45,10 +45,8 @@ struct ContentView: View {
     ///Index of selected TextBox
     @State private var selectedCustomizeImageIndex:Int? = nil
     @State private var selectedCustomizeIndex:Int? = nil
-    
     ///IMAGESTUFF
     @State var showImagePicker: Bool = false
-    //@State var image: UIImage?
     
     ///Builds the Input Text Field
     fileprivate func inputTextField() -> some View {
@@ -64,8 +62,6 @@ struct ContentView: View {
         }
         .onReceive(Just(inputText)) { inputText in
         }
-        //.frame(minWidth: 50, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
-        //.padding(.all)
         .font(.headline)
         .foregroundColor(Color.orange)
     }
@@ -86,7 +82,6 @@ struct ContentView: View {
         {
             Image(systemName: "g.circle.fill")
         }
-        //.frame(minWidth: 10, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)//, alignment: .topLeading)
         .padding(.all)
         .font(.title)
     }
@@ -107,7 +102,6 @@ struct ContentView: View {
         }) {
             Image(systemName: "circle")
         }
-        //.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .topLeading)
         .padding(.all)
         .font(.title)
     }
@@ -290,7 +284,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        //CircleText(radius: 90, text: "Lorem ipsum dolor",kerning: 9)
     }
 }
 

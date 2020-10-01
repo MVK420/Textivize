@@ -21,7 +21,7 @@ struct TextBoxView: View {
     ///CIRCLESTUFF
     @State var textSizes: [Int:Double] = [:]
     
-    func returnCircle(index:Int) -> some View {
+    private func returnCircle(index:Int) -> some View {
         return ZStack {
             ForEach(  self.containers.ls[index].texts, id: \.self.offset) { (offset, element) in
                 VStack {
