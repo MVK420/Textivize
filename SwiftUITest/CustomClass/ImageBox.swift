@@ -15,5 +15,6 @@ struct ImageBox:Box {
     var rotateState: Double = 0
     var offset = CGSize.zero
     var position = CGSize.zero
+    var scale:CGFloat = 1.0
     
 }

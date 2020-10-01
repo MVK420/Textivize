@@ -14,7 +14,6 @@ extension Double {
     }
 }
 
-
 //Get size for label helper
 struct WidthPreferenceKey: PreferenceKey {
     typealias Value = CGFloat

@@ -21,12 +21,20 @@ struct ImageBoxView: View {
                 VStack() {
                     Image(uiImage: self.containers.images[i].img)
                         .resizable()
+                        .scaleEffect(self.containers.images[i].scale)
                         .aspectRatio(contentMode: .fill)
-                        .frame(maxWidth: 100, maxHeight: 100)                        
+                        .frame(maxWidth: 100, maxHeight: 100)
+                        .rotationEffect(Angle(degrees: self.containers.images[i].rotateState),anchor: self.containers.images[i].rotationAnchor())
+                        .DragImage(i: i, containers: self.containers, position: self.position, selectedImageGesture: self.$selectedImageGesture)
+                        .if(self.selectedCustomizeImageIndex == i ? true : false) {$0.RotationImage(i: i, containers: self.containers)}
+                        .if(self.selectedCustomizeImageIndex == nil ? true : false) {$0.MagnifyImage(i:i, containers:self.containers)}
+                        .onTapGesture(perform: {
+                                self.selectedCustomizeImageIndex = i
+                            print("selected")
+                        })
                 }
-                .DragImage(i: i, containers: self.containers, position: self.position, selectedImageGesture: self.$selectedImageGesture)
-                //.DragImage(i: i, containers: self.containers)
-                .RotationImage(i: i, containers: self.containers)
+                
+                
             }
         }
     }
