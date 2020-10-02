@@ -61,13 +61,15 @@ struct TextBoxView: View {
         Group{
             ///Loop through each word in textbox.words
             ForEach(self.containers.ls.indices, id: \.self) { i in
-                VStack (alignment: self.containers.ls[i].alignment, spacing: self.containers.ls[i].spacingForTextBox()){//(alignment: .leading, spacing: 20) {
+                ///Create a VStack with alignemnt and leading of TextBox
+                VStack (alignment: self.containers.ls[i].alignment, spacing: self.containers.ls[i].spacingForTextBox()){
+                    ///If it's a circleBool is true, display it as a Circle
                     if self.containers.ls[i].circleBool == true{
                         returnCircle(index: i)
                     } else {
                         ForEach(self.containers.ls[i].words.indices, id: \.self) { j in
                             ///Create a Text for each word
-                            ///setup font, color, onClick to Detail,
+                            ///setup font, color, onTap Border around VStack
                             Text(self.containers.ls[i].words[j].text)
                                 .kerning(self.containers.ls[i].kerningForTextBox())
                                 .font(.custom(self.containers.ls[i].words[j].fontStyle, size: self.containers.ls[i].words[j].fontSize))
@@ -92,7 +94,6 @@ struct TextBoxView: View {
                 .DragText(i: i, containers: self.containers, position: self.position, selectedGesture: self.$selectedGesture, selectedCustomizeIndex: self.$selectedCustomizeIndex)
                 .if(self.selectedCustomizeIndex == i ? true : false) {$0.RotationText(i: i, containers: self.containers)}
                 .if(self.selectedCustomizeIndex == nil ? true : false) {$0.MagnifyText(i: i, containers: self.containers)}
-                //.RotationText(i: i, containers: self.containers)
             }
         }
     }

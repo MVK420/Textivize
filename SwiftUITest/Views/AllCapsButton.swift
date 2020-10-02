@@ -35,11 +35,3 @@ struct AllCapsButton: View {
         self.allCaps = allCaps
     }
 }
-
-/*
- struct AllCapsButton_Previews: PreviewProvider {
- static var previews: some View {
- AllCapsButton(selectedCustomizeIndex: <#Binding<Int?>#>)
- }
- }
- */

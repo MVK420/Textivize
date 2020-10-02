@@ -224,6 +224,7 @@ struct TextBox: Box {
         }
     }
     
+    ///Add val to the value represented in casebox
     mutating func addToCase<T:BinaryInteger>(caseBox:String, val: T) {
         switch caseBox {
         case "Kerning":

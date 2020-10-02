@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+///This applied to Image will make Rotation possible
 struct RotationModifierImage: ViewModifier {
     
     var i:Int
@@ -23,6 +24,7 @@ struct RotationModifierImage: ViewModifier {
     }
 }
 
+///This applied to Image will make magnificaiton possible
 struct MaginificationModifierImage: ViewModifier {
     
     var i:Int
@@ -44,6 +46,7 @@ struct MaginificationModifierImage: ViewModifier {
     }
 }
 
+///This applied to Image will make dragging possible
 struct DragModifierImage: ViewModifier {
     
     var i:Int

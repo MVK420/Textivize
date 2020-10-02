@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+///This applied to text, will make dragging possible
 struct DragModifierTextBox: ViewModifier {
     
     var i:Int
@@ -49,6 +50,7 @@ struct DragModifierTextBox: ViewModifier {
     }
 }
 
+///This applied to text will make magnificaiton possible
 struct MaginificationModifierText: ViewModifier {
     
     var i:Int
@@ -61,8 +63,6 @@ struct MaginificationModifierText: ViewModifier {
                 let delta = val / self.lastScaleValue
                 self.lastScaleValue = val
                 self.containers.ls[i].scale = self.containers.ls[i].scale * delta
-                
-                //... anything else e.g. clamping the newScale
             }.onEnded { val in
                 // without this the next gesture will be broken
                 self.lastScaleValue = 1.0
@@ -70,6 +70,7 @@ struct MaginificationModifierText: ViewModifier {
     }
 }
  
+///This applied to text will make rotation possible
 struct RotationModifierTextBox: ViewModifier {
     
     var i:Int
@@ -88,6 +89,7 @@ struct RotationModifierTextBox: ViewModifier {
 
 
 extension View {
+    
     func RotationText(i:Int, containers:Container) -> some View {
         self.modifier(RotationModifierTextBox(i: i, containers: containers))
     }

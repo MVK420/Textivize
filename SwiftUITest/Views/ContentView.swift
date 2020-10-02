@@ -90,7 +90,6 @@ struct ContentView: View {
     fileprivate func circleButton() -> some View {
         return Button(action: {
             if self.selectedCustomizeIndex != nil {
-                
                 self.containers.ls[self.selectedCustomizeIndex!].sameWidth = false
                 let font:CGFloat =  self.containers.ls[self.selectedCustomizeIndex!].fontForTextBox()
                 self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
@@ -106,6 +105,7 @@ struct ContentView: View {
         .font(.title)
     }
     
+    ///List of Fonts
     fileprivate func fontScrollView() -> some View {
         return ScrollView(.vertical) {
             VStack() {
@@ -136,6 +136,7 @@ struct ContentView: View {
         .clipShape(Rectangle())
     }
     
+    ///Button that displays the Font list
     fileprivate func fontButton() -> some View {
         return Button(action: {
             self.fontPresented = !self.fontPresented
@@ -146,6 +147,7 @@ struct ContentView: View {
         .font(.title)
     }
     
+    ///Button that gives the Same Width spec to the selected TextBox
     fileprivate func sameWidthButton() -> some View {
         return Button(action: {
             ///If there's a Textbox that is selected to customize
@@ -318,6 +320,8 @@ extension View {
         }
     }
     
+    ///if conditional is true, then apply modifier to view
+    ///.if(self.selectedCustomizeIndex == i ? true : false) {$0.RotationText(i: i, containers: self.containers)}
     func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> TupleView<(Self?, Content?)> {
         if conditional { return TupleView((nil, content(self))) }
         else { return TupleView((self, nil)) }
