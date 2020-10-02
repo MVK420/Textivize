@@ -86,10 +86,13 @@ struct TextBoxView: View {
                 .frame(width: self.containers.ls[i].widthForTextBox())
                 //.fixedSize(horizontal:false, vertical: true)
                 .border(self.selectedCustomizeIndex == i ? Color.black : Color.clear)
+                .scaleEffect(self.containers.ls[i].scale)
                 ///VStack properties: offset gesture is for drag, rotationEffect for rotation
                 //Fix this for rotationAnchor
                 .DragText(i: i, containers: self.containers, position: self.position, selectedGesture: self.$selectedGesture, selectedCustomizeIndex: self.$selectedCustomizeIndex)
-                .RotationText(i: i, containers: self.containers)
+                .if(self.selectedCustomizeIndex == i ? true : false) {$0.RotationText(i: i, containers: self.containers)}
+                .if(self.selectedCustomizeIndex == nil ? true : false) {$0.MagnifyText(i: i, containers: self.containers)}
+                //.RotationText(i: i, containers: self.containers)
             }
         }
     }

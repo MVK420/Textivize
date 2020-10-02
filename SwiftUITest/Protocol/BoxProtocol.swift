@@ -14,6 +14,7 @@ protocol Box:Identifiable, Equatable {
     var rotateState:Double {get set}
     var offset:CGSize {get set}
     var position:CGSize {get set}
+    var scale:CGFloat {get set}
     
 }
 

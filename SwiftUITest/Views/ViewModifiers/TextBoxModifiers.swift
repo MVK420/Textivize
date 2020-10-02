@@ -48,6 +48,27 @@ struct DragModifierTextBox: ViewModifier {
             )
     }
 }
+
+struct MaginificationModifierText: ViewModifier {
+    
+    var i:Int
+    @ObservedObject var containers:Container
+    @State var lastScaleValue: CGFloat = 1.0
+    
+    func body(content: Content) -> some View {
+        content
+            .gesture(MagnificationGesture().onChanged { val in
+                let delta = val / self.lastScaleValue
+                self.lastScaleValue = val
+                self.containers.ls[i].scale = self.containers.ls[i].scale * delta
+                
+                //... anything else e.g. clamping the newScale
+            }.onEnded { val in
+                // without this the next gesture will be broken
+                self.lastScaleValue = 1.0
+            })
+    }
+}
  
 struct RotationModifierTextBox: ViewModifier {
     
@@ -73,6 +94,10 @@ extension View {
     
     func DragText(i:Int,containers:Container, position:CGSize,selectedGesture:Binding<TextBox?>,selectedCustomizeIndex:Binding<Int?>) -> some View{
         self.modifier(DragModifierTextBox(i: i, containers: containers, position: position, selectedGesture: selectedGesture, selectedCustomizeIndex: selectedCustomizeIndex))
+    }
+    
+    func MagnifyText(i:Int, containers:Container) -> some View {
+        self.modifier(MaginificationModifierText(i: i, containers: containers))
     }
 }
 

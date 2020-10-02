@@ -23,6 +23,7 @@ struct TextBox: Box {
     var kerning:CGFloat = 0
     var spacing:CGFloat = 0
     var scaleFact:CGFloat = 0.1
+    var scale:CGFloat = 1
     var rotateState: Double = 0
     var offset = CGSize.zero
     var position = CGSize.zero

@@ -23,7 +23,6 @@ struct ImageBoxView: View {
                         .resizable()
                         .scaleEffect(self.containers.images[i].scale)
                         .aspectRatio(contentMode: .fill)
-                        //.border(Color.orange,width: 1)
                         .frame(maxWidth: 100, maxHeight: 100)
                         .rotationEffect(Angle(degrees: self.containers.images[i].rotateState),anchor: self.containers.images[i].rotationAnchor())
                         .DragImage(i: i, containers: self.containers, position: self.position, selectedImageGesture: self.$selectedImageGesture)
