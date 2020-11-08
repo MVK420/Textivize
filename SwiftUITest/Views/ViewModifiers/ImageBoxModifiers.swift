@@ -16,7 +16,7 @@ struct RotationModifierImage: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .gesture(RotationGesture()
+            .simultaneousGesture(RotationGesture()
                         .onChanged { value in
                             self.containers.images[i].rotateState = value.degrees
                             self.containers.objectWillChange.send()
@@ -33,7 +33,7 @@ struct MaginificationModifierImage: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .gesture(MagnificationGesture().onChanged { val in
+            .simultaneousGesture(MagnificationGesture().onChanged { val in
                 let delta = val / self.lastScaleValue
                 self.lastScaleValue = val
                 self.containers.images[i].scale = self.containers.images[i].scale * delta
@@ -57,7 +57,7 @@ struct DragModifierImage: ViewModifier {
     func body(content: Content) -> some View {
         content
             .offset(self.selectedImageGesture == self.containers.images[i] ? self.position : self.containers.images[i].position).scaledToFit()
-            .gesture(DragGesture(minimumDistance: 1)
+            .simultaneousGesture(DragGesture(minimumDistance: 1)
                         .updating(self.$position, body: { (value, state, translation) in
                             self.selectedImageGesture = self.containers.images[i]
                             let aux = self.containers.images[i].position

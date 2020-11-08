@@ -279,6 +279,9 @@ struct ContentView: View {
                                         } else {
                                             // Fallback on earlier versions
                                         }
+                                        NavigationLink(destination: FontSettingsView()) {
+                                            Image(systemName: "s.circle.fill")
+                                        }
                                     })
             
         }
@@ -322,10 +325,10 @@ extension View {
     
     ///if conditional is true, then apply modifier to view
     ///.if(self.selectedCustomizeIndex == i ? true : false) {$0.RotationText(i: i, containers: self.containers)}
-    func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> TupleView<(Self?, Content?)> {
-        if conditional { return TupleView((nil, content(self))) }
-        else { return TupleView((self, nil)) }
-    }
+//    func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> TupleView<(Self?, Content?)> {
+//        if conditional { return TupleView((nil, content(self))) }
+//        else { return TupleView((self, nil)) }
+//    }
     
 }
 

@@ -20,7 +20,7 @@ struct DragModifierTextBox: ViewModifier {
     func body(content: Content) -> some View {
         content
             .offset(self.selectedGesture == self.containers.ls[i] ? self.position : self.containers.ls[i].position).scaledToFit()
-            .gesture(DragGesture(minimumDistance: 10)
+            .simultaneousGesture(DragGesture(minimumDistance: 10)
                         .updating(self.$position, body: { (value, state, translation) in
                             if nil == self.selectedGesture {
                                 self.selectedGesture = self.containers.ls[i]
@@ -59,7 +59,7 @@ struct MaginificationModifierText: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .gesture(MagnificationGesture().onChanged { val in
+            .simultaneousGesture(MagnificationGesture().onChanged { val in
                 let delta = val / self.lastScaleValue
                 self.lastScaleValue = val
                 self.containers.ls[i].scale = self.containers.ls[i].scale * delta
@@ -79,7 +79,7 @@ struct RotationModifierTextBox: ViewModifier {
     func body(content: Content) -> some View {
         content
             .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState),anchor: self.containers.ls[i].rotationAnchor())
-            .gesture(RotationGesture()
+            .simultaneousGesture(RotationGesture()
                         .onChanged { value in
                             self.containers.ls[i].rotateState = value.degrees
                             self.containers.objectWillChange.send()

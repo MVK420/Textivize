@@ -11,6 +11,24 @@ import SwiftUI
 ///Builds the VStack that contains the words one above the other
 struct TextBoxView: View {
     
+    
+    ///test
+    let rg = RotationGesture().onChanged({ a in
+        print("Angle = \(a.degrees)")
+    })
+    
+    
+    let dgtest = DragGesture(minimumDistance: 10, coordinateSpace: .local)
+    
+    let dg = DragGesture(minimumDistance: 1, coordinateSpace: .local).onChanged({ v in
+        print("Translate = \(v.translation.width)")
+    })
+    let mg = MagnificationGesture().onChanged({ s in
+        print("scale = \(s)")
+    })
+    ///endtest
+    
+    
     @ObservedObject var containers:Container
     @Binding var selectedCustomizeIndex:Int?
     @Binding var selectedGesture:TextBox?
@@ -89,11 +107,10 @@ struct TextBoxView: View {
                 //.fixedSize(horizontal:false, vertical: true)
                 .border(self.selectedCustomizeIndex == i ? Color.black : Color.clear)
                 .scaleEffect(self.containers.ls[i].scale)
-                ///VStack properties: offset gesture is for drag, rotationEffect for rotation
-                //Fix this for rotationAnchor
+                ///Simultaneous Gestures for moving on drag, Rotate and Magnify on pinch
                 .DragText(i: i, containers: self.containers, position: self.position, selectedGesture: self.$selectedGesture, selectedCustomizeIndex: self.$selectedCustomizeIndex)
-                .if(self.selectedCustomizeIndex == i ? true : false) {$0.RotationText(i: i, containers: self.containers)}
-                .if(self.selectedCustomizeIndex == nil ? true : false) {$0.MagnifyText(i: i, containers: self.containers)}
+                .RotationText(i: i, containers: self.containers)
+                .MagnifyText(i: i, containers: self.containers)
             }
         }
     }
