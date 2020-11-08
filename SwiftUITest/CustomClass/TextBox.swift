@@ -25,7 +25,8 @@ struct TextBox: Box {
     var scaleFact:CGFloat = 0.1
     var scale:CGFloat = 1
     var rotateState: Double = 0
-    var offset = CGSize.zero
+    //var offset = CGSize.zero
+    var offset = CGSize(width: 0.5, height: 0.5)
     var position = CGSize.zero
     var grState: Int = 0
     var allCapsState: Int = 0

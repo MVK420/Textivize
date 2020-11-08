@@ -52,18 +52,20 @@ struct ContentView: View {
     fileprivate func inputTextField() -> some View {
         return TextField("Text", text: $inputText, onEditingChanged: { (changed) in
             ///When editing is happening, do nothing
+            print("Editing")
         }) {
             ///When editing is finished, call func to insert text into a textbox
             var tBox = TextBox(words: [],fullText: self.inputText)
             tBox.parseInput(text: self.inputText)
             self.containers.ls.append(tBox)
             ///Empty Text Field
-            self.inputText = "Trump For President 2020"
+            self.inputText = ""//Trump For President 2020"
         }
-        .onReceive(Just(inputText)) { inputText in
-        }
-        .font(.headline)
+        .font(.body)
         .foregroundColor(Color.orange)
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+        //.fixedSize()
+        .frame(width:200,alignment:.leading)
     }
     
     ///Builds the Gradient Button
@@ -269,20 +271,23 @@ struct ContentView: View {
                     self.containers.images.append(ImageBox(img: image))
                 }
             }
-            .navigationBarItems(leading: inputTextField()
-                                ,trailing:
-                                    HStack(){
-                                        editListButton()
-                                        ImagePickerButton(showImagePicker: self.$showImagePicker)
-                                        if #available(iOS 14.0, *) {
-                                            ColorPick()
-                                        } else {
-                                            // Fallback on earlier versions
-                                        }
-                                        NavigationLink(destination: FontSettingsView()) {
-                                            Image(systemName: "s.circle.fill")
-                                        }
-                                    })
+            .navigationBarItems(leading: HStack() {
+                inputTextField()
+                //Spacer()
+            }
+            ,trailing:
+                HStack(){
+                    editListButton()
+                    ImagePickerButton(showImagePicker: self.$showImagePicker)
+                    if #available(iOS 14.0, *) {
+                        ColorPick()
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    NavigationLink(destination: FontSettingsView()) {
+                        Image(systemName: "s.circle.fill")
+                    }
+                })
             
         }
     }
@@ -325,10 +330,10 @@ extension View {
     
     ///if conditional is true, then apply modifier to view
     ///.if(self.selectedCustomizeIndex == i ? true : false) {$0.RotationText(i: i, containers: self.containers)}
-//    func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> TupleView<(Self?, Content?)> {
-//        if conditional { return TupleView((nil, content(self))) }
-//        else { return TupleView((self, nil)) }
-//    }
+    //    func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> TupleView<(Self?, Content?)> {
+    //        if conditional { return TupleView((nil, content(self))) }
+    //        else { return TupleView((self, nil)) }
+    //    }
     
 }
 

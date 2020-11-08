@@ -19,14 +19,14 @@ struct DragModifierTextBox: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .offset(self.selectedGesture == self.containers.ls[i] ? self.position : self.containers.ls[i].position).scaledToFit()
+            .offset(self.selectedGesture == self.containers.ls[i] && self.selectedCustomizeIndex != i ? self.position : self.containers.ls[i].position).scaledToFit()
             .simultaneousGesture(DragGesture(minimumDistance: 10)
                         .updating(self.$position, body: { (value, state, translation) in
                             if nil == self.selectedGesture {
                                 self.selectedGesture = self.containers.ls[i]
                             } else {
                                 if self.selectedCustomizeIndex == i {
-                                    self.containers.ls[i].alignmentForTextBox(swipeVal: value.translation)
+                                    //self.containers.ls[i].alignmentForTextBox(swipeVal: value.translation)
                                 } else {
                                     let aux = self.containers.ls[i].position
                                     let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
@@ -37,9 +37,11 @@ struct DragModifierTextBox: ViewModifier {
                         .onEnded() { value in
                             if self.selectedGesture == self.containers.ls[i] {
                                 if self.selectedCustomizeIndex == i {
-                                    //self.containers.ls[i].alignmentForTextBox(swipeVal: value.translation)
+                                    self.containers.ls[i].alignmentForTextBox(swipeVal: value.translation)
                                 } else {
                                     self.containers.ls[i].appendToPosition(translation: value.translation)
+                                    //self.containers.ls[i].addToPosition(translation: value.translation)
+                                    
                                 }
                             }
                             self.selectedGesture = nil
