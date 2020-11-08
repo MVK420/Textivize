@@ -250,7 +250,6 @@ struct ContentView: View {
                         .frame(width: 50)
                         .border(Color.orange, width: 2)
                     }
-                    
                 }
                 TextBoxView(containers: self._containers, selectedCustomizeIndex: self.$selectedCustomizeIndex, selectedGesture: self.$selectedGesture)
                 ImageBoxView(containers: self._containers, selectedCustomizeImageIndex: self.$selectedCustomizeImageIndex, selectedImageGesture: self.$selectedImageGesture)
@@ -273,7 +272,6 @@ struct ContentView: View {
             }
             .navigationBarItems(leading: HStack() {
                 inputTextField()
-                //Spacer()
             }
             ,trailing:
                 HStack(){

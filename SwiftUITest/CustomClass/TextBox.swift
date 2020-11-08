@@ -158,12 +158,12 @@ struct TextBox: Box {
     
     ///Recalculated fontsizes when min or max is modifed
     mutating func calcFontForGr() {
-        if self.grState == 0 {
+        if self.grState == 1 {
             self.increasingFontSize()
-        } else if grState == 1 {
+        } else if grState == 2 {
             self.decreasingFontSize()
         }
-        if self.grState == 2 {
+        if self.grState == 0 {
             self.resetFontSize()
         }
     }
