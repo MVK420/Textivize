@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B128BD62509707F0096ACBC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B128BD52509707F0096ACBC /* DetailView.swift */; };
 		1B257FDF2506C8AA00A26854 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B257FDE2506C8AA00A26854 /* Word.swift */; };
 		1B257FE12508CEAB00A26854 /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B257FE02508CEAB00A26854 /* TextBox.swift */; };
 		1B257FE425095D3700A26854 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B257FE325095D3700A26854 /* Circle.swift */; };
@@ -17,6 +16,7 @@
 		1B32A3EF25000AE3005709DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B32A3EE25000AE3005709DC /* Assets.xcassets */; };
 		1B32A3F225000AE3005709DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B32A3F125000AE3005709DC /* Preview Assets.xcassets */; };
 		1B32A3F525000AE3005709DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B32A3F325000AE3005709DC /* LaunchScreen.storyboard */; };
+		1B5FEA5925595EE90062219F /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5FEA5825595EE90062219F /* DocumentPicker.swift */; };
 		1B69013F251DE00C0008B0F5 /* Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69013E251DE00C0008B0F5 /* Spec.swift */; };
 		1B690142251DF3880008B0F5 /* AllCapsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B690141251DF3880008B0F5 /* AllCapsButton.swift */; };
 		1B7436F5252BB93200B01CFC /* FontSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7436F4252BB93200B01CFC /* FontSettingsView.swift */; };
@@ -26,12 +26,18 @@
 		1B98EC512526804B00A13242 /* TextBoxModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98EC502526804B00A13242 /* TextBoxModifiers.swift */; };
 		1B98EC552526809400A13242 /* ImageBoxModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98EC542526809400A13242 /* ImageBoxModifiers.swift */; };
 		1B98EC58252680DD00A13242 /* ImageBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98EC57252680DD00A13242 /* ImageBoxView.swift */; };
+		1B9CBE8C25607601008BD94A /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBE8B25607601008BD94A /* ColorPickerView.swift */; };
+		1B9CBE8F256076C8008BD94A /* InputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBE8E256076C8008BD94A /* InputTextFieldView.swift */; };
+		1B9CBE9225607A7D008BD94A /* FontScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBE9125607A7D008BD94A /* FontScrollView.swift */; };
+		1B9CBE9525607B49008BD94A /* GradientButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBE9425607B49008BD94A /* GradientButtonView.swift */; };
+		1B9CBE9A25607CBF008BD94A /* FontButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBE9925607CBF008BD94A /* FontButtonView.swift */; };
+		1B9CBE9D25607FE3008BD94A /* SameWidthButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBE9C25607FE3008BD94A /* SameWidthButtonView.swift */; };
+		1B9CBEA025608188008BD94A /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBE9F25608188008BD94A /* CircleButtonView.swift */; };
 		1BB6701A2526181D00FF2AA9 /* ImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB670192526181D00FF2AA9 /* ImageBox.swift */; };
 		1BB6701E2526198F00FF2AA9 /* BoxProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1B128BD52509707F0096ACBC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		1B257FDE2506C8AA00A26854 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		1B257FE02508CEAB00A26854 /* TextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
 		1B257FE325095D3700A26854 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
@@ -43,6 +49,7 @@
 		1B32A3F125000AE3005709DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1B32A3F425000AE3005709DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B32A3F625000AE3005709DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B5FEA5825595EE90062219F /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		1B69013E251DE00C0008B0F5 /* Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spec.swift; sourceTree = "<group>"; };
 		1B690141251DF3880008B0F5 /* AllCapsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCapsButton.swift; sourceTree = "<group>"; };
 		1B7436F4252BB93200B01CFC /* FontSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettingsView.swift; sourceTree = "<group>"; };
@@ -52,6 +59,13 @@
 		1B98EC502526804B00A13242 /* TextBoxModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxModifiers.swift; sourceTree = "<group>"; };
 		1B98EC542526809400A13242 /* ImageBoxModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBoxModifiers.swift; sourceTree = "<group>"; };
 		1B98EC57252680DD00A13242 /* ImageBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBoxView.swift; sourceTree = "<group>"; };
+		1B9CBE8B25607601008BD94A /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		1B9CBE8E256076C8008BD94A /* InputTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextFieldView.swift; sourceTree = "<group>"; };
+		1B9CBE9125607A7D008BD94A /* FontScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontScrollView.swift; sourceTree = "<group>"; };
+		1B9CBE9425607B49008BD94A /* GradientButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonView.swift; sourceTree = "<group>"; };
+		1B9CBE9925607CBF008BD94A /* FontButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontButtonView.swift; sourceTree = "<group>"; };
+		1B9CBE9C25607FE3008BD94A /* SameWidthButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SameWidthButtonView.swift; sourceTree = "<group>"; };
+		1B9CBE9F25608188008BD94A /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
 		1BB670192526181D00FF2AA9 /* ImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBox.swift; sourceTree = "<group>"; };
 		1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,15 +135,15 @@
 		1B98EC4B25267BB900A13242 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1B690141251DF3880008B0F5 /* AllCapsButton.swift */,
+				1B9CBEA2256081D4008BD94A /* NavigationBar */,
+				1B9CBE9725607C32008BD94A /* EditButtons */,
 				1B32A3EC25000ADF005709DC /* ContentView.swift */,
-				1B128BD52509707F0096ACBC /* DetailView.swift */,
-				1B7436F4252BB93200B01CFC /* FontSettingsView.swift */,
 				1B98EC57252680DD00A13242 /* ImageBoxView.swift */,
 				1B98EC3F2526584000A13242 /* ImagePicker.swift */,
-				1B69013E251DE00C0008B0F5 /* Spec.swift */,
 				1B98EC4825267BB400A13242 /* TextBoxView.swift */,
+				1B5FEA5825595EE90062219F /* DocumentPicker.swift */,
 				1B98EC4F2526803B00A13242 /* ViewModifiers */,
+				1B9CBE9125607A7D008BD94A /* FontScrollView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -150,6 +164,29 @@
 				1B98EC502526804B00A13242 /* TextBoxModifiers.swift */,
 			);
 			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		1B9CBE9725607C32008BD94A /* EditButtons */ = {
+			isa = PBXGroup;
+			children = (
+				1B690141251DF3880008B0F5 /* AllCapsButton.swift */,
+				1B69013E251DE00C0008B0F5 /* Spec.swift */,
+				1B9CBE8B25607601008BD94A /* ColorPickerView.swift */,
+				1B9CBE9425607B49008BD94A /* GradientButtonView.swift */,
+				1B9CBE9925607CBF008BD94A /* FontButtonView.swift */,
+				1B9CBE9C25607FE3008BD94A /* SameWidthButtonView.swift */,
+				1B9CBE9F25608188008BD94A /* CircleButtonView.swift */,
+			);
+			path = EditButtons;
+			sourceTree = "<group>";
+		};
+		1B9CBEA2256081D4008BD94A /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				1B9CBE8E256076C8008BD94A /* InputTextFieldView.swift */,
+				1B7436F4252BB93200B01CFC /* FontSettingsView.swift */,
+			);
+			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,23 +260,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B5FEA5925595EE90062219F /* DocumentPicker.swift in Sources */,
 				1B98EC552526809400A13242 /* ImageBoxModifiers.swift in Sources */,
 				1B98EC58252680DD00A13242 /* ImageBoxView.swift in Sources */,
 				1B98EC402526584000A13242 /* ImagePicker.swift in Sources */,
+				1B9CBE8C25607601008BD94A /* ColorPickerView.swift in Sources */,
+				1B9CBE8F256076C8008BD94A /* InputTextFieldView.swift in Sources */,
 				1BB6701A2526181D00FF2AA9 /* ImageBox.swift in Sources */,
 				1B690142251DF3880008B0F5 /* AllCapsButton.swift in Sources */,
 				1B257FE425095D3700A26854 /* Circle.swift in Sources */,
 				1B98EC512526804B00A13242 /* TextBoxModifiers.swift in Sources */,
 				1B32A3E925000ADF005709DC /* AppDelegate.swift in Sources */,
+				1B9CBE9D25607FE3008BD94A /* SameWidthButtonView.swift in Sources */,
+				1B9CBE9525607B49008BD94A /* GradientButtonView.swift in Sources */,
 				1B257FDF2506C8AA00A26854 /* Word.swift in Sources */,
-				1B128BD62509707F0096ACBC /* DetailView.swift in Sources */,
 				1B7436F5252BB93200B01CFC /* FontSettingsView.swift in Sources */,
 				1B32A3EB25000ADF005709DC /* SceneDelegate.swift in Sources */,
 				1B8654B4250D536400AAF38B /* Container.swift in Sources */,
+				1B9CBE9225607A7D008BD94A /* FontScrollView.swift in Sources */,
 				1B69013F251DE00C0008B0F5 /* Spec.swift in Sources */,
 				1B257FE12508CEAB00A26854 /* TextBox.swift in Sources */,
 				1B98EC4925267BB400A13242 /* TextBoxView.swift in Sources */,
+				1B9CBE9A25607CBF008BD94A /* FontButtonView.swift in Sources */,
 				1B32A3ED25000ADF005709DC /* ContentView.swift in Sources */,
+				1B9CBEA025608188008BD94A /* CircleButtonView.swift in Sources */,
 				1BB6701E2526198F00FF2AA9 /* BoxProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
