@@ -33,6 +33,7 @@
 		1B9CBE9A25607CBF008BD94A /* FontButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBE9925607CBF008BD94A /* FontButtonView.swift */; };
 		1B9CBE9D25607FE3008BD94A /* SameWidthButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBE9C25607FE3008BD94A /* SameWidthButtonView.swift */; };
 		1B9CBEA025608188008BD94A /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBE9F25608188008BD94A /* CircleButtonView.swift */; };
+		1B9CBEA5256082DC008BD94A /* CustomizeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEA4256082DC008BD94A /* CustomizeButtonView.swift */; };
 		1BB6701A2526181D00FF2AA9 /* ImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB670192526181D00FF2AA9 /* ImageBox.swift */; };
 		1BB6701E2526198F00FF2AA9 /* BoxProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		1B9CBE9925607CBF008BD94A /* FontButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontButtonView.swift; sourceTree = "<group>"; };
 		1B9CBE9C25607FE3008BD94A /* SameWidthButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SameWidthButtonView.swift; sourceTree = "<group>"; };
 		1B9CBE9F25608188008BD94A /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
+		1B9CBEA4256082DC008BD94A /* CustomizeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeButtonView.swift; sourceTree = "<group>"; };
 		1BB670192526181D00FF2AA9 /* ImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBox.swift; sourceTree = "<group>"; };
 		1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 			children = (
 				1B9CBE8E256076C8008BD94A /* InputTextFieldView.swift */,
 				1B7436F4252BB93200B01CFC /* FontSettingsView.swift */,
+				1B9CBEA4256082DC008BD94A /* CustomizeButtonView.swift */,
 			);
 			path = NavigationBar;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				1B690142251DF3880008B0F5 /* AllCapsButton.swift in Sources */,
 				1B257FE425095D3700A26854 /* Circle.swift in Sources */,
 				1B98EC512526804B00A13242 /* TextBoxModifiers.swift in Sources */,
+				1B9CBEA5256082DC008BD94A /* CustomizeButtonView.swift in Sources */,
 				1B32A3E925000ADF005709DC /* AppDelegate.swift in Sources */,
 				1B9CBE9D25607FE3008BD94A /* SameWidthButtonView.swift in Sources */,
 				1B9CBE9525607B49008BD94A /* GradientButtonView.swift in Sources */,

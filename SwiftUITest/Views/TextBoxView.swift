@@ -11,24 +11,6 @@ import SwiftUI
 ///Builds the VStack that contains the words one above the other
 struct TextBoxView: View {
     
-    
-    ///test
-    let rg = RotationGesture().onChanged({ a in
-        print("Angle = \(a.degrees)")
-    })
-    
-    
-    let dgtest = DragGesture(minimumDistance: 10, coordinateSpace: .local)
-    
-    let dg = DragGesture(minimumDistance: 1, coordinateSpace: .local).onChanged({ v in
-        print("Translate = \(v.translation.width)")
-    })
-    let mg = MagnificationGesture().onChanged({ s in
-        print("scale = \(s)")
-    })
-    ///endtest
-    
-    
     @ObservedObject var containers:Container
     @Binding var selectedCustomizeIndex:Int?
     @Binding var selectedGesture:TextBox?

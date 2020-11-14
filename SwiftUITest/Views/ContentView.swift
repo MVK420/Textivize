@@ -11,8 +11,6 @@ import Combine
 
 struct ContentView: View {
     
-    private let fontList = UIFont.familyNames
-    
     ///Notused
     @State var detailPresented:Bool = false
     ///selectedColor
@@ -48,16 +46,6 @@ struct ContentView: View {
     ///IMAGESTUFF
     @State var showFilePicker:Bool = false
     @State var showImagePicker:Bool = false
-    
-    ///Button that presents the options
-    fileprivate func editListButton() -> some View {
-        return Button(action: {self.displayEditList = !self.displayEditList}) {
-            Image(systemName: "scope")
-        }
-        .frame(width: 25.0, height: 25.0)
-        .border(Color.orange, width: 2)
-        .cornerRadius(8)
-    }
     
     var body : some View {
         ///Main body
@@ -136,15 +124,11 @@ struct ContentView: View {
                 print("deselected")
             }
             .navigationBarItems(leading: HStack() {
-                //inputTextField()
-                
                 inputTextFieldView(inputText: self.$inputText, containers: self.containers)
-                
-                
             }
             ,trailing:
                 HStack(){
-                    editListButton()
+                    CustomizeButtonView(displayEditList: self.$displayEditList)
                     ImagePickerButton(showImagePicker: self.$showImagePicker)
                     ColorPickerView(selectedColor: self.$selectedColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
                     NavigationLink(destination: FontSettingsView()) {
@@ -206,3 +190,5 @@ extension View {
     }
     
 }
+
+
