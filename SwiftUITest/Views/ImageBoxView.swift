@@ -35,11 +35,4 @@ struct ImageBoxView: View {
             }
         }
     }
-    
-    init(containers:ObservedObject<Container>, selectedCustomizeImageIndex:Binding<Int?>,selectedImageGesture:Binding<ImageBox?>) {
-        self._containers = containers
-        self._selectedCustomizeImageIndex = selectedCustomizeImageIndex
-        self._selectedImageGesture = selectedImageGesture
-    }
-    
 }

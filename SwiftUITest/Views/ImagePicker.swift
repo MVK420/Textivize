@@ -17,10 +17,6 @@ struct ImagePickerButton: View {
             Image(systemName: "tray")
         }
     }
-    
-    init(showImagePicker:Binding<Bool>) {
-        self._showImagePicker = showImagePicker
-    }
 }
 
 ///Stackoverflow Voodoo

@@ -96,11 +96,4 @@ struct TextBoxView: View {
             }
         }
     }
-    
-    init(containers:ObservedObject<Container>, selectedCustomizeIndex:Binding<Int?>, selectedGesture:Binding<TextBox?>) {
-        self._containers = containers
-        self._selectedCustomizeIndex = selectedCustomizeIndex
-        self._selectedGesture = selectedGesture
-    }
-    
 }

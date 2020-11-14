@@ -10,7 +10,8 @@ import SwiftUI
 
 struct inputTextFieldView: View {
     
-    @Binding var inputText:String
+    ///Input Text Field value
+    @State var inputText:String = "Nothing lasts forever"
     @ObservedObject var containers:Container
     
     var body: some View {

@@ -10,9 +10,7 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    
-    ///Notused
-    @State var detailPresented:Bool = false
+
     ///selectedColor
     @State var selectedColor = Color(.black)
     ///Bool that checks if all the buttons to edit TextBox need to be presented
@@ -31,8 +29,6 @@ struct ContentView: View {
     @State private var selectedFont = 1
     ///Array containing textboxes and imageboxes
     @ObservedObject var containers:Container = Container()
-    ///Input Text Field value
-    @State var inputText:String = "Nothing lasts forever"
     ///DragGesture values
     @GestureState private var position = CGSize.zero
     ///Selected Object to drag
@@ -76,7 +72,6 @@ struct ContentView: View {
                             
                         }.frame(alignment: .bottomTrailing)
                     }
-                    
                     HStack{
                         Spacer()
                         ///Edit buttons
@@ -109,8 +104,8 @@ struct ContentView: View {
                     DocumentPicker()
                 }
                 ///End of Stackoverflow Voodoo
-                TextBoxView(containers: self._containers, selectedCustomizeIndex: self.$selectedCustomizeIndex, selectedGesture: self.$selectedGesture)
-                ImageBoxView(containers: self._containers, selectedCustomizeImageIndex: self.$selectedCustomizeImageIndex, selectedImageGesture: self.$selectedImageGesture)
+                TextBoxView(containers: self.containers, selectedCustomizeIndex: self.$selectedCustomizeIndex, selectedGesture: self.$selectedGesture)
+                ImageBoxView(containers: self.containers, selectedCustomizeImageIndex: self.$selectedCustomizeImageIndex, selectedImageGesture: self.$selectedImageGesture)
             }
             .background(Color.clear.opacity(0.1))
             .contentShape(Rectangle())
@@ -124,7 +119,7 @@ struct ContentView: View {
                 print("deselected")
             }
             .navigationBarItems(leading: HStack() {
-                inputTextFieldView(inputText: self.$inputText, containers: self.containers)
+                inputTextFieldView(containers: self.containers)
             }
             ,trailing:
                 HStack(){
