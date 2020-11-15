@@ -101,6 +101,9 @@ struct ContentView: View {
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex,allCaps:true)
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex, allCaps: false)
                             CircleButtonView(containers: self.containers,selectedCustomizeIndex: self.selectedCustomizeIndex, displayRadiusBox: self.$displayRadiusBox, displayKerningBox: self.$displayKerningBox)
+                            NavigationLink(destination: FontSettingsView()) {
+                                Image(systemName: "scribble")
+                            }
                         }.isHidden(self.displayEditList)
                         .frame(width: 50)
                         .border(Color.orange, width: 2)
@@ -146,9 +149,6 @@ struct ContentView: View {
                     ColorPickerView(selectedColor: self.$selectedColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
                     DocumentPickerButton(showFilePicker: self.$showFilePicker)
                     SaveButton(rect1: self.$rect1)
-                    NavigationLink(destination: FontSettingsView()) {
-                        Image(systemName: "scribble")
-                    }
                 })
         }
     }

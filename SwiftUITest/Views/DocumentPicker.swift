@@ -65,8 +65,9 @@ struct DocumentPicker: UIViewControllerRepresentable {
             _ = url.startAccessingSecurityScopedResource()
             let exists = FileManager.default.fileExists(atPath: url.path)
             if exists {
-                let img:SVGKImage = SVGKImage(contentsOf: url as URL)
-                self.onSVGImagePicked(img)
+                if let img:SVGKImage = SVGKImage(contentsOf: url as URL) {
+                    self.onSVGImagePicked(img)
+                }
             }
             url.stopAccessingSecurityScopedResource()
         }
