@@ -62,6 +62,11 @@ struct DragModifierSVG: ViewModifier {
                             self.selectedSVGGesture = self.containers.svgs[i]
                             let aux = self.containers.svgs[i].position
                             let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
+                            ///Delete
+                            if res.width > -20 && res.width < 20 && res.height > 350 {
+                                self.containers.svgs[i].toDelete = true
+                                self.selectedSVGGesture = nil
+                            }
                             state = res
                         })
                         .onEnded() { value in

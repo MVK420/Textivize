@@ -15,6 +15,7 @@ protocol Box:Identifiable, Equatable {
     var offset:CGSize {get set}
     var position:CGSize {get set}
     var scale:CGFloat {get set}
+    var toDelete:Bool {get set}
     
 }
 

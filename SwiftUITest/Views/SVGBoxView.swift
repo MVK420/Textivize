@@ -24,6 +24,7 @@ struct SVGBoxVIew: View {
                         .scaleEffect(self.containers.svgs[i].scale)
                         .frame(maxWidth: 100, maxHeight: 100)
                         .rotationEffect(Angle(degrees: self.containers.svgs[i].rotateState),anchor: self.containers.svgs[i].rotationAnchor())
+                        .isHidden(!self.containers.svgs[i].toDelete)
                         .DragSVG(i: i, containers: self.containers, position: CGSize.zero, selectedSVGGesture: self.$selectedSVGGesture)
                         .RotationSVG(i: i, containers: self.containers)
                         .MagnifySVG(i:i, containers:self.containers)

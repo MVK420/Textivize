@@ -50,7 +50,7 @@ struct ContentView: View {
     @State private var saveAlert:Bool = false
     ///To specify which area to save
     @State private var rect1: CGRect = .zero
-        
+            
     var body : some View {
         ///Main body
         ///Header
@@ -66,6 +66,7 @@ struct ContentView: View {
                     }
                     VStack{
                         Spacer()
+                        ZStack{
                         HStack{
                             SpecSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Kerning")
                                 .isHidden(self.displayKerningBox)
@@ -77,6 +78,13 @@ struct ContentView: View {
                                 .isHidden(self.minMaxGradientPresented)
                             SpecSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Max Gr")
                                 .isHidden(self.minMaxGradientPresented)
+
+                            }
+                            Button(action:{}) {
+                                Image(systemName: "trash")
+                                    .isHidden(hideTrashCan(text: self.selectedGesture, img: self.selectedImageGesture, svg: self.selectedSVGGesture))
+
+                            }
                         }.frame(alignment: .bottomTrailing)
                     }
                     HStack{
@@ -187,6 +195,13 @@ extension View {
     //        if conditional { return TupleView((nil, content(self))) }
     //        else { return TupleView((self, nil)) }
     //    }
+    
+    fileprivate func hideTrashCan(text: TextBox?, img: ImageBox?, svg: SVGBox?) -> Bool{
+        if text == nil && img == nil && svg == nil{
+            return false
+        }
+        return true
+    }
     
     func selectedAndCircle(containers:Container ,selectedCustomizeIndex:Int?) -> Bool {
         if selectedCustomizeIndex != nil {

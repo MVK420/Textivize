@@ -25,6 +25,7 @@ struct ImageBoxView: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(maxWidth: 100, maxHeight: 100)
                         .rotationEffect(Angle(degrees: self.containers.images[i].rotateState),anchor: self.containers.images[i].rotationAnchor())
+                        .isHidden(!self.containers.images[i].toDelete)
                         .DragImage(i: i, containers: self.containers, position: self.position, selectedImageGesture: self.$selectedImageGesture)
                         .RotationImage(i: i, containers: self.containers)
                         .MagnifyImage(i:i, containers:self.containers)

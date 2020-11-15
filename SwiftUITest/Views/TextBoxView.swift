@@ -89,6 +89,7 @@ struct TextBoxView: View {
                 //.fixedSize(horizontal:false, vertical: true)
                 .border(self.selectedCustomizeIndex == i ? Color.black : Color.clear)
                 .scaleEffect(self.containers.ls[i].scale)
+                .isHidden(!self.containers.ls[i].toDelete)
                 ///Simultaneous Gestures for moving on drag, Rotate and Magnify on pinch
                 .DragText(i: i, containers: self.containers, position: self.containers.ls[i].position, selectedGesture: self.$selectedGesture, selectedCustomizeIndex: self.$selectedCustomizeIndex)
                 .RotationText(i: i, containers: self.containers)
