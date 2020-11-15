@@ -21,33 +21,26 @@ struct DragModifierTextBox: ViewModifier {
         content
             .offset(self.selectedGesture == self.containers.ls[i] && self.selectedCustomizeIndex != i ? self.position : self.containers.ls[i].position).scaledToFit()
             .simultaneousGesture(DragGesture(minimumDistance: 10)
-                        .updating(self.$position, body: { (value, state, translation) in
-                            if nil == self.selectedGesture {
-                                self.selectedGesture = self.containers.ls[i]
-                            } else {
-                                if self.selectedCustomizeIndex == i {
-                                    //self.containers.ls[i].alignmentForTextBox(swipeVal: value.translation)
-                                } else {
-                                    let aux = self.containers.ls[i].position
-                                    let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
-                                    state = res
-                                }
-                            }
-                        })
-                        .onEnded() { value in
-                            if self.selectedGesture == self.containers.ls[i] {
-                                if self.selectedCustomizeIndex == i {
-                                    self.containers.ls[i].alignmentForTextBox(swipeVal: value.translation)
-                                } else {
-                                    self.containers.ls[i].appendToPosition(translation: value.translation)
-                                    //self.containers.ls[i].addToPosition(translation: value.translation)
-                                    
-                                }
-                            }
-                            self.selectedGesture = nil
-                            //self.containers.ls[i].addToPosition(translation: value.translation)
-                        }
-                     
+                                    .updating(self.$position, body: { (value, state, translation) in
+                                        self.selectedGesture = self.containers.ls[i]
+                                        if self.selectedCustomizeIndex == i {
+                                        } else {
+                                            let aux = self.containers.ls[i].position
+                                            let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
+                                            state = res
+                                        }
+                                    })
+                                    .onEnded() { value in
+                                        if self.selectedGesture == self.containers.ls[i] {
+                                            if self.selectedCustomizeIndex == i {
+                                                self.containers.ls[i].alignmentForTextBox(swipeVal: value.translation)
+                                            } else {
+                                                self.containers.ls[i].appendToPosition(translation: value.translation)
+                                            }
+                                        }
+                                        self.selectedGesture = nil
+                                    }
+                                 
             )
     }
 }
@@ -66,12 +59,11 @@ struct MaginificationModifierText: ViewModifier {
                 self.lastScaleValue = val
                 self.containers.ls[i].scale = self.containers.ls[i].scale * delta
             }.onEnded { val in
-                // without this the next gesture will be broken
                 self.lastScaleValue = 1.0
             })
     }
 }
- 
+
 ///This applied to text will make rotation possible
 struct RotationModifierTextBox: ViewModifier {
     
@@ -82,10 +74,10 @@ struct RotationModifierTextBox: ViewModifier {
         content
             .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState),anchor: self.containers.ls[i].rotationAnchor())
             .simultaneousGesture(RotationGesture()
-                        .onChanged { value in
-                            self.containers.ls[i].rotateState = value.degrees
-                            self.containers.objectWillChange.send()
-                        })
+                                    .onChanged { value in
+                                        self.containers.ls[i].rotateState = value.degrees
+                                        self.containers.objectWillChange.send()
+                                    })
     }
 }
 

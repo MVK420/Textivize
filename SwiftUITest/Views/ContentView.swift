@@ -45,7 +45,6 @@ struct ContentView: View {
     ///IMAGESTUFF
     @State var showFilePicker:Bool = false
     @State var showImagePicker:Bool = false
-    @State var urlPicked:URL = URL(fileURLWithPath: "private/var/mobile/Containers/Shared/AppGroup/65AD5CAA-658F-4BD0-A94E-8BA093460BE2/File%20Provider%20Storage/svg/001-mummy.svg")
     
     var body : some View {
         ///Main body
@@ -73,7 +72,6 @@ struct ContentView: View {
                                 .isHidden(self.minMaxGradientPresented)
                             SpecSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Max Gr")
                                 .isHidden(self.minMaxGradientPresented)
-                            
                         }.frame(alignment: .bottomTrailing)
                     }
                     HStack{
@@ -135,7 +133,7 @@ struct ContentView: View {
                     ColorPickerView(selectedColor: self.$selectedColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
                     DocumentPickerButton(showFilePicker: self.$showFilePicker)
                     NavigationLink(destination: FontSettingsView()) {
-                        Image(systemName: "s.circle.fill")
+                        Image(systemName: "scribble")
                     }
                 })
         }

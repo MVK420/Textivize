@@ -17,7 +17,6 @@ struct CustomizeButtonView: View {
             Image(systemName: "scope")
         }
         .frame(width: 25.0, height: 25.0)
-        .border(Color.orange, width: 2)
         .cornerRadius(8)
     }
 }

@@ -69,7 +69,6 @@ struct DragModifierImage: ViewModifier {
                                 self.containers.images[i].appendToPosition(translation: value.translation)
                             }
                             self.selectedImageGesture = nil
-                            //self.containers.ls[i].addToPosition(translation: value.translation)
                         }
             )
     }

@@ -90,7 +90,7 @@ struct TextBoxView: View {
                 .border(self.selectedCustomizeIndex == i ? Color.black : Color.clear)
                 .scaleEffect(self.containers.ls[i].scale)
                 ///Simultaneous Gestures for moving on drag, Rotate and Magnify on pinch
-                .DragText(i: i, containers: self.containers, position: self.position, selectedGesture: self.$selectedGesture, selectedCustomizeIndex: self.$selectedCustomizeIndex)
+                .DragText(i: i, containers: self.containers, position: self.containers.ls[i].position, selectedGesture: self.$selectedGesture, selectedCustomizeIndex: self.$selectedCustomizeIndex)
                 .RotationText(i: i, containers: self.containers)
                 .MagnifyText(i: i, containers: self.containers)
             }
