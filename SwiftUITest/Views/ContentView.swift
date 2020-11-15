@@ -103,16 +103,15 @@ struct ContentView: View {
                     }
                 Text("")
                     .sheet(isPresented: $showFilePicker) {
-                        DocumentPicker(url: self.$urlPicked)
+                        DocumentPicker() { svgImage in
+                            self.containers.svgs.append(SVGBox(img:svgImage))
+                            print("here")
+                        }
                     }
                 ///End of Stackoverflow Voodoo
-                SVGKFastImageViewSUI(paramUrl: self.$urlPicked).border(Color.red)
-                    .frame(width: 200, height: 200)
-                Button(action: {print(self.urlPicked)}) {
-                    Text("ALMA")
-                }
                 TextBoxView(containers: self.containers, selectedCustomizeIndex: self.$selectedCustomizeIndex, selectedGesture: self.$selectedGesture)
                 ImageBoxView(containers: self.containers, selectedCustomizeImageIndex: self.$selectedCustomizeImageIndex, selectedImageGesture: self.$selectedImageGesture)
+                SVGBoxVIew(containers: self.containers)
             }
             .background(Color.clear.opacity(0.1))
             .contentShape(Rectangle())
@@ -190,25 +189,4 @@ extension View {
         return false
     }
     
-}
-
-
-struct SVGKFastImageViewSUI:UIViewRepresentable {
-    @Binding var paramUrl:URL
-    
-    func makeUIView(context: Context) -> SVGKFastImageView {
-        return SVGKFastImageView(svgkImage: SVGKImage())
-        
-    }
-    
-    func updateUIView(_ uiView: SVGKFastImageView, context: Context) {
-        let result = paramUrl.startAccessingSecurityScopedResource()
-        let exists = FileManager.default.fileExists(atPath: paramUrl.path)
-        if exists {
-            let img:SVGKImage = SVGKImage(contentsOf: paramUrl as URL)
-            print(type(of: img))
-            uiView.image = img
-        }
-        paramUrl.stopAccessingSecurityScopedResource()
-    }
 }

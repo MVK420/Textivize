@@ -37,6 +37,7 @@
 		1B9CBEA82560838C008BD94A /* EditButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEA72560838C008BD94A /* EditButtons.swift */; };
 		1B9CBEB5256099FA008BD94A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9CBEB4256099FA008BD94A /* CloudKit.framework */; };
 		1B9CBEBA25618D75008BD94A /* SVGBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEB925618D75008BD94A /* SVGBox.swift */; };
+		1B9CBEBD256195DC008BD94A /* SVGBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEBC256195DC008BD94A /* SVGBoxView.swift */; };
 		1BB6701A2526181D00FF2AA9 /* ImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB670192526181D00FF2AA9 /* ImageBox.swift */; };
 		1BB6701E2526198F00FF2AA9 /* BoxProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */; };
 		AE8115ADB0FDDF9E35346D6A /* Pods_SwiftUITest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF1E3761F4E1AAC4AF3DD6D /* Pods_SwiftUITest.framework */; };
@@ -75,6 +76,7 @@
 		1B9CBEA72560838C008BD94A /* EditButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtons.swift; sourceTree = "<group>"; };
 		1B9CBEB4256099FA008BD94A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		1B9CBEB925618D75008BD94A /* SVGBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGBox.swift; sourceTree = "<group>"; };
+		1B9CBEBC256195DC008BD94A /* SVGBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGBoxView.swift; sourceTree = "<group>"; };
 		1BB670192526181D00FF2AA9 /* ImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBox.swift; sourceTree = "<group>"; };
 		1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxProtocol.swift; sourceTree = "<group>"; };
 		49DE8F592501FDC9352A3129 /* Pods-SwiftUITest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUITest.release.xcconfig"; path = "Target Support Files/Pods-SwiftUITest/Pods-SwiftUITest.release.xcconfig"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				1B32A3EC25000ADF005709DC /* ContentView.swift */,
 				1B98EC57252680DD00A13242 /* ImageBoxView.swift */,
 				1B98EC3F2526584000A13242 /* ImagePicker.swift */,
+				1B9CBEBC256195DC008BD94A /* SVGBoxView.swift */,
 				1B98EC4825267BB400A13242 /* TextBoxView.swift */,
 				1B5FEA5825595EE90062219F /* DocumentPicker.swift */,
 				1B9CBE9125607A7D008BD94A /* FontScrollView.swift */,
@@ -344,6 +347,7 @@
 				1B5FEA5925595EE90062219F /* DocumentPicker.swift in Sources */,
 				1B98EC552526809400A13242 /* ImageBoxModifiers.swift in Sources */,
 				1B98EC58252680DD00A13242 /* ImageBoxView.swift in Sources */,
+				1B9CBEBD256195DC008BD94A /* SVGBoxView.swift in Sources */,
 				1B98EC402526584000A13242 /* ImagePicker.swift in Sources */,
 				1B9CBE8C25607601008BD94A /* ColorPickerView.swift in Sources */,
 				1B9CBE8F256076C8008BD94A /* InputTextFieldView.swift in Sources */,

@@ -12,5 +12,6 @@ class Container: ObservableObject {
     
     @Published var ls:[TextBox] = [TextBox]()
     @Published var images:[ImageBox] = [ImageBox]()
+    @Published var svgs:[SVGBox] = [SVGBox]()
     
 }

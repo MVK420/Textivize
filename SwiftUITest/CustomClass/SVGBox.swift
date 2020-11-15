@@ -12,7 +12,6 @@ import SVGKit
 struct SVGBox:Box {
 
     var id = UUID()
-    var url:URL
     var img:SVGKImage
     var rotateState: Double = 0
     var offset = CGSize.zero

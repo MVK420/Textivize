@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SVGKit
 
 struct DocumentPickerButton: View {
     
@@ -25,10 +26,17 @@ struct DocumentPickerButton: View {
 
 struct DocumentPicker: UIViewControllerRepresentable {
     
-    @Binding var url:URL
+    private let onSVGImagePicked: (SVGKImage) -> Void
     
-    func makeCoordinator() -> Coordinator {
-        return DocumentPicker.Coordinator(parent1: self, url: $url)
+    public init(onSVGImagePicked: @escaping (SVGKImage) -> Void) {
+        self.onSVGImagePicked = onSVGImagePicked
+    }
+    
+    public func makeCoordinator() -> Coordinator {
+        Coordinator(
+            //onDismiss: { self.presentationMode.wrappedValue.dismiss() },
+            parent1: self, onSVGImagePicked: self.onSVGImagePicked
+        )
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
@@ -45,18 +53,22 @@ struct DocumentPicker: UIViewControllerRepresentable {
     class Coordinator: NSObject, UIDocumentPickerDelegate {
         
         var parent:DocumentPicker
-        @Binding var url:URL
+        private let onSVGImagePicked: (SVGKImage) -> Void
         
-        init(parent1: DocumentPicker,url:Binding<URL>) {
+        init(parent1: DocumentPicker, onSVGImagePicked: @escaping (SVGKImage) -> Void) {
             parent = parent1
-            self._url = url
-            
+            self.onSVGImagePicked = onSVGImagePicked
         }
         
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            //print("URLS: ", urls.first?.path)
-            self.url = urls.first!
+            let url = urls.first!
+            _ = url.startAccessingSecurityScopedResource()
+            let exists = FileManager.default.fileExists(atPath: url.path)
+            if exists {
+                let img:SVGKImage = SVGKImage(contentsOf: url as URL)
+                self.onSVGImagePicked(img)
+            }
+            url.stopAccessingSecurityScopedResource()
         }
     }
-    
 }
