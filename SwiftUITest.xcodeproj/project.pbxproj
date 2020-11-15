@@ -38,6 +38,7 @@
 		1B9CBEB5256099FA008BD94A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B9CBEB4256099FA008BD94A /* CloudKit.framework */; };
 		1B9CBEBA25618D75008BD94A /* SVGBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEB925618D75008BD94A /* SVGBox.swift */; };
 		1B9CBEBD256195DC008BD94A /* SVGBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEBC256195DC008BD94A /* SVGBoxView.swift */; };
+		1B9CBEC025619B41008BD94A /* SVGBoxModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEBF25619B41008BD94A /* SVGBoxModifiers.swift */; };
 		1BB6701A2526181D00FF2AA9 /* ImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB670192526181D00FF2AA9 /* ImageBox.swift */; };
 		1BB6701E2526198F00FF2AA9 /* BoxProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */; };
 		AE8115ADB0FDDF9E35346D6A /* Pods_SwiftUITest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF1E3761F4E1AAC4AF3DD6D /* Pods_SwiftUITest.framework */; };
@@ -77,6 +78,7 @@
 		1B9CBEB4256099FA008BD94A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		1B9CBEB925618D75008BD94A /* SVGBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGBox.swift; sourceTree = "<group>"; };
 		1B9CBEBC256195DC008BD94A /* SVGBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGBoxView.swift; sourceTree = "<group>"; };
+		1B9CBEBF25619B41008BD94A /* SVGBoxModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGBoxModifiers.swift; sourceTree = "<group>"; };
 		1BB670192526181D00FF2AA9 /* ImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBox.swift; sourceTree = "<group>"; };
 		1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxProtocol.swift; sourceTree = "<group>"; };
 		49DE8F592501FDC9352A3129 /* Pods-SwiftUITest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUITest.release.xcconfig"; path = "Target Support Files/Pods-SwiftUITest/Pods-SwiftUITest.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				1B98EC542526809400A13242 /* ImageBoxModifiers.swift */,
 				1B98EC502526804B00A13242 /* TextBoxModifiers.swift */,
+				1B9CBEBF25619B41008BD94A /* SVGBoxModifiers.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				1B98EC4925267BB400A13242 /* TextBoxView.swift in Sources */,
 				1B9CBE9A25607CBF008BD94A /* FontButtonView.swift in Sources */,
 				1B32A3ED25000ADF005709DC /* ContentView.swift in Sources */,
+				1B9CBEC025619B41008BD94A /* SVGBoxModifiers.swift in Sources */,
 				1B9CBEA025608188008BD94A /* CircleButtonView.swift in Sources */,
 				1BB6701E2526198F00FF2AA9 /* BoxProtocol.swift in Sources */,
 			);

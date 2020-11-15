@@ -35,9 +35,11 @@ struct ContentView: View {
     ///Selected Object to drag
     @State private var selectedGesture:TextBox? = nil
     @State private var selectedImageGesture:ImageBox? = nil
+    @State private var selectedSVGGesture:SVGBox? = nil
     ///Selected Object to customize
     //@State private var selectedCustomize : TextBox? = nil
     ///Index of selected TextBox
+    @State private var selectedCustomizeSVGIndex:Int? = nil
     @State private var selectedCustomizeImageIndex:Int? = nil
     @State private var selectedCustomizeIndex:Int? = nil
     ///IMAGESTUFF
@@ -111,7 +113,7 @@ struct ContentView: View {
                 ///End of Stackoverflow Voodoo
                 TextBoxView(containers: self.containers, selectedCustomizeIndex: self.$selectedCustomizeIndex, selectedGesture: self.$selectedGesture)
                 ImageBoxView(containers: self.containers, selectedCustomizeImageIndex: self.$selectedCustomizeImageIndex, selectedImageGesture: self.$selectedImageGesture)
-                SVGBoxVIew(containers: self.containers)
+                SVGBoxVIew(containers: self.containers, selectedCustomizeSVGIndex: self.$selectedCustomizeSVGIndex, selectedSVGGesture: self.$selectedSVGGesture)
             }
             .background(Color.clear.opacity(0.1))
             .contentShape(Rectangle())
