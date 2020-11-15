@@ -15,7 +15,7 @@ struct DocumentPickerButton: View {
     
     var body: some View {
         Button(action: {self.showFilePicker.toggle()}) {
-            Text("Doc")
+            Image(systemName: "folder")
         }
     }
     

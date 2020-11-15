@@ -16,12 +16,13 @@ struct AllCapsButton: View {
     
     var body: some View {
         Button(action: {if self.allCaps == true && (self.selectedCustomizeIndex != nil) {
-            self.containers.ls[self.selectedCustomizeIndex!].allCaps()
-        } else {
-            self.containers.ls[self.selectedCustomizeIndex!].capitalize()
-        }
-        
-        })
+            if self.selectedCustomizeIndex != nil{
+                self.containers.ls[self.selectedCustomizeIndex!].allCaps()
+            } else {
+                self.containers.ls[self.selectedCustomizeIndex!].capitalize()
+            }
+            
+        }})
         {
             Image(systemName: self.allCaps == true ? "textformat.size" : "arrowtriangle.up.square.fill")
         }

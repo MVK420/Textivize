@@ -89,7 +89,6 @@ struct ContentView: View {
                             SpecButton(displayBox: self.$displaySpacingBox, containers: self._containers, selected: self.$selectedCustomizeIndex, caseBox: "Spacing").isHidden(!self.selectedAndCircle(containers: self.containers, selectedCustomizeIndex: self.selectedCustomizeIndex))
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex,allCaps:true)
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex, allCaps: false)
-                            DocumentPickerButton(showFilePicker: self.$showFilePicker)
                             CircleButtonView(containers: self.containers,selectedCustomizeIndex: self.selectedCustomizeIndex, displayRadiusBox: self.$displayRadiusBox, displayKerningBox: self.$displayKerningBox)
                         }.isHidden(self.displayEditList)
                         .frame(width: 50)
@@ -134,6 +133,7 @@ struct ContentView: View {
                     CustomizeButtonView(displayEditList: self.$displayEditList)
                     ImagePickerButton(showImagePicker: self.$showImagePicker)
                     ColorPickerView(selectedColor: self.$selectedColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
+                    DocumentPickerButton(showFilePicker: self.$showFilePicker)
                     NavigationLink(destination: FontSettingsView()) {
                         Image(systemName: "s.circle.fill")
                     }

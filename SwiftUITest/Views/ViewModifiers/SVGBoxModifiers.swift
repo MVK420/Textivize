@@ -24,7 +24,7 @@ struct RotationModifierSVG: ViewModifier {
     }
 }
 
-///This applied to Image will make magnificaiton possible
+///This applied to SVG will make magnificaiton possible
 struct MaginificationModifierSVG: ViewModifier {
     
     var i:Int
@@ -46,7 +46,7 @@ struct MaginificationModifierSVG: ViewModifier {
     }
 }
 
-///This applied to Image will make dragging possible
+///This applied to SVG will make dragging possible
 struct DragModifierSVG: ViewModifier {
     
     var i:Int
