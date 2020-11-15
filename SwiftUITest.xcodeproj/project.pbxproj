@@ -38,6 +38,7 @@
 		1B9CBEBA25618D75008BD94A /* SVGBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEB925618D75008BD94A /* SVGBox.swift */; };
 		1B9CBEBD256195DC008BD94A /* SVGBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEBC256195DC008BD94A /* SVGBoxView.swift */; };
 		1B9CBEC025619B41008BD94A /* SVGBoxModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEBF25619B41008BD94A /* SVGBoxModifiers.swift */; };
+		1B9CBEC52561DC49008BD94A /* SaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9CBEC42561DC49008BD94A /* SaveView.swift */; };
 		1BB6701A2526181D00FF2AA9 /* ImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB670192526181D00FF2AA9 /* ImageBox.swift */; };
 		1BB6701E2526198F00FF2AA9 /* BoxProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */; };
 		AE8115ADB0FDDF9E35346D6A /* Pods_SwiftUITest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF1E3761F4E1AAC4AF3DD6D /* Pods_SwiftUITest.framework */; };
@@ -77,6 +78,7 @@
 		1B9CBEB925618D75008BD94A /* SVGBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGBox.swift; sourceTree = "<group>"; };
 		1B9CBEBC256195DC008BD94A /* SVGBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGBoxView.swift; sourceTree = "<group>"; };
 		1B9CBEBF25619B41008BD94A /* SVGBoxModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGBoxModifiers.swift; sourceTree = "<group>"; };
+		1B9CBEC42561DC49008BD94A /* SaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveView.swift; sourceTree = "<group>"; };
 		1BB670192526181D00FF2AA9 /* ImageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBox.swift; sourceTree = "<group>"; };
 		1BB6701D2526198F00FF2AA9 /* BoxProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxProtocol.swift; sourceTree = "<group>"; };
 		49DE8F592501FDC9352A3129 /* Pods-SwiftUITest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUITest.release.xcconfig"; path = "Target Support Files/Pods-SwiftUITest/Pods-SwiftUITest.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				1B5FEA5825595EE90062219F /* DocumentPicker.swift */,
 				1B9CBE9125607A7D008BD94A /* FontScrollView.swift */,
 				1B98EC57252680DD00A13242 /* ImageBoxView.swift */,
+				1B9CBEC42561DC49008BD94A /* SaveView.swift */,
 				1B98EC3F2526584000A13242 /* ImagePicker.swift */,
 				1B9CBEBC256195DC008BD94A /* SVGBoxView.swift */,
 				1B98EC4825267BB400A13242 /* TextBoxView.swift */,
@@ -361,6 +364,7 @@
 				1B9CBE9525607B49008BD94A /* GradientButtonView.swift in Sources */,
 				1B257FDF2506C8AA00A26854 /* Word.swift in Sources */,
 				1B7436F5252BB93200B01CFC /* FontSettingsView.swift in Sources */,
+				1B9CBEC52561DC49008BD94A /* SaveView.swift in Sources */,
 				1B32A3EB25000ADF005709DC /* SceneDelegate.swift in Sources */,
 				1B8654B4250D536400AAF38B /* Container.swift in Sources */,
 				1B9CBE9225607A7D008BD94A /* FontScrollView.swift in Sources */,

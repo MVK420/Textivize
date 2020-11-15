@@ -45,7 +45,12 @@ struct ContentView: View {
     ///IMAGESTUFF
     @State var showFilePicker:Bool = false
     @State var showImagePicker:Bool = false
-    
+    ///SAVING stuff
+    ///To show alert
+    @State private var saveAlert:Bool = false
+    ///To specify which area to save
+    @State private var rect1: CGRect = .zero
+        
     var body : some View {
         ///Main body
         ///Header
@@ -104,7 +109,6 @@ struct ContentView: View {
                     .sheet(isPresented: $showFilePicker) {
                         DocumentPicker() { svgImage in
                             self.containers.svgs.append(SVGBox(img:svgImage))
-                            print("here")
                         }
                     }
                 ///End of Stackoverflow Voodoo
@@ -112,6 +116,7 @@ struct ContentView: View {
                 ImageBoxView(containers: self.containers, selectedCustomizeImageIndex: self.$selectedCustomizeImageIndex, selectedImageGesture: self.$selectedImageGesture)
                 SVGBoxVIew(containers: self.containers, selectedCustomizeSVGIndex: self.$selectedCustomizeSVGIndex, selectedSVGGesture: self.$selectedSVGGesture)
             }
+            .background(RectGetter(rect: $rect1))
             .background(Color.clear.opacity(0.1))
             .contentShape(Rectangle())
             .onTapGesture {
@@ -132,6 +137,7 @@ struct ContentView: View {
                     ImagePickerButton(showImagePicker: self.$showImagePicker)
                     ColorPickerView(selectedColor: self.$selectedColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
                     DocumentPickerButton(showFilePicker: self.$showFilePicker)
+                    SaveButton(rect1: self.$rect1)
                     NavigationLink(destination: FontSettingsView()) {
                         Image(systemName: "scribble")
                     }
@@ -189,4 +195,49 @@ extension View {
         return false
     }
     
+}
+
+struct RectGetter: View {
+    @Binding var rect: CGRect
+
+    var body: some View {
+        GeometryReader { proxy in
+            self.createView(proxy: proxy)
+        }
+    }
+
+    func createView(proxy: GeometryProxy) -> some View {
+        DispatchQueue.main.async {
+            self.rect = proxy.frame(in: .global)
+        }
+
+        return Rectangle().fill(Color.clear)
+    }
+}
+
+extension UIView {
+    ///Save
+    func asImage(rect: CGRect) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: rect)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+}
+
+class ImageSaver: NSObject {
+    
+    @Binding var saveAlert:Bool
+
+    init(saveAlert:Binding<Bool>) {
+        self._saveAlert = saveAlert
+    }
+    
+    func writeToPhotoAlbum(image: UIImage) {
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveError), nil)
+    }
+
+    @objc func saveError(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        saveAlert.toggle()
+    }
 }
