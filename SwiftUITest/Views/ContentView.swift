@@ -8,9 +8,10 @@
 
 import SwiftUI
 import Combine
+import SVGKit
 
 struct ContentView: View {
-
+    
     ///selectedColor
     @State var selectedColor = Color(.black)
     ///Bool that checks if all the buttons to edit TextBox need to be presented
@@ -42,6 +43,7 @@ struct ContentView: View {
     ///IMAGESTUFF
     @State var showFilePicker:Bool = false
     @State var showImagePicker:Bool = false
+    @State var urlPicked:URL = URL(fileURLWithPath: "private/var/mobile/Containers/Shared/AppGroup/65AD5CAA-658F-4BD0-A94E-8BA093460BE2/File%20Provider%20Storage/svg/001-mummy.svg")
     
     var body : some View {
         ///Main body
@@ -94,16 +96,21 @@ struct ContentView: View {
                 }
                 ///Stackoverflow Voodoo to make 2 sheets presentable
                 Text("")
-                .sheet(isPresented: $showImagePicker) {
-                    ImagePickerView(sourceType: .photoLibrary) { image in
-                        self.containers.images.append(ImageBox(img: image))
+                    .sheet(isPresented: $showImagePicker) {
+                        ImagePickerView(sourceType: .photoLibrary) { image in
+                            self.containers.images.append(ImageBox(img: image))
+                        }
                     }
-                }
                 Text("")
-                .sheet(isPresented: $showFilePicker) {
-                    DocumentPicker()
-                }
+                    .sheet(isPresented: $showFilePicker) {
+                        DocumentPicker(url: self.$urlPicked)
+                    }
                 ///End of Stackoverflow Voodoo
+                SVGKFastImageViewSUI(paramUrl: self.$urlPicked).border(Color.red)
+                    .frame(width: 200, height: 200)
+                Button(action: {print(self.urlPicked)}) {
+                    Text("ALMA")
+                }
                 TextBoxView(containers: self.containers, selectedCustomizeIndex: self.$selectedCustomizeIndex, selectedGesture: self.$selectedGesture)
                 ImageBoxView(containers: self.containers, selectedCustomizeImageIndex: self.$selectedCustomizeImageIndex, selectedImageGesture: self.$selectedImageGesture)
             }
@@ -130,7 +137,6 @@ struct ContentView: View {
                         Image(systemName: "s.circle.fill")
                     }
                 })
-            
         }
     }
 }
@@ -187,3 +193,22 @@ extension View {
 }
 
 
+struct SVGKFastImageViewSUI:UIViewRepresentable {
+    @Binding var paramUrl:URL
+    
+    func makeUIView(context: Context) -> SVGKFastImageView {
+        return SVGKFastImageView(svgkImage: SVGKImage())
+        
+    }
+    
+    func updateUIView(_ uiView: SVGKFastImageView, context: Context) {
+        let result = paramUrl.startAccessingSecurityScopedResource()
+        let exists = FileManager.default.fileExists(atPath: paramUrl.path)
+        if exists {
+            let img:SVGKImage = SVGKImage(contentsOf: paramUrl as URL)
+            print(type(of: img))
+            uiView.image = img
+        }
+        paramUrl.stopAccessingSecurityScopedResource()
+    }
+}

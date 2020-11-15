@@ -14,7 +14,7 @@ struct DocumentPickerButton: View {
     
     var body: some View {
         Button(action: {self.showFilePicker.toggle()}) {
-            Text("ALMA")
+            Text("Doc")
         }
     }
     
@@ -25,13 +25,38 @@ struct DocumentPickerButton: View {
 
 struct DocumentPicker: UIViewControllerRepresentable {
     
+    @Binding var url:URL
+    
+    func makeCoordinator() -> Coordinator {
+        return DocumentPicker.Coordinator(parent1: self, url: $url)
+    }
+    
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(documentTypes: [], in: .open)
+        let picker = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open)
         picker.allowsMultipleSelection = false
+        picker.delegate = context.coordinator
         return picker
     }
     
     func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>) {
         
     }
+    
+    class Coordinator: NSObject, UIDocumentPickerDelegate {
+        
+        var parent:DocumentPicker
+        @Binding var url:URL
+        
+        init(parent1: DocumentPicker,url:Binding<URL>) {
+            parent = parent1
+            self._url = url
+            
+        }
+        
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            //print("URLS: ", urls.first?.path)
+            self.url = urls.first!
+        }
+    }
+    
 }
