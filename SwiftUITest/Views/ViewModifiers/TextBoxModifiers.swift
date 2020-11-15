@@ -82,7 +82,7 @@ struct RotationModifierTextBox: ViewModifier {
             .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState),anchor: self.containers.ls[i].rotationAnchor())
             .simultaneousGesture(RotationGesture()
                                     .onChanged { value in
-                                        self.containers.ls[i].rotateState = value.degrees
+                                        self.containers.ls[i].pinRotate(degrees: value.degrees)
                                         self.containers.objectWillChange.send()
                                     })
     }

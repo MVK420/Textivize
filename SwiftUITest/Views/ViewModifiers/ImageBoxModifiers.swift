@@ -18,7 +18,7 @@ struct RotationModifierImage: ViewModifier {
         content
             .simultaneousGesture(RotationGesture()
                         .onChanged { value in
-                            self.containers.images[i].rotateState = value.degrees
+                            self.containers.images[i].pinRotate(degrees: value.degrees)
                             self.containers.objectWillChange.send()
                         })
     }

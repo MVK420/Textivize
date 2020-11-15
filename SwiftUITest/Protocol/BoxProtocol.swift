@@ -22,13 +22,36 @@ protocol Box:Identifiable, Equatable {
 ///Drag and Rotate functions
 extension Box {
     
+    
+    mutating func pinRotate(degrees: Double) {
+        print("State: ", self.rotateState + degrees)
+        print("Simple: ",degrees)
+        let aux = self.rotateState + degrees
+        if aux > -3 && aux < 3 {
+            self.rotateState = 0
+            return
+        } else if aux > -183 && aux < -177 {
+            self.rotateState = -90
+            return
+        } else if aux > 177 && aux < 183 {
+            self.rotateState = 90
+            return
+        } else if aux > 357 && aux < 363 {
+            self.rotateState = 180
+            return
+        } else if aux > -363 && aux < -357 {
+            self.rotateState = 180
+            return
+        }
+        self.rotateState = degrees
+    }
     ///Used on rotate
-    mutating func setRotateState(degrees:Double) {
+    mutating func setRotateState(degrees: Double) {
         self.rotateState = degrees
     }
     
     ///Used on dragging textbox
-    mutating func addToPosition(translation:CGSize) {
+    mutating func addToPosition(translation: CGSize) {
         self.offset = CGSize(width: self.offset.width + translation.width, height: self.offset.height + translation.height)
     }
     

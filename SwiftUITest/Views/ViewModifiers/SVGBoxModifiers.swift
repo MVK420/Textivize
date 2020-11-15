@@ -18,7 +18,7 @@ struct RotationModifierSVG: ViewModifier {
         content
             .simultaneousGesture(RotationGesture()
                         .onChanged { value in
-                            self.containers.svgs[i].rotateState = value.degrees
+                            self.containers.svgs[i].pinRotate(degrees: value.degrees)
                             self.containers.objectWillChange.send()
                         })
     }
