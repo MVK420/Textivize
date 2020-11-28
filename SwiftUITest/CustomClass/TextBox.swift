@@ -37,6 +37,7 @@ struct TextBox: Box {
     var radiusBool:Bool = false
     var spacingBool:Bool = false
     var toDelete: Bool = false
+    var zIndex:Int = 0
     /// Text for Circle
     var texts: [(offset: Int, element:Character)]  {
         return Array(self.text.enumerated())

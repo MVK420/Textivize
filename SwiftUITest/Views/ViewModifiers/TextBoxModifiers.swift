@@ -27,7 +27,6 @@ struct DragModifierTextBox: ViewModifier {
                                         } else {
                                             let aux = self.containers.ls[i].position
                                             let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
-                                            print("Pos: ", res)
                                             ///Delete
                                             if res.width > -20 && res.width < 20 && res.height > 350 {
                                                 self.containers.ls[i].toDelete = true
@@ -87,6 +86,7 @@ struct RotationModifierTextBox: ViewModifier {
                                     })
     }
 }
+
 
 
 extension View {

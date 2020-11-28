@@ -16,16 +16,17 @@ protocol Box:Identifiable, Equatable {
     var position:CGSize {get set}
     var scale:CGFloat {get set}
     var toDelete:Bool {get set}
+    var zIndex:Int {get set}
     
 }
 
 ///Drag and Rotate functions
 extension Box {
     
-    
+    ///When it's apropriate, pin the object
     mutating func pinRotate(degrees: Double) {
-        print("State: ", self.rotateState + degrees)
-        print("Simple: ",degrees)
+        print("Degree: ", degrees)
+        print("///: ",degrees/4)
         let aux = self.rotateState + degrees
         if aux > -3 && aux < 3 {
             self.rotateState = 0
@@ -45,6 +46,7 @@ extension Box {
         }
         self.rotateState = degrees
     }
+    
     ///Used on rotate
     mutating func setRotateState(degrees: Double) {
         self.rotateState = degrees

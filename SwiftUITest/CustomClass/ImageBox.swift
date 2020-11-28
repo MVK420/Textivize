@@ -17,4 +17,6 @@ struct ImageBox:Box {
     var position = CGSize.zero
     var scale: CGFloat = 1.0
     var toDelete: Bool = false
+    var zIndex:Int = 0
+    
 }

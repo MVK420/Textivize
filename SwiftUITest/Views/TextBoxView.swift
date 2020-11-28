@@ -94,6 +94,7 @@ struct TextBoxView: View {
                 .DragText(i: i, containers: self.containers, position: self.containers.ls[i].position, selectedGesture: self.$selectedGesture, selectedCustomizeIndex: self.$selectedCustomizeIndex)
                 .RotationText(i: i, containers: self.containers)
                 .MagnifyText(i: i, containers: self.containers)
+                //.zIndex(self.containers.ls[i].zIndex)
             }
         }
     }
