@@ -99,16 +99,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1B257FE225094A3700A26854 /* CustomClass */ = {
+		1B257FE225094A3700A26854 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1B98EC4D25267BE100A13242 /* Protocol */,
 				1B8654B3250D536400AAF38B /* Container.swift */,
 				1BB670192526181D00FF2AA9 /* ImageBox.swift */,
 				1B257FE02508CEAB00A26854 /* TextBox.swift */,
 				1B257FDE2506C8AA00A26854 /* Word.swift */,
 				1B9CBEB925618D75008BD94A /* SVGBox.swift */,
 			);
-			path = CustomClass;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1B32A3DC25000ADF005709DC = {
@@ -132,9 +133,8 @@
 		1B32A3E725000ADF005709DC /* SwiftUITest */ = {
 			isa = PBXGroup;
 			children = (
-				1B98EC4D25267BE100A13242 /* Protocol */,
 				1B98EC4B25267BB900A13242 /* Views */,
-				1B257FE225094A3700A26854 /* CustomClass */,
+				1B257FE225094A3700A26854 /* Model */,
 				1B32A3E825000ADF005709DC /* AppDelegate.swift */,
 				1B32A3EA25000ADF005709DC /* SceneDelegate.swift */,
 				1B32A3EE25000AE3005709DC /* Assets.xcassets */,
