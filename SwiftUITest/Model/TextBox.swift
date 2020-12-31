@@ -43,14 +43,14 @@ struct TextBox: Box {
         return Array(self.text.enumerated())
     }
     
-    init(words:[Word], fullText:String) {
-        self.text = fullText
-        self.words = words
+    init(text:String) {
+        self.text = text
+        self.parseInput(text: text)
         self.avgFontSize = maxFontSize - minFontSize
     }
 
     ///Called when something was entered in textfield and creates a struct for each word
-    mutating func parseInput(text:String) {
+    mutating func parseInput(text:String){
         let array = text.components(separatedBy: " ")
         for word in array {
             let wordObj:Word = Word(text: word, ogText: word, fontSize: self.standardFontSize)

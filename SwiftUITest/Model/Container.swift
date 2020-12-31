@@ -15,3 +15,11 @@ class Container: ObservableObject {
     @Published var svgs:[SVGBox] = [SVGBox]()
     
 }
+
+class ContainerMVVM: ObservableObject {
+    
+    @Published var text:[TextBoxViewModel] = [TextBoxViewModel]()
+    //@Published var images:[ImageBox] = [ImageBox]()
+    //@Published var svgs:[SVGBox] = [SVGBox]()
+    
+}

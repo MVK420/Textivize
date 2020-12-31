@@ -16,6 +16,10 @@
 		1B32A3EF25000AE3005709DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B32A3EE25000AE3005709DC /* Assets.xcassets */; };
 		1B32A3F225000AE3005709DC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B32A3F125000AE3005709DC /* Preview Assets.xcassets */; };
 		1B32A3F525000AE3005709DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B32A3F325000AE3005709DC /* LaunchScreen.storyboard */; };
+		1B37F3D8259D39D5008E9678 /* TextBoxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B37F3D7259D39D5008E9678 /* TextBoxViewModel.swift */; };
+		1B37F3DC259D3D4B008E9678 /* MVVMMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B37F3DB259D3D4B008E9678 /* MVVMMain.swift */; };
+		1B37F3E1259D4163008E9678 /* InpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B37F3E0259D4163008E9678 /* InpTextField.swift */; };
+		1B37F3E5259D464B008E9678 /* MVVMTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B37F3E4259D464B008E9678 /* MVVMTextView.swift */; };
 		1B5FEA5925595EE90062219F /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5FEA5825595EE90062219F /* DocumentPicker.swift */; };
 		1B69013F251DE00C0008B0F5 /* Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69013E251DE00C0008B0F5 /* Spec.swift */; };
 		1B690142251DF3880008B0F5 /* AllCapsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B690141251DF3880008B0F5 /* AllCapsButton.swift */; };
@@ -56,6 +60,10 @@
 		1B32A3F125000AE3005709DC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1B32A3F425000AE3005709DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B32A3F625000AE3005709DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B37F3D7259D39D5008E9678 /* TextBoxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxViewModel.swift; sourceTree = "<group>"; };
+		1B37F3DB259D3D4B008E9678 /* MVVMMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMMain.swift; sourceTree = "<group>"; };
+		1B37F3E0259D4163008E9678 /* InpTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InpTextField.swift; sourceTree = "<group>"; };
+		1B37F3E4259D464B008E9678 /* MVVMTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMTextView.swift; sourceTree = "<group>"; };
 		1B5FEA5825595EE90062219F /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		1B69013E251DE00C0008B0F5 /* Spec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spec.swift; sourceTree = "<group>"; };
 		1B690141251DF3880008B0F5 /* AllCapsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCapsButton.swift; sourceTree = "<group>"; };
@@ -133,7 +141,9 @@
 		1B32A3E725000ADF005709DC /* SwiftUITest */ = {
 			isa = PBXGroup;
 			children = (
+				1B37F3DF259D414E008E9678 /* MVVM */,
 				1B98EC4B25267BB900A13242 /* Views */,
+				1B37F3D6259D39A5008E9678 /* ViewModel */,
 				1B257FE225094A3700A26854 /* Model */,
 				1B32A3E825000ADF005709DC /* AppDelegate.swift */,
 				1B32A3EA25000ADF005709DC /* SceneDelegate.swift */,
@@ -151,6 +161,23 @@
 				1B32A3F125000AE3005709DC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1B37F3D6259D39A5008E9678 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1B37F3DF259D414E008E9678 /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				1B37F3DB259D3D4B008E9678 /* MVVMMain.swift */,
+				1B37F3D7259D39D5008E9678 /* TextBoxViewModel.swift */,
+				1B37F3E4259D464B008E9678 /* MVVMTextView.swift */,
+			);
+			path = MVVM;
 			sourceTree = "<group>";
 		};
 		1B98EC4B25267BB900A13242 /* Views */ = {
@@ -207,6 +234,7 @@
 		1B9CBEA2256081D4008BD94A /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
+				1B37F3E0259D4163008E9678 /* InpTextField.swift */,
 				1B9CBE8E256076C8008BD94A /* InputTextFieldView.swift */,
 				1B7436F4252BB93200B01CFC /* FontSettingsView.swift */,
 				1B9CBEA4256082DC008BD94A /* CustomizeButtonView.swift */,
@@ -356,16 +384,20 @@
 				1B9CBE8F256076C8008BD94A /* InputTextFieldView.swift in Sources */,
 				1BB6701A2526181D00FF2AA9 /* ImageBox.swift in Sources */,
 				1B690142251DF3880008B0F5 /* AllCapsButton.swift in Sources */,
+				1B37F3E1259D4163008E9678 /* InpTextField.swift in Sources */,
 				1B257FE425095D3700A26854 /* Circle.swift in Sources */,
 				1B98EC512526804B00A13242 /* TextBoxModifiers.swift in Sources */,
 				1B9CBEA5256082DC008BD94A /* CustomizeButtonView.swift in Sources */,
 				1B32A3E925000ADF005709DC /* AppDelegate.swift in Sources */,
+				1B37F3D8259D39D5008E9678 /* TextBoxViewModel.swift in Sources */,
 				1B9CBE9D25607FE3008BD94A /* SameWidthButtonView.swift in Sources */,
 				1B9CBE9525607B49008BD94A /* GradientButtonView.swift in Sources */,
+				1B37F3E5259D464B008E9678 /* MVVMTextView.swift in Sources */,
 				1B257FDF2506C8AA00A26854 /* Word.swift in Sources */,
 				1B7436F5252BB93200B01CFC /* FontSettingsView.swift in Sources */,
 				1B9CBEC52561DC49008BD94A /* SaveView.swift in Sources */,
 				1B32A3EB25000ADF005709DC /* SceneDelegate.swift in Sources */,
+				1B37F3DC259D3D4B008E9678 /* MVVMMain.swift in Sources */,
 				1B8654B4250D536400AAF38B /* Container.swift in Sources */,
 				1B9CBE9225607A7D008BD94A /* FontScrollView.swift in Sources */,
 				1B9CBEBA25618D75008BD94A /* SVGBox.swift in Sources */,

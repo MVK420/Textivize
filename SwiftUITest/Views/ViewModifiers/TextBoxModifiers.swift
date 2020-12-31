@@ -51,6 +51,35 @@ struct DragModifierTextBox: ViewModifier {
     }
 }
 
+struct DragModifierTextBoxMVVM: ViewModifier {
+    
+    //var i:Int
+    //@ObservedObject var containers:Container
+    @GestureState var position:CGSize = CGSize.zero
+    @Binding var viewModel:TextBoxViewModel
+    
+    func body(content: Content) -> some View {
+        content
+            ///NotComplete
+            .offset(self.position).scaledToFit()
+            .simultaneousGesture(DragGesture(minimumDistance: 10)
+                                    .updating(self.$position, body: { (value, state, translation) in
+                                        //self.selectedGesture = self.containers.ls[i]
+                                        //if self.selectedCustomizeIndex == i {
+                                        //} else {
+                                        let aux = viewModel.position
+                                        let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
+                                        state = res
+                                        ///Delete
+                                    })
+                                    .onEnded() { value in
+                                        viewModel.appendToPosition(translation: value.translation)
+                                    }
+            )
+                                    
+    }
+}
+
 ///This applied to text will make magnificaiton possible
 struct MaginificationModifierText: ViewModifier {
     
@@ -97,6 +126,10 @@ extension View {
     
     func DragText(i:Int,containers:Container, position:CGSize,selectedGesture:Binding<TextBox?>,selectedCustomizeIndex:Binding<Int?>) -> some View{
         self.modifier(DragModifierTextBox(i: i, containers: containers, position: position, selectedGesture: selectedGesture, selectedCustomizeIndex: selectedCustomizeIndex))
+    }
+    
+    func DragTextMVVM(viewModel:Binding<TextBoxViewModel>) -> some View{
+        self.modifier(DragModifierTextBoxMVVM(viewModel: viewModel))
     }
     
     func MagnifyText(i:Int, containers:Container) -> some View {
