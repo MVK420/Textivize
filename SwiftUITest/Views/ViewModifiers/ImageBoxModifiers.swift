@@ -63,7 +63,7 @@ struct DragModifierImage: ViewModifier {
                             let aux = self.containers.images[i].position
                             let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
                             ///Delete
-                            if res.width > -20 && res.width < 20 && res.height > 350 {
+                            if res.width > -60 && res.width < 60 && res.height > 350 {
                                 self.containers.images[i].toDelete = true
                                 self.selectedImageGesture = nil
                             }

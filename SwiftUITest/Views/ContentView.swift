@@ -12,6 +12,7 @@ import SVGKit
 
 struct ContentView: View {
     
+    @State var navBar = false
     ///selectedColor
     @State var selectedColor = Color(.black)
     ///Bool that checks if all the buttons to edit TextBox need to be presented
@@ -83,7 +84,7 @@ struct ContentView: View {
                             Button(action:{}) {
                                 Image(systemName: "trash")
                                     .isHidden(hideTrashCan(text: self.selectedGesture, img: self.selectedImageGesture, svg: self.selectedSVGGesture))
-
+                                    .scaleEffect(1.5)
                             }
                         }.frame(alignment: .bottomTrailing)
                     }
@@ -131,14 +132,16 @@ struct ContentView: View {
             .background(Color.clear.opacity(0.1))
             .contentShape(Rectangle())
             .onTapGesture {
-                self.selectedCustomizeIndex = nil
-                self.selectedCustomizeImageIndex = nil
-                self.fontPresented = false
-                self.displayKerningBox = false
-                self.displayRadiusBox = false
+                self.onClickSaveButton()
+                //self.selectedCustomizeIndex = nil
+                //self.selectedCustomizeImageIndex = nil
+                //self.fontPresented = false
+                //self.displayKerningBox = false
+                //self.displayRadiusBox = false
                 //self.selectedGesture = nil
                 print("deselected")
             }
+            .navigationBarHidden(navBar)
             .navigationBarItems(leading: HStack() {
                 inputTextFieldView(containers: self.containers)
             }
@@ -148,10 +151,30 @@ struct ContentView: View {
                     ImagePickerButton(showImagePicker: self.$showImagePicker)
                     ColorPickerView(selectedColor: self.$selectedColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
                     DocumentPickerButton(showFilePicker: self.$showFilePicker)
-                    SaveButton(rect1: self.$rect1)
+                    SaveButton(updateUI: self.$displayEditList, rect1: self.$rect1)
                 })
-        }
+        }.environment(\.parrentFunc, onClickSaveButton)
+        
     }
+    
+    func onClickSaveButton() {
+        print("parentFunction called")
+        
+        //self.navBar = !self.navBar
+        self.displayEditList = false
+        self.displayKerningBox = false
+        self.displayRadiusBox = false
+        self.displaySpacingBox = false
+        self.fontPresented = false
+        self.minMaxGradientPresented = false
+        self.selectedGesture = nil
+        self.selectedSVGGesture = nil
+        self.selectedImageGesture = nil
+        self.selectedCustomizeIndex = nil
+        self.selectedCustomizeIndex = nil
+        self.selectedCustomizeSVGIndex = nil
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
