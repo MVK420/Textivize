@@ -14,8 +14,8 @@ enum ActiveAlert {
 }
 
 struct SaveButton: View {
-    
-    @Binding var interstitial:GADInterstitial
+
+    @ObservedObject var interstitialService:InterstitialService
     @Environment(\.parrentFunc) var parentFunction
     @State var saveAlert:Bool = false
     @State var uiimage:UIImage? = nil
@@ -28,22 +28,23 @@ struct SaveButton: View {
             Text("Save")
         }.alert(isPresented: self.$saveAlert) {
             self.presentAlert()
-        }
+        }.onReceive(NotificationCenter.default.publisher(for: NSNotification.canSaveImage)) { _ in
+            self.onDismissedAd()}
+    }
+    
+    private func onDismissedAd() {
+        self.parentFunction?()
+        self.saveAlert.toggle()
     }
     
     private func onTapSaveButton() {
-        self.playInterstitialAd()
-        self.parentFunction?()
-        self.saveAlert = true
-    }
-    
-    private func playInterstitialAd() {
-        if self.interstitial.isReady {
-            let root = UIApplication.shared.windows.first?.rootViewController
-            self.interstitial.present(fromRootViewController: root!)
-        } else {
-            print("Ad Not Ready")
+        if !self.interstitialService.showAd() {
+            ///Ad was not played
+            #warning("when ad is not played, must do something")
         }
+        //self.playInterstitialAd()
+        //self.parentFunction?()
+        //self.saveAlert = true
     }
     
     private func presentAlert() -> Alert {
