@@ -9,9 +9,11 @@
 import SwiftUI
 import Combine
 import SVGKit
+import GoogleMobileAds
 
 struct ContentView: View {
     
+    @State var interstitial:GADInterstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
     @State private var navBar = false
     ///selectedColor
     @State private var selectedColor = Color(.black)
@@ -144,9 +146,13 @@ struct ContentView: View {
                     ImagePickerButton(showImagePicker: self.$showImagePicker)
                     ColorPickerView(selectedColor: self.$selectedColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
                     DocumentPickerButton(showFilePicker: self.$showFilePicker)
-                    SaveButton(rect1: self.$rect1)
+                    SaveButton(interstitial: self.$interstitial, rect1: self.$rect1)
                 })
         }.environment(\.parrentFunc, onClickSaveButton)
+        .onAppear {
+            let req = GADRequest()
+            self.interstitial.load(req)
+        }
     }
     
     func onClickSaveButton() {

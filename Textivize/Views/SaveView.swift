@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 
 enum ActiveAlert {
     case first, second
@@ -14,6 +15,7 @@ enum ActiveAlert {
 
 struct SaveButton: View {
     
+    @Binding var interstitial:GADInterstitial
     @Environment(\.parrentFunc) var parentFunction
     @State var saveAlert:Bool = false
     @State var uiimage:UIImage? = nil
@@ -30,8 +32,18 @@ struct SaveButton: View {
     }
     
     private func onTapSaveButton() {
+        self.playInterstitialAd()
         self.parentFunction?()
         self.saveAlert = true
+    }
+    
+    private func playInterstitialAd() {
+        if self.interstitial.isReady {
+            let root = UIApplication.shared.windows.first?.rootViewController
+            self.interstitial.present(fromRootViewController: root!)
+        } else {
+            print("Ad Not Ready")
+        }
     }
     
     private func presentAlert() -> Alert {
