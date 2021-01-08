@@ -7,6 +7,7 @@ target 'Textivize' do
 
   # Pods for Textivize
   pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '2.x'
+  pod 'Google-Mobile-Ads-SDK'
 
 end
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -115,8 +115,8 @@
 		1B7C6B4425A8F2C3000CC683 /* Textivize */ = {
 			isa = PBXGroup;
 			children = (
-				1B7C6B5625A8F2DE000CC683 /* Model */,
 				1B7C6B6125A8F2DE000CC683 /* Views */,
+				1B7C6B5625A8F2DE000CC683 /* Model */,
 				1B7C6B4525A8F2C3000CC683 /* TextivizeApp.swift */,
 				1B7C6B4925A8F2C5000CC683 /* Assets.xcassets */,
 				1B7C6B4E25A8F2C5000CC683 /* Info.plist */,
@@ -167,13 +167,13 @@
 		1B7C6B6125A8F2DE000CC683 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1B7C6B6725A8F2DE000CC683 /* NavigationBar */,
+				1B7C6B6B25A8F2DE000CC683 /* EditButtons */,
 				1B7C6B6225A8F2DE000CC683 /* ImageBoxView.swift */,
 				1B7C6B6325A8F2DE000CC683 /* DocumentPicker.swift */,
 				1B7C6B6425A8F2DE000CC683 /* SaveView.swift */,
 				1B7C6B6525A8F2DE000CC683 /* ImagePicker.swift */,
 				1B7C6B6625A8F2DE000CC683 /* TextBoxView.swift */,
-				1B7C6B6725A8F2DE000CC683 /* NavigationBar */,
-				1B7C6B6B25A8F2DE000CC683 /* EditButtons */,
 				1B7C6B7325A8F2DE000CC683 /* FontScrollView.swift */,
 				1B7C6B7425A8F2DE000CC683 /* SVGBoxView.swift */,
 				1B7C6B7525A8F2DE000CC683 /* ContentView.swift */,
@@ -230,7 +230,6 @@
 				B27E8794690A97394D2D404C /* Pods-Textivize.debug.xcconfig */,
 				53ADBC07500EF07AE96F765D /* Pods-Textivize.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
