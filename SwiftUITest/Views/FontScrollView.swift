@@ -27,13 +27,7 @@ struct FontScrollView: View {
                         .lineLimit(nil)
                         .frame(width: 500, height: 20)
                         .gesture(TapGesture()
-                                    .onEnded(
-                                        {if self.selectedCustomizeIndex != nil {
-                                            self.containers.ls[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
-                                        }
-                                        self.selectedFont = i
-                                        
-                                        }
+                                    .onEnded({self.tapGestureEnded(i)}
                                     ))
                 }
             }
@@ -44,5 +38,12 @@ struct FontScrollView: View {
         .border(Color.orange, width: 4)
         .cornerRadius(7)
         .clipShape(Rectangle())
+    }
+    
+    private func tapGestureEnded(_ i:Int) {
+        if self.selectedCustomizeIndex != nil {
+            self.containers.ls[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
+        }
+        self.selectedFont = i
     }
 }

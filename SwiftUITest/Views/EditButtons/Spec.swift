@@ -16,13 +16,7 @@ struct SpecButton: View {
     var caseBox:String
     
     var body: some View {
-        Button(action: {
-            if self.selectedCustomizeIndex != nil {
-                self.displayBox = !self.displayBox
-                //let font:CGFloat =  self.containers.ls[self.selectedCustomizeIndex!].fontForTextBox()
-                //self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
-                self.activateCaseBool()
-            }
+        Button(action: {self.onTapButton()
         }) {
             Image(systemName: self.findImage())
         }.padding(.all)
@@ -34,6 +28,15 @@ struct SpecButton: View {
         self._containers = containers
         self._selectedCustomizeIndex = selected
         self.caseBox = caseBox
+    }
+    
+    private func onTapButton() {
+        if self.selectedCustomizeIndex != nil {
+            self.displayBox = !self.displayBox
+            //let font:CGFloat =  self.containers.ls[self.selectedCustomizeIndex!].fontForTextBox()
+            //self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
+            self.activateCaseBool()
+        }
     }
     
     private func activateCaseBool() {

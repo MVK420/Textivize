@@ -16,32 +16,35 @@ struct SaveButton: View {
     
     @Environment(\.parrentFunc) var parentFunction
     @State var saveAlert:Bool = false
-    //@State var saveCompleteAlert:Bool = false
     @State var uiimage:UIImage? = nil
-    @Binding var updateUI:Bool
     @Binding var rect1: CGRect
     @State var text = "Save"
     @State private var activeAlert: ActiveAlert = .first
     
     var body: some View {
-        Button(action: {
-            self.parentFunction?()
-            self.saveAlert = true
-        }) {
+        Button(action: {self.onTapSaveButton()}) {
             Text("Save")
         }.alert(isPresented: self.$saveAlert) {
-            switch activeAlert {
-            case .first:
-                return Alert(title: Text("Are you sure you want to save this?"), message: Text(""), primaryButton: .default(Text("Save")) {
-                    print("Saving...")
-                    self.saveToGallery()
-                }, secondaryButton: .cancel())
-            case .second:
-                return Alert(title: Text("Message"),message: Text("Photo saved successfully"),dismissButton: .default(Text("OK")) {
-                    self.activeAlert = .first
-                })
-            }
-            
+            self.presentAlert()
+        }
+    }
+    
+    private func onTapSaveButton() {
+        self.parentFunction?()
+        self.saveAlert = true
+    }
+    
+    private func presentAlert() -> Alert {
+        switch activeAlert {
+        case .first:
+            return Alert(title: Text("Are you sure you want to save this?"), message: Text(""), primaryButton: .default(Text("Save")) {
+                print("Saving...")
+                self.saveToGallery()
+            }, secondaryButton: .cancel())
+        case .second:
+            return Alert(title: Text("Message"),message: Text("Photo saved successfully"),dismissButton: .default(Text("OK")) {
+                self.activeAlert = .first
+            })
         }
     }
     

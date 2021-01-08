@@ -20,16 +20,22 @@ struct inputTextFieldView: View {
             print("Editing")
         }) {
             ///When editing is finished, call func to insert text into a textbox
-            var tBox = TextBox(words: [],fullText: self.inputText)
-            tBox.parseInput(text: self.inputText)
-            self.containers.ls.append(tBox)
-            ///Empty Text Field
-            self.inputText = ""//Trump For President 2020"
+            self.editingFinished()
         }
         .font(.body)
         .foregroundColor(Color.orange)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         //.fixedSize()
         .frame(width:200,alignment:.leading)
+    }
+    
+    private func editingFinished() {
+        var tBox = TextBox(words: [],fullText: self.inputText)
+        if self.inputText != "" {
+            tBox.parseInput(text: self.inputText)
+            self.containers.ls.append(tBox)
+            ///Empty Text Field
+            self.inputText = ""//Trump For President 2020"
+        }
     }
 }

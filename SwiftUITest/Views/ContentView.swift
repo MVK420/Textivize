@@ -12,17 +12,17 @@ import SVGKit
 
 struct ContentView: View {
     
-    @State var navBar = false
+    @State private var navBar = false
     ///selectedColor
-    @State var selectedColor = Color(.black)
+    @State private var selectedColor = Color(.black)
     ///Bool that checks if all the buttons to edit TextBox need to be presented
-    @State var displayEditList:Bool = false
+    @State private var displayEditList:Bool = false
     ///Bool that checks if the kerning editor needs to be peresnted
-    @State var displayKerningBox:Bool = false
+    @State private var displayKerningBox:Bool = false
     ///Bool that checks if the radius editor needs to be peresnted
-    @State var displayRadiusBox:Bool = false
+    @State private var displayRadiusBox:Bool = false
     //////Bool that checks if the spacing editor needs to be peresnted
-    @State var displaySpacingBox:Bool = false
+    @State private var displaySpacingBox:Bool = false
     ///Bool that checks if Font List needs to be presented
     @State private var fontPresented:Bool = false
     ///Bool that checks if the gradient min max editor needs to be presented
@@ -30,7 +30,7 @@ struct ContentView: View {
     ///In the font list the selected one will be colored
     @State private var selectedFont = 1
     ///Array containing textboxes and imageboxes
-    @ObservedObject var containers:Container = Container()
+    @ObservedObject private var containers:Container = Container()
     ///DragGesture values
     @GestureState private var position = CGSize.zero
     ///Selected Object to drag
@@ -44,8 +44,8 @@ struct ContentView: View {
     @State private var selectedCustomizeImageIndex:Int? = nil
     @State private var selectedCustomizeIndex:Int? = nil
     ///IMAGESTUFF
-    @State var showFilePicker:Bool = false
-    @State var showImagePicker:Bool = false
+    @State private var showFilePicker:Bool = false
+    @State private var showImagePicker:Bool = false
     ///SAVING stuff
     ///To show alert
     @State private var saveAlert:Bool = false
@@ -79,7 +79,6 @@ struct ContentView: View {
                                 .isHidden(self.minMaxGradientPresented)
                             SpecSelectBox(containers: self._containers, selected: self.$selectedCustomizeIndex,caseBox: "Max Gr")
                                 .isHidden(self.minMaxGradientPresented)
-
                             }
                             Button(action:{}) {
                                 Image(systemName: "trash")
@@ -133,12 +132,6 @@ struct ContentView: View {
             .contentShape(Rectangle())
             .onTapGesture {
                 self.onClickSaveButton()
-                //self.selectedCustomizeIndex = nil
-                //self.selectedCustomizeImageIndex = nil
-                //self.fontPresented = false
-                //self.displayKerningBox = false
-                //self.displayRadiusBox = false
-                //self.selectedGesture = nil
                 print("deselected")
             }
             .navigationBarHidden(navBar)
@@ -151,16 +144,12 @@ struct ContentView: View {
                     ImagePickerButton(showImagePicker: self.$showImagePicker)
                     ColorPickerView(selectedColor: self.$selectedColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
                     DocumentPickerButton(showFilePicker: self.$showFilePicker)
-                    SaveButton(updateUI: self.$displayEditList, rect1: self.$rect1)
+                    SaveButton(rect1: self.$rect1)
                 })
         }.environment(\.parrentFunc, onClickSaveButton)
-        
     }
     
     func onClickSaveButton() {
-        print("parentFunction called")
-        
-        //self.navBar = !self.navBar
         self.displayEditList = false
         self.displayKerningBox = false
         self.displayRadiusBox = false

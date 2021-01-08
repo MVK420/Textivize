@@ -15,8 +15,7 @@ struct FontSettingsView: View {
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        .font(Font.custom("HanziPenSC",size: 30))
-        
+            .font(Font.custom("HanziPenSC",size: 30))
         Button(action: self.downloadAndRegister) {
             Text("Download")
         }

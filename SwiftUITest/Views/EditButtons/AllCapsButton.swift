@@ -15,14 +15,7 @@ struct AllCapsButton: View {
     var allCaps:Bool
     
     var body: some View {
-        Button(action: {if self.allCaps == true && (self.selectedCustomizeIndex != nil) {
-            if self.selectedCustomizeIndex != nil{
-                self.containers.ls[self.selectedCustomizeIndex!].allCaps()
-            } else {
-                self.containers.ls[self.selectedCustomizeIndex!].capitalize()
-            }
-            
-        }})
+        Button(action: {self.onTapAllCapsButton()})
         {
             Image(systemName: self.allCaps == true ? "textformat.size" : "arrowtriangle.up.square.fill")
         }
@@ -34,5 +27,16 @@ struct AllCapsButton: View {
         self._containers = containers
         self._selectedCustomizeIndex = selected
         self.allCaps = allCaps
+    }
+    
+    private func onTapAllCapsButton() {
+        if self.allCaps == true && (self.selectedCustomizeIndex != nil) {
+            if self.selectedCustomizeIndex != nil{
+                self.containers.ls[self.selectedCustomizeIndex!].allCaps()
+            } else {
+                self.containers.ls[self.selectedCustomizeIndex!].capitalize()
+            }
+            
+        }
     }
 }
