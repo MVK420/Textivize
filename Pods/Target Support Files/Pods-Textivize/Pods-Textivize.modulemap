@@ -1,0 +1,6 @@
+framework module Pods_Textivize {
+  umbrella header "Pods-Textivize-umbrella.h"
+
+  export *
+  module * { export * }
+}

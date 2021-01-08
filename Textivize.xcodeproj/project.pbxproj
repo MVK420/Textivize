@@ -1,0 +1,572 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B7C6B4625A8F2C3000CC683 /* TextivizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B4525A8F2C3000CC683 /* TextivizeApp.swift */; };
+		1B7C6B4A25A8F2C5000CC683 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7C6B4925A8F2C5000CC683 /* Assets.xcassets */; };
+		1B7C6B4D25A8F2C5000CC683 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7C6B4C25A8F2C5000CC683 /* Preview Assets.xcassets */; };
+		1B7C6B7A25A8F2DE000CC683 /* ImageModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5825A8F2DE000CC683 /* ImageModifiers.swift */; };
+		1B7C6B7B25A8F2DE000CC683 /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5925A8F2DE000CC683 /* TextBox.swift */; };
+		1B7C6B7C25A8F2DE000CC683 /* ImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5A25A8F2DE000CC683 /* ImageBox.swift */; };
+		1B7C6B7D25A8F2DE000CC683 /* BoxProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5C25A8F2DE000CC683 /* BoxProtocol.swift */; };
+		1B7C6B7E25A8F2DE000CC683 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5D25A8F2DE000CC683 /* Circle.swift */; };
+		1B7C6B7F25A8F2DE000CC683 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5E25A8F2DE000CC683 /* Container.swift */; };
+		1B7C6B8025A8F2DE000CC683 /* SVGBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5F25A8F2DE000CC683 /* SVGBox.swift */; };
+		1B7C6B8125A8F2DE000CC683 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6025A8F2DE000CC683 /* Word.swift */; };
+		1B7C6B8225A8F2DE000CC683 /* ImageBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6225A8F2DE000CC683 /* ImageBoxView.swift */; };
+		1B7C6B8325A8F2DE000CC683 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6325A8F2DE000CC683 /* DocumentPicker.swift */; };
+		1B7C6B8425A8F2DE000CC683 /* SaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6425A8F2DE000CC683 /* SaveView.swift */; };
+		1B7C6B8525A8F2DE000CC683 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6525A8F2DE000CC683 /* ImagePicker.swift */; };
+		1B7C6B8625A8F2DE000CC683 /* TextBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6625A8F2DE000CC683 /* TextBoxView.swift */; };
+		1B7C6B8725A8F2DE000CC683 /* CustomizeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6825A8F2DE000CC683 /* CustomizeButtonView.swift */; };
+		1B7C6B8825A8F2DE000CC683 /* InputTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6925A8F2DE000CC683 /* InputTextFieldView.swift */; };
+		1B7C6B8925A8F2DE000CC683 /* FontSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6A25A8F2DE000CC683 /* FontSettingsView.swift */; };
+		1B7C6B8A25A8F2DE000CC683 /* GradientButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6C25A8F2DE000CC683 /* GradientButtonView.swift */; };
+		1B7C6B8B25A8F2DE000CC683 /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6D25A8F2DE000CC683 /* CircleButtonView.swift */; };
+		1B7C6B8C25A8F2DE000CC683 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6E25A8F2DE000CC683 /* ColorPickerView.swift */; };
+		1B7C6B8D25A8F2DE000CC683 /* AllCapsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6F25A8F2DE000CC683 /* AllCapsButton.swift */; };
+		1B7C6B8E25A8F2DE000CC683 /* SameWidthButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B7025A8F2DE000CC683 /* SameWidthButtonView.swift */; };
+		1B7C6B8F25A8F2DE000CC683 /* Spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B7125A8F2DE000CC683 /* Spec.swift */; };
+		1B7C6B9025A8F2DE000CC683 /* FontButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B7225A8F2DE000CC683 /* FontButtonView.swift */; };
+		1B7C6B9125A8F2DE000CC683 /* FontScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B7325A8F2DE000CC683 /* FontScrollView.swift */; };
+		1B7C6B9225A8F2DE000CC683 /* SVGBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B7425A8F2DE000CC683 /* SVGBoxView.swift */; };
+		1B7C6B9325A8F2DE000CC683 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B7525A8F2DE000CC683 /* ContentView.swift */; };
+		1B7C6B9425A8F2DE000CC683 /* TextBoxModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B7725A8F2DE000CC683 /* TextBoxModifiers.swift */; };
+		1B7C6B9525A8F2DE000CC683 /* SVGBoxModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B7825A8F2DE000CC683 /* SVGBoxModifiers.swift */; };
+		1B7C6B9625A8F2DE000CC683 /* ImageBoxModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B7925A8F2DE000CC683 /* ImageBoxModifiers.swift */; };
+		32D87FB47CC6BE6423ED43FD /* Pods_Textivize.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02B1B2F3FDB9C3FB3B677A96 /* Pods_Textivize.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		02B1B2F3FDB9C3FB3B677A96 /* Pods_Textivize.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Textivize.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B7C6B4225A8F2C3000CC683 /* Textivize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Textivize.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B7C6B4525A8F2C3000CC683 /* TextivizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextivizeApp.swift; sourceTree = "<group>"; };
+		1B7C6B4925A8F2C5000CC683 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1B7C6B4C25A8F2C5000CC683 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1B7C6B4E25A8F2C5000CC683 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B7C6B5825A8F2DE000CC683 /* ImageModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModifiers.swift; sourceTree = "<group>"; };
+		1B7C6B5925A8F2DE000CC683 /* TextBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
+		1B7C6B5A25A8F2DE000CC683 /* ImageBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBox.swift; sourceTree = "<group>"; };
+		1B7C6B5C25A8F2DE000CC683 /* BoxProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxProtocol.swift; sourceTree = "<group>"; };
+		1B7C6B5D25A8F2DE000CC683 /* Circle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
+		1B7C6B5E25A8F2DE000CC683 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		1B7C6B5F25A8F2DE000CC683 /* SVGBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGBox.swift; sourceTree = "<group>"; };
+		1B7C6B6025A8F2DE000CC683 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		1B7C6B6225A8F2DE000CC683 /* ImageBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBoxView.swift; sourceTree = "<group>"; };
+		1B7C6B6325A8F2DE000CC683 /* DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		1B7C6B6425A8F2DE000CC683 /* SaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveView.swift; sourceTree = "<group>"; };
+		1B7C6B6525A8F2DE000CC683 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		1B7C6B6625A8F2DE000CC683 /* TextBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxView.swift; sourceTree = "<group>"; };
+		1B7C6B6825A8F2DE000CC683 /* CustomizeButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeButtonView.swift; sourceTree = "<group>"; };
+		1B7C6B6925A8F2DE000CC683 /* InputTextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextFieldView.swift; sourceTree = "<group>"; };
+		1B7C6B6A25A8F2DE000CC683 /* FontSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontSettingsView.swift; sourceTree = "<group>"; };
+		1B7C6B6C25A8F2DE000CC683 /* GradientButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientButtonView.swift; sourceTree = "<group>"; };
+		1B7C6B6D25A8F2DE000CC683 /* CircleButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
+		1B7C6B6E25A8F2DE000CC683 /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		1B7C6B6F25A8F2DE000CC683 /* AllCapsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCapsButton.swift; sourceTree = "<group>"; };
+		1B7C6B7025A8F2DE000CC683 /* SameWidthButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SameWidthButtonView.swift; sourceTree = "<group>"; };
+		1B7C6B7125A8F2DE000CC683 /* Spec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spec.swift; sourceTree = "<group>"; };
+		1B7C6B7225A8F2DE000CC683 /* FontButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontButtonView.swift; sourceTree = "<group>"; };
+		1B7C6B7325A8F2DE000CC683 /* FontScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontScrollView.swift; sourceTree = "<group>"; };
+		1B7C6B7425A8F2DE000CC683 /* SVGBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGBoxView.swift; sourceTree = "<group>"; };
+		1B7C6B7525A8F2DE000CC683 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1B7C6B7725A8F2DE000CC683 /* TextBoxModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxModifiers.swift; sourceTree = "<group>"; };
+		1B7C6B7825A8F2DE000CC683 /* SVGBoxModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGBoxModifiers.swift; sourceTree = "<group>"; };
+		1B7C6B7925A8F2DE000CC683 /* ImageBoxModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBoxModifiers.swift; sourceTree = "<group>"; };
+		53ADBC07500EF07AE96F765D /* Pods-Textivize.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Textivize.release.xcconfig"; path = "Target Support Files/Pods-Textivize/Pods-Textivize.release.xcconfig"; sourceTree = "<group>"; };
+		B27E8794690A97394D2D404C /* Pods-Textivize.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Textivize.debug.xcconfig"; path = "Target Support Files/Pods-Textivize/Pods-Textivize.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1B7C6B3F25A8F2C3000CC683 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32D87FB47CC6BE6423ED43FD /* Pods_Textivize.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1B7C6B3925A8F2C3000CC683 = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B4425A8F2C3000CC683 /* Textivize */,
+				1B7C6B4325A8F2C3000CC683 /* Products */,
+				D2B9743C4494E1B45E5A4716 /* Pods */,
+				841FC60884AC2BE2BE86452E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1B7C6B4325A8F2C3000CC683 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B4225A8F2C3000CC683 /* Textivize.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1B7C6B4425A8F2C3000CC683 /* Textivize */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B5625A8F2DE000CC683 /* Model */,
+				1B7C6B6125A8F2DE000CC683 /* Views */,
+				1B7C6B4525A8F2C3000CC683 /* TextivizeApp.swift */,
+				1B7C6B4925A8F2C5000CC683 /* Assets.xcassets */,
+				1B7C6B4E25A8F2C5000CC683 /* Info.plist */,
+				1B7C6B4B25A8F2C5000CC683 /* Preview Content */,
+			);
+			path = Textivize;
+			sourceTree = "<group>";
+		};
+		1B7C6B4B25A8F2C5000CC683 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B4C25A8F2C5000CC683 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1B7C6B5625A8F2DE000CC683 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B5725A8F2DE000CC683 /* Modifiers */,
+				1B7C6B5925A8F2DE000CC683 /* TextBox.swift */,
+				1B7C6B5A25A8F2DE000CC683 /* ImageBox.swift */,
+				1B7C6B5B25A8F2DE000CC683 /* Protocol */,
+				1B7C6B5E25A8F2DE000CC683 /* Container.swift */,
+				1B7C6B5F25A8F2DE000CC683 /* SVGBox.swift */,
+				1B7C6B6025A8F2DE000CC683 /* Word.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1B7C6B5725A8F2DE000CC683 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B5825A8F2DE000CC683 /* ImageModifiers.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		1B7C6B5B25A8F2DE000CC683 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B5C25A8F2DE000CC683 /* BoxProtocol.swift */,
+				1B7C6B5D25A8F2DE000CC683 /* Circle.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		1B7C6B6125A8F2DE000CC683 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B6225A8F2DE000CC683 /* ImageBoxView.swift */,
+				1B7C6B6325A8F2DE000CC683 /* DocumentPicker.swift */,
+				1B7C6B6425A8F2DE000CC683 /* SaveView.swift */,
+				1B7C6B6525A8F2DE000CC683 /* ImagePicker.swift */,
+				1B7C6B6625A8F2DE000CC683 /* TextBoxView.swift */,
+				1B7C6B6725A8F2DE000CC683 /* NavigationBar */,
+				1B7C6B6B25A8F2DE000CC683 /* EditButtons */,
+				1B7C6B7325A8F2DE000CC683 /* FontScrollView.swift */,
+				1B7C6B7425A8F2DE000CC683 /* SVGBoxView.swift */,
+				1B7C6B7525A8F2DE000CC683 /* ContentView.swift */,
+				1B7C6B7625A8F2DE000CC683 /* ViewModifiers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1B7C6B6725A8F2DE000CC683 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B6825A8F2DE000CC683 /* CustomizeButtonView.swift */,
+				1B7C6B6925A8F2DE000CC683 /* InputTextFieldView.swift */,
+				1B7C6B6A25A8F2DE000CC683 /* FontSettingsView.swift */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		1B7C6B6B25A8F2DE000CC683 /* EditButtons */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B6C25A8F2DE000CC683 /* GradientButtonView.swift */,
+				1B7C6B6D25A8F2DE000CC683 /* CircleButtonView.swift */,
+				1B7C6B6E25A8F2DE000CC683 /* ColorPickerView.swift */,
+				1B7C6B6F25A8F2DE000CC683 /* AllCapsButton.swift */,
+				1B7C6B7025A8F2DE000CC683 /* SameWidthButtonView.swift */,
+				1B7C6B7125A8F2DE000CC683 /* Spec.swift */,
+				1B7C6B7225A8F2DE000CC683 /* FontButtonView.swift */,
+			);
+			path = EditButtons;
+			sourceTree = "<group>";
+		};
+		1B7C6B7625A8F2DE000CC683 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				1B7C6B7725A8F2DE000CC683 /* TextBoxModifiers.swift */,
+				1B7C6B7825A8F2DE000CC683 /* SVGBoxModifiers.swift */,
+				1B7C6B7925A8F2DE000CC683 /* ImageBoxModifiers.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		841FC60884AC2BE2BE86452E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02B1B2F3FDB9C3FB3B677A96 /* Pods_Textivize.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2B9743C4494E1B45E5A4716 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B27E8794690A97394D2D404C /* Pods-Textivize.debug.xcconfig */,
+				53ADBC07500EF07AE96F765D /* Pods-Textivize.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1B7C6B4125A8F2C3000CC683 /* Textivize */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B7C6B5125A8F2C5000CC683 /* Build configuration list for PBXNativeTarget "Textivize" */;
+			buildPhases = (
+				D26327F5CA646A5819B2B15F /* [CP] Check Pods Manifest.lock */,
+				1B7C6B3E25A8F2C3000CC683 /* Sources */,
+				1B7C6B3F25A8F2C3000CC683 /* Frameworks */,
+				1B7C6B4025A8F2C3000CC683 /* Resources */,
+				87EA3908F94A3BB3872A28C2 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Textivize;
+			productName = Textivize;
+			productReference = 1B7C6B4225A8F2C3000CC683 /* Textivize.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1B7C6B3A25A8F2C3000CC683 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					1B7C6B4125A8F2C3000CC683 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+				};
+			};
+			buildConfigurationList = 1B7C6B3D25A8F2C3000CC683 /* Build configuration list for PBXProject "Textivize" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1B7C6B3925A8F2C3000CC683;
+			productRefGroup = 1B7C6B4325A8F2C3000CC683 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1B7C6B4125A8F2C3000CC683 /* Textivize */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1B7C6B4025A8F2C3000CC683 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7C6B4D25A8F2C5000CC683 /* Preview Assets.xcassets in Resources */,
+				1B7C6B4A25A8F2C5000CC683 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		87EA3908F94A3BB3872A28C2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Textivize/Pods-Textivize-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Textivize/Pods-Textivize-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Textivize/Pods-Textivize-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D26327F5CA646A5819B2B15F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Textivize-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1B7C6B3E25A8F2C3000CC683 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B7C6B8725A8F2DE000CC683 /* CustomizeButtonView.swift in Sources */,
+				1B7C6B9425A8F2DE000CC683 /* TextBoxModifiers.swift in Sources */,
+				1B7C6B8525A8F2DE000CC683 /* ImagePicker.swift in Sources */,
+				1B7C6B8B25A8F2DE000CC683 /* CircleButtonView.swift in Sources */,
+				1B7C6B8225A8F2DE000CC683 /* ImageBoxView.swift in Sources */,
+				1B7C6B9125A8F2DE000CC683 /* FontScrollView.swift in Sources */,
+				1B7C6B9625A8F2DE000CC683 /* ImageBoxModifiers.swift in Sources */,
+				1B7C6B8C25A8F2DE000CC683 /* ColorPickerView.swift in Sources */,
+				1B7C6B8E25A8F2DE000CC683 /* SameWidthButtonView.swift in Sources */,
+				1B7C6B8325A8F2DE000CC683 /* DocumentPicker.swift in Sources */,
+				1B7C6B8A25A8F2DE000CC683 /* GradientButtonView.swift in Sources */,
+				1B7C6B8025A8F2DE000CC683 /* SVGBox.swift in Sources */,
+				1B7C6B7D25A8F2DE000CC683 /* BoxProtocol.swift in Sources */,
+				1B7C6B8125A8F2DE000CC683 /* Word.swift in Sources */,
+				1B7C6B9525A8F2DE000CC683 /* SVGBoxModifiers.swift in Sources */,
+				1B7C6B8825A8F2DE000CC683 /* InputTextFieldView.swift in Sources */,
+				1B7C6B9225A8F2DE000CC683 /* SVGBoxView.swift in Sources */,
+				1B7C6B9325A8F2DE000CC683 /* ContentView.swift in Sources */,
+				1B7C6B7A25A8F2DE000CC683 /* ImageModifiers.swift in Sources */,
+				1B7C6B7C25A8F2DE000CC683 /* ImageBox.swift in Sources */,
+				1B7C6B8D25A8F2DE000CC683 /* AllCapsButton.swift in Sources */,
+				1B7C6B8F25A8F2DE000CC683 /* Spec.swift in Sources */,
+				1B7C6B7B25A8F2DE000CC683 /* TextBox.swift in Sources */,
+				1B7C6B7F25A8F2DE000CC683 /* Container.swift in Sources */,
+				1B7C6B4625A8F2C3000CC683 /* TextivizeApp.swift in Sources */,
+				1B7C6B8625A8F2DE000CC683 /* TextBoxView.swift in Sources */,
+				1B7C6B8925A8F2DE000CC683 /* FontSettingsView.swift in Sources */,
+				1B7C6B9025A8F2DE000CC683 /* FontButtonView.swift in Sources */,
+				1B7C6B7E25A8F2DE000CC683 /* Circle.swift in Sources */,
+				1B7C6B8425A8F2DE000CC683 /* SaveView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1B7C6B4F25A8F2C5000CC683 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1B7C6B5025A8F2C5000CC683 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1B7C6B5225A8F2C5000CC683 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B27E8794690A97394D2D404C /* Pods-Textivize.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Textivize/Preview Content\"";
+				DEVELOPMENT_TEAM = BYRPM2UDD5;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Textivize/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MVK.Textivize;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1B7C6B5325A8F2C5000CC683 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53ADBC07500EF07AE96F765D /* Pods-Textivize.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Textivize/Preview Content\"";
+				DEVELOPMENT_TEAM = BYRPM2UDD5;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Textivize/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = MVK.Textivize;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1B7C6B3D25A8F2C3000CC683 /* Build configuration list for PBXProject "Textivize" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B7C6B4F25A8F2C5000CC683 /* Debug */,
+				1B7C6B5025A8F2C5000CC683 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1B7C6B5125A8F2C5000CC683 /* Build configuration list for PBXNativeTarget "Textivize" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B7C6B5225A8F2C5000CC683 /* Debug */,
+				1B7C6B5325A8F2C5000CC683 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1B7C6B3A25A8F2C3000CC683 /* Project object */;
+}
