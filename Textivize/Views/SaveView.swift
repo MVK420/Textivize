@@ -18,18 +18,27 @@ struct SaveButton: View {
     @ObservedObject var interstitialService:InterstitialService
     @Environment(\.parrentFunc) var parentFunction
     @State var saveAlert:Bool = false
+    @State var areYouSure:Bool = false
     @State var uiimage:UIImage? = nil
     @Binding var rect1: CGRect
     @State var text = "Save"
     @State private var activeAlert: ActiveAlert = .first
     
     var body: some View {
-        Button(action: {self.onTapSaveButton()}) {
-            Text("Save")
-        }.alert(isPresented: self.$saveAlert) {
-            self.presentAlert()
+        Text("")
+            .alert(isPresented: self.$saveAlert) {
+            //self.presentAlert()
+                self.presentAlert()
         }.onReceive(NotificationCenter.default.publisher(for: NSNotification.canSaveImage)) { _ in
             self.onDismissedAd()}
+            
+        Button(action: {self.areYouSure.toggle()}) {
+            Text("Save")
+        }.alert(isPresented: self.$areYouSure) {
+            //self.presentAlert()
+            self.presentAreYouSure()
+        }//.onReceive(NotificationCenter.default.publisher(for: NSNotification.canSaveImage)) { _ in
+          //  self.onDismissedAd()}
     }
     
     private func onDismissedAd() {
@@ -42,20 +51,26 @@ struct SaveButton: View {
             ///Ad was not played
             #warning("when ad is not played, must do something")
         }
-        //self.playInterstitialAd()
-        //self.parentFunction?()
-        //self.saveAlert = true
+    }
+    
+    private func presentAreYouSure() -> Alert {
+        return Alert(title: Text("Are you sure you want to save?"), message: Text(Constants.saveAlertMessage), primaryButton: .default(Text("Yes")) {
+            self.onTapSaveButton()
+        }, secondaryButton: .default(Text("No")) {
+            self.onTapSaveButton()
+        })
     }
     
     private func presentAlert() -> Alert {
         switch activeAlert {
         case .first:
-            return Alert(title: Text("Are you sure you want to save this?"), message: Text(""), primaryButton: .default(Text("Save")) {
-                print("Saving...")
+            return Alert(title: Text(Constants.saveAlertTitle), message: Text(Constants.saveAlertMessage), primaryButton: .default(Text("JPG")) {
                 self.saveToGallery()
-            }, secondaryButton: .cancel())
+            }, secondaryButton: .default(Text("PNG")) {
+                self.saveAsPNG()
+            })
         case .second:
-            return Alert(title: Text("Message"),message: Text("Photo saved successfully"),dismissButton: .default(Text("OK")) {
+            return Alert(title: Text(Constants.imageSavedTitle),message: Text(Constants.imageSavedMessage),dismissButton: .default(Text("OK")) {
                 self.activeAlert = .first
             })
         }
@@ -64,7 +79,12 @@ struct SaveButton: View {
     fileprivate func saveToGallery() {
         self.uiimage = (UIApplication.shared.windows[0].rootViewController?.view.asImage(rect: self.rect1))!
         let imageSaver:ImageSaver = ImageSaver(saveCompleteAlert: self.$saveAlert, activeAlert: self.$activeAlert)
-        //imageSaver.writeToPhotoAlbum(image: uiimage!)
+        imageSaver.writeToPhotoAlbum(image: uiimage!)
+    }
+    
+    fileprivate func saveAsPNG() {
+        self.uiimage = (UIApplication.shared.windows[0].rootViewController?.view.asImage(rect: self.rect1))!
+        let imageSaver:ImageSaver = ImageSaver(saveCompleteAlert: self.$saveAlert, activeAlert: self.$activeAlert)
         imageSaver.saveAsPNG(image: uiimage!)
     }
 }
@@ -93,53 +113,6 @@ extension UIView {
         return renderer.image { rendererContext in
             layer.render(in: rendererContext.cgContext)
         }
-    }
-}
-
-class ImageSaver: NSObject {
-    
-    @Binding var saveCompleteAlert:Bool
-    @Binding var activeAlert:ActiveAlert
-    
-    init(saveCompleteAlert:Binding<Bool>,activeAlert:Binding<ActiveAlert>) {
-        self._saveCompleteAlert = saveCompleteAlert
-        self._activeAlert = activeAlert
-    }
-    
-    func saveAsPNG(image:UIImage) {
-        if let data = image.pngData() {
-            print(data)
-            let filename = getDocumentsDirectory().appendingPathComponent("textivize.png")
-            _ = filename.startAccessingSecurityScopedResource()
-            try? data.write(to: filename)
-            filename.stopAccessingSecurityScopedResource()
-        }
-    }
-    
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    func writeToPhotoAlbum(image: UIImage) {
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveError), nil)
-    }
-    
-    @objc func saveError(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        activeAlert = .second
-        saveCompleteAlert.toggle()
-    }
-}
-
-///For Hiding
-struct ParentFunctionKey: EnvironmentKey {
-    static let defaultValue: (() -> Void)? = nil
-}
-
-extension EnvironmentValues {
-    var parrentFunc: (() -> Void)? {
-        get { self[ParentFunctionKey.self] }
-        set { self[ParentFunctionKey.self] = newValue }
     }
 }
 

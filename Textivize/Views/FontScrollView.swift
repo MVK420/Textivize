@@ -34,7 +34,7 @@ struct FontScrollView: View {
         }
         .frame(width: 250, height: 220)
         .isHidden(self.fontPresented)
-        .background(Color.gray)
+        .background(Color.clear)
         .border(Color.orange, width: 4)
         .cornerRadius(7)
         .clipShape(Rectangle())

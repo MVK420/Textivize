@@ -16,6 +16,7 @@ struct ContentView: View {
     //@State var interstitial:GADInterstitial = GADInterstitial(adUnitID: Constants.interstitialAdCode)
     @ObservedObject private var interstitialService:InterstitialService = InterstitialService()
     @State private var navBar = false
+    @State var backgroundColor:Color = Color.clear
     ///selectedColor
     @State private var selectedColor = Color(.black)
     ///Bool that checks if all the buttons to edit TextBox need to be presented
@@ -60,7 +61,7 @@ struct ContentView: View {
         ///Header
         NavigationView {
             ZStack() {
-                Color.clear
+                self.backgroundColor
                     .edgesIgnoringSafeArea(.all)
                 ///PopUp Editors
                 ZStack{
@@ -104,9 +105,11 @@ struct ContentView: View {
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex,allCaps:true)
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex, allCaps: false)
                             CircleButtonView(containers: self.containers,selectedCustomizeIndex: self.selectedCustomizeIndex, displayRadiusBox: self.$displayRadiusBox, displayKerningBox: self.$displayKerningBox)
+                            /*
                             NavigationLink(destination: FontSettingsView()) {
                                 Image(systemName: "scribble")
                             }
+                            */
                         }.isHidden(self.displayEditList)
                         .frame(width: 50)
                         .border(Color.orange, width: 2)
@@ -145,7 +148,7 @@ struct ContentView: View {
                 HStack(){
                     CustomizeButtonView(displayEditList: self.$displayEditList)
                     ImagePickerButton(showImagePicker: self.$showImagePicker)
-                    ColorPickerView(selectedColor: self.$selectedColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
+                    ColorPickerView(selectedColor: self.$selectedColor, backgroundColor: $backgroundColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
                     DocumentPickerButton(showFilePicker: self.$showFilePicker)
                     SaveButton(interstitialService: self.interstitialService, rect1: self.$rect1)
                 })

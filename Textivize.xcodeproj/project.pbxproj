@@ -19,7 +19,7 @@
 		1B7C6B8025A8F2DE000CC683 /* SVGBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5F25A8F2DE000CC683 /* SVGBox.swift */; };
 		1B7C6B8125A8F2DE000CC683 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6025A8F2DE000CC683 /* Word.swift */; };
 		1B7C6B8225A8F2DE000CC683 /* ImageBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6225A8F2DE000CC683 /* ImageBoxView.swift */; };
-		1B7C6B8325A8F2DE000CC683 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6325A8F2DE000CC683 /* DocumentPicker.swift */; };
+		1B7C6B8325A8F2DE000CC683 /* DocumentPickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6325A8F2DE000CC683 /* DocumentPickerButton.swift */; };
 		1B7C6B8425A8F2DE000CC683 /* SaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6425A8F2DE000CC683 /* SaveView.swift */; };
 		1B7C6B8525A8F2DE000CC683 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6525A8F2DE000CC683 /* ImagePicker.swift */; };
 		1B7C6B8625A8F2DE000CC683 /* TextBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B6625A8F2DE000CC683 /* TextBoxView.swift */; };
@@ -42,6 +42,8 @@
 		1B7C6BC325A91BEB000CC683 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6BC225A91BEB000CC683 /* SceneDelegate.swift */; };
 		1B7C6BC725A91C87000CC683 /* InterstitialAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6BC625A91C87000CC683 /* InterstitialAd.swift */; };
 		1B7C6BCB25A91CF9000CC683 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6BCA25A91CF9000CC683 /* Constants.swift */; };
+		1B7C6BCE25AA3CAD000CC683 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6BCD25AA3CAD000CC683 /* ImageSaver.swift */; };
+		1B7C6BD325AA3EF6000CC683 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6BD225AA3EF6000CC683 /* DocumentPicker.swift */; };
 		32D87FB47CC6BE6423ED43FD /* Pods_Textivize.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02B1B2F3FDB9C3FB3B677A96 /* Pods_Textivize.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +63,7 @@
 		1B7C6B5F25A8F2DE000CC683 /* SVGBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVGBox.swift; sourceTree = "<group>"; };
 		1B7C6B6025A8F2DE000CC683 /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		1B7C6B6225A8F2DE000CC683 /* ImageBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBoxView.swift; sourceTree = "<group>"; };
-		1B7C6B6325A8F2DE000CC683 /* DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		1B7C6B6325A8F2DE000CC683 /* DocumentPickerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentPickerButton.swift; sourceTree = "<group>"; };
 		1B7C6B6425A8F2DE000CC683 /* SaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveView.swift; sourceTree = "<group>"; };
 		1B7C6B6525A8F2DE000CC683 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		1B7C6B6625A8F2DE000CC683 /* TextBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxView.swift; sourceTree = "<group>"; };
@@ -84,6 +86,8 @@
 		1B7C6BC225A91BEB000CC683 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1B7C6BC625A91C87000CC683 /* InterstitialAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAd.swift; sourceTree = "<group>"; };
 		1B7C6BCA25A91CF9000CC683 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1B7C6BCD25AA3CAD000CC683 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
+		1B7C6BD225AA3EF6000CC683 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		53ADBC07500EF07AE96F765D /* Pods-Textivize.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Textivize.release.xcconfig"; path = "Target Support Files/Pods-Textivize/Pods-Textivize.release.xcconfig"; sourceTree = "<group>"; };
 		B27E8794690A97394D2D404C /* Pods-Textivize.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Textivize.debug.xcconfig"; path = "Target Support Files/Pods-Textivize/Pods-Textivize.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,7 +183,7 @@
 				1B7C6B6725A8F2DE000CC683 /* NavigationBar */,
 				1B7C6B6B25A8F2DE000CC683 /* EditButtons */,
 				1B7C6B6225A8F2DE000CC683 /* ImageBoxView.swift */,
-				1B7C6B6325A8F2DE000CC683 /* DocumentPicker.swift */,
+				1B7C6B6325A8F2DE000CC683 /* DocumentPickerButton.swift */,
 				1B7C6B6425A8F2DE000CC683 /* SaveView.swift */,
 				1B7C6B6525A8F2DE000CC683 /* ImagePicker.swift */,
 				1B7C6B6625A8F2DE000CC683 /* TextBoxView.swift */,
@@ -229,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				1B7C6BC625A91C87000CC683 /* InterstitialAd.swift */,
+				1B7C6BCD25AA3CAD000CC683 /* ImageSaver.swift */,
+				1B7C6BD225AA3EF6000CC683 /* DocumentPicker.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -370,10 +376,11 @@
 				1B7C6B8B25A8F2DE000CC683 /* CircleButtonView.swift in Sources */,
 				1B7C6B8225A8F2DE000CC683 /* ImageBoxView.swift in Sources */,
 				1B7C6B9125A8F2DE000CC683 /* FontScrollView.swift in Sources */,
+				1B7C6BCE25AA3CAD000CC683 /* ImageSaver.swift in Sources */,
 				1B7C6B9625A8F2DE000CC683 /* ImageBoxModifiers.swift in Sources */,
 				1B7C6B8C25A8F2DE000CC683 /* ColorPickerView.swift in Sources */,
 				1B7C6B8E25A8F2DE000CC683 /* SameWidthButtonView.swift in Sources */,
-				1B7C6B8325A8F2DE000CC683 /* DocumentPicker.swift in Sources */,
+				1B7C6B8325A8F2DE000CC683 /* DocumentPickerButton.swift in Sources */,
 				1B7C6B8A25A8F2DE000CC683 /* GradientButtonView.swift in Sources */,
 				1B7C6B8025A8F2DE000CC683 /* SVGBox.swift in Sources */,
 				1B7C6B7D25A8F2DE000CC683 /* BoxProtocol.swift in Sources */,
@@ -395,6 +402,7 @@
 				1B7C6B8925A8F2DE000CC683 /* FontSettingsView.swift in Sources */,
 				1B7C6B9025A8F2DE000CC683 /* FontButtonView.swift in Sources */,
 				1B7C6B7E25A8F2DE000CC683 /* Circle.swift in Sources */,
+				1B7C6BD325AA3EF6000CC683 /* DocumentPicker.swift in Sources */,
 				1B7C6B8425A8F2DE000CC683 /* SaveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

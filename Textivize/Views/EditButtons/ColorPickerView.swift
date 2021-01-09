@@ -11,6 +11,7 @@ import SwiftUI
 struct ColorPickerView: View {
     
     @Binding var selectedColor:Color
+    @Binding var backgroundColor:Color
     var selectedCustomizeIndex:Int?
     @ObservedObject var containers:Container
     
@@ -32,6 +33,8 @@ struct ColorPickerView: View {
         if self.selectedCustomizeIndex != nil {
             self.containers.ls[selectedCustomizeIndex!].selectedFontColor = self.selectedColor
             self.containers.ls[selectedCustomizeIndex!].setAllWordColor()
+        } else {
+            self.backgroundColor = self.selectedColor
         }
     }
 }
