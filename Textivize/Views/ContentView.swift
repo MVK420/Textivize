@@ -60,7 +60,7 @@ struct ContentView: View {
         ///Header
         NavigationView {
             ZStack() {
-                Color.white
+                Color.clear
                     .edgesIgnoringSafeArea(.all)
                 ///PopUp Editors
                 ZStack{
@@ -131,7 +131,7 @@ struct ContentView: View {
                 SVGBoxVIew(containers: self.containers, selectedCustomizeSVGIndex: self.$selectedCustomizeSVGIndex, selectedSVGGesture: self.$selectedSVGGesture)
             }
             .background(RectGetter(rect: $rect1))
-            .background(Color.clear.opacity(0.1))
+            .background(Color.gray.opacity(0.5))
             .contentShape(Rectangle())
             .onTapGesture {
                 self.onClickSaveButton()

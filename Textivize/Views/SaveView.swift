@@ -64,7 +64,8 @@ struct SaveButton: View {
     fileprivate func saveToGallery() {
         self.uiimage = (UIApplication.shared.windows[0].rootViewController?.view.asImage(rect: self.rect1))!
         let imageSaver:ImageSaver = ImageSaver(saveCompleteAlert: self.$saveAlert, activeAlert: self.$activeAlert)
-        imageSaver.writeToPhotoAlbum(image: uiimage!)
+        //imageSaver.writeToPhotoAlbum(image: uiimage!)
+        imageSaver.saveAsPNG(image: uiimage!)
     }
 }
 
@@ -103,6 +104,21 @@ class ImageSaver: NSObject {
     init(saveCompleteAlert:Binding<Bool>,activeAlert:Binding<ActiveAlert>) {
         self._saveCompleteAlert = saveCompleteAlert
         self._activeAlert = activeAlert
+    }
+    
+    func saveAsPNG(image:UIImage) {
+        if let data = image.pngData() {
+            print(data)
+            let filename = getDocumentsDirectory().appendingPathComponent("textivize.png")
+            _ = filename.startAccessingSecurityScopedResource()
+            try? data.write(to: filename)
+            filename.stopAccessingSecurityScopedResource()
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)
+        return paths[0]
     }
     
     func writeToPhotoAlbum(image: UIImage) {
