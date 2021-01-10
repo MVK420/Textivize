@@ -20,15 +20,15 @@ struct SaveButton: View {
     @State var saveAlert:Bool = false
     @State var areYouSure:Bool = false
     @State var uiimage:UIImage? = nil
-    @Binding var rect1: CGRect
+    @Binding var rect1:CGRect
     @State var text = "Save"
-    @State private var activeAlert: ActiveAlert = .first
+    @State private var activeAlert:ActiveAlert = .first
     
     var body: some View {
         Text("")
             .alert(isPresented: self.$saveAlert) {
             //self.presentAlert()
-                self.presentAlert()
+                self.presentImageTypeAlert()
         }.onReceive(NotificationCenter.default.publisher(for: NSNotification.canSaveImage)) { _ in
             self.onDismissedAd()}
             
@@ -36,7 +36,7 @@ struct SaveButton: View {
             Text("Save")
         }.alert(isPresented: self.$areYouSure) {
             //self.presentAlert()
-            self.presentAreYouSure()
+            self.presentAreYouSureAlert()
         }//.onReceive(NotificationCenter.default.publisher(for: NSNotification.canSaveImage)) { _ in
           //  self.onDismissedAd()}
     }
@@ -53,15 +53,17 @@ struct SaveButton: View {
         }
     }
     
-    private func presentAreYouSure() -> Alert {
+    private func presentAreYouSureAlert() -> Alert {
         return Alert(title: Text("Are you sure you want to save?"), message: Text(Constants.saveAlertMessage), primaryButton: .default(Text("Yes")) {
+            self.interstitialService.showNextAlert = true
             self.onTapSaveButton()
         }, secondaryButton: .default(Text("No")) {
+            self.interstitialService.showNextAlert = false
             self.onTapSaveButton()
         })
     }
     
-    private func presentAlert() -> Alert {
+    private func presentImageTypeAlert() -> Alert {
         switch activeAlert {
         case .first:
             return Alert(title: Text(Constants.saveAlertTitle), message: Text(Constants.saveAlertMessage), primaryButton: .default(Text("JPG")) {

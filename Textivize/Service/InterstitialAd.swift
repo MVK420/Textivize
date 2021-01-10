@@ -12,6 +12,7 @@ class InterstitialService: NSObject, GADInterstitialDelegate, ObservableObject {
     
     var interstitialAd: GADInterstitial? = nil
     @Published var isLoaded: Bool = false
+    var showNextAlert:Bool = true
     
     func loadInterstitial() {
         interstitialAd = GADInterstitial(adUnitID: Constants.interstitialAdCode)
@@ -42,8 +43,10 @@ class InterstitialService: NSObject, GADInterstitialDelegate, ObservableObject {
     
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
         //print("Dismissed ad")
-        NotificationCenter.default.post(name: NSNotification.canSaveImage,
-            object: nil, userInfo: nil)
+        if self.showNextAlert {
+            NotificationCenter.default.post(name: NSNotification.canSaveImage,
+                    object: nil, userInfo: nil)
+        }
     }
 }
 
