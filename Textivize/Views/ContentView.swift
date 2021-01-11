@@ -232,7 +232,7 @@ extension View {
     
     func selectedAndCircle(containers:Container ,selectedCustomizeIndex:Int?) -> Bool {
         if selectedCustomizeIndex != nil {
-            return containers.ls[selectedCustomizeIndex!].circleBool
+            return containers.txt[selectedCustomizeIndex!].circleBool
         }
         return false
     }

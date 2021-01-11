@@ -32,9 +32,9 @@ struct AllCapsButton: View {
     private func onTapAllCapsButton() {
         if self.allCaps == true && (self.selectedCustomizeIndex != nil) {
             if self.selectedCustomizeIndex != nil{
-                self.containers.ls[self.selectedCustomizeIndex!].allCaps()
+                self.containers.txt[self.selectedCustomizeIndex!].allCaps()
             } else {
-                self.containers.ls[self.selectedCustomizeIndex!].capitalize()
+                self.containers.txt[self.selectedCustomizeIndex!].capitalize()
             }
             
         }

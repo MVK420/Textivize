@@ -25,13 +25,13 @@ struct CircleButtonView: View {
     
     private func onTapCircleButton() {
         if self.selectedCustomizeIndex != nil {
-            self.containers.ls[self.selectedCustomizeIndex!].sameWidth = false
-            let font:CGFloat =  self.containers.ls[self.selectedCustomizeIndex!].fontForTextBox()
-            self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
-            self.containers.ls[self.selectedCustomizeIndex!].grState = 0
-            self.containers.ls[self.selectedCustomizeIndex!].circleBool = !self.containers.ls[self.selectedCustomizeIndex!].circleBool
-            self.displayRadiusBox = self.containers.ls[self.selectedCustomizeIndex!].circleBool
-            self.displayKerningBox = self.containers.ls[self.selectedCustomizeIndex!].circleBool
+            self.containers.txt[self.selectedCustomizeIndex!].sameWidth = false
+            let font:CGFloat =  self.containers.txt[self.selectedCustomizeIndex!].fontForTextBox()
+            self.containers.txt[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
+            self.containers.txt[self.selectedCustomizeIndex!].grState = 0
+            self.containers.txt[self.selectedCustomizeIndex!].circleBool = !self.containers.txt[self.selectedCustomizeIndex!].circleBool
+            self.displayRadiusBox = self.containers.txt[self.selectedCustomizeIndex!].circleBool
+            self.displayKerningBox = self.containers.txt[self.selectedCustomizeIndex!].circleBool
         }
     }
 }

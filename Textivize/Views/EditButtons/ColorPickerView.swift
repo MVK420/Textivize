@@ -31,8 +31,8 @@ struct ColorPickerView: View {
     
     private func onChangeColorPicker() {
         if self.selectedCustomizeIndex != nil {
-            self.containers.ls[selectedCustomizeIndex!].selectedFontColor = self.selectedColor
-            self.containers.ls[selectedCustomizeIndex!].setAllWordColor()
+            self.containers.txt[selectedCustomizeIndex!].selectedFontColor = self.selectedColor
+            self.containers.txt[selectedCustomizeIndex!].setAllWordColor()
         } else {
             self.backgroundColor = self.selectedColor
         }

@@ -33,7 +33,7 @@ struct inputTextFieldView: View {
         var tBox = TextBox(words: [],fullText: self.inputText)
         if self.inputText != "" {
             tBox.parseInput(text: self.inputText)
-            self.containers.ls.append(tBox)
+            self.containers.txt.append(tBox)
             ///Empty Text Field
             self.inputText = ""//Trump For President 2020"
         }

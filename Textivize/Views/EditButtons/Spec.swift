@@ -33,8 +33,6 @@ struct SpecButton: View {
     private func onTapButton() {
         if self.selectedCustomizeIndex != nil {
             self.displayBox = !self.displayBox
-            //let font:CGFloat =  self.containers.ls[self.selectedCustomizeIndex!].fontForTextBox()
-            //self.containers.ls[self.selectedCustomizeIndex!].setAllFontsSize(font: font)
             self.activateCaseBool()
         }
     }
@@ -42,11 +40,11 @@ struct SpecButton: View {
     private func activateCaseBool() {
         switch self.caseBox {
         case "Kerning":
-            self.containers.ls[self.selectedCustomizeIndex!].kerningBool = true
+            self.containers.txt[self.selectedCustomizeIndex!].kerningBool = true
         case "Radius":
-            self.containers.ls[self.selectedCustomizeIndex!].radiusBool = true
+            self.containers.txt[self.selectedCustomizeIndex!].radiusBool = true
         case "Spacing":
-            self.containers.ls[self.selectedCustomizeIndex!].spacingBool = true
+            self.containers.txt[self.selectedCustomizeIndex!].spacingBool = true
         default:
             return
         }
@@ -81,13 +79,13 @@ struct SpecSelectBox:View {
             HStack() {
                 Button(action: {
                     if self.selectedCustomizeIndex != nil {
-                        self.containers.ls[self.selectedCustomizeIndex!].addToCase(caseBox: self.caseBox, val: 1)
+                        self.containers.txt[self.selectedCustomizeIndex!].addToCase(caseBox: self.caseBox, val: 1)
                     }
                 }) {
                     Text("+").font(.custom("Helvetica", size: 30))
                 }
                 if self.selectedCustomizeIndex != nil{
-                    Text(self.containers.ls[self.selectedCustomizeIndex!].getString(caseBox:self.caseBox)
+                    Text(self.containers.txt[self.selectedCustomizeIndex!].getString(caseBox:self.caseBox)
                     ).font(.custom("Helvetica", size: 30))
                     .foregroundColor(Color.orange)
                 }
@@ -96,7 +94,7 @@ struct SpecSelectBox:View {
                 Button(action: {
                         if self.selectedCustomizeIndex != nil {
                             if self.selectedCustomizeIndex != nil {
-                                self.containers.ls[self.selectedCustomizeIndex!].addToCase(caseBox: self.caseBox, val: -1)
+                                self.containers.txt[self.selectedCustomizeIndex!].addToCase(caseBox: self.caseBox, val: -1)
                             }
                         }}) {
                     Text("-").font(.custom("Helvetica", size: 30))

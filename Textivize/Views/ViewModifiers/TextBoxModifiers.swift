@@ -19,29 +19,29 @@ struct DragModifierTextBox: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .offset(self.selectedGesture == self.containers.ls[i] && self.selectedCustomizeIndex != i ? self.position : self.containers.ls[i].position).scaledToFit()
+            .offset(self.selectedGesture == self.containers.txt[i] && self.selectedCustomizeIndex != i ? self.position : self.containers.txt[i].position).scaledToFit()
             .simultaneousGesture(DragGesture(minimumDistance: 10)
                                     .updating(self.$position, body: { (value, state, translation) in
-                                        self.selectedGesture = self.containers.ls[i]
+                                        self.selectedGesture = self.containers.txt[i]
                                         if self.selectedCustomizeIndex == i {
                                         } else {
-                                            let aux = self.containers.ls[i].position
+                                            let aux = self.containers.txt[i].position
                                             let res = CGSize(width: aux.width + value.translation.width, height: aux.height + value.translation.height)
                                             print(res)
                                             ///Delete
                                             if res.width > -60 && res.width < 60 && res.height > 350 {
-                                                self.containers.ls[i].toDelete = true
+                                                self.containers.txt[i].toDelete = true
                                                 self.selectedGesture = nil
                                             }
                                             state = res
                                         }
                                     })
                                     .onEnded() { value in
-                                        if self.selectedGesture == self.containers.ls[i] {
+                                        if self.selectedGesture == self.containers.txt[i] {
                                             if self.selectedCustomizeIndex == i {
-                                                self.containers.ls[i].alignmentForTextBox(swipeVal: value.translation)
+                                                self.containers.txt[i].alignmentForTextBox(swipeVal: value.translation)
                                             } else {
-                                                self.containers.ls[i].appendToPosition(translation: value.translation)
+                                                self.containers.txt[i].appendToPosition(translation: value.translation)
                                             }
                                         }
                                         self.selectedGesture = nil
@@ -64,7 +64,7 @@ struct MaginificationModifierText: ViewModifier {
             .simultaneousGesture(MagnificationGesture().onChanged { val in
                 let delta = val / self.lastScaleValue
                 self.lastScaleValue = val
-                self.containers.ls[i].scale = self.containers.ls[i].scale * delta
+                self.containers.txt[i].scale = self.containers.txt[i].scale * delta
             }.onEnded { val in
                 self.lastScaleValue = 1.0
             })
@@ -79,10 +79,10 @@ struct RotationModifierTextBox: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .rotationEffect(Angle(degrees: self.containers.ls[i].rotateState),anchor: self.containers.ls[i].rotationAnchor())
+            .rotationEffect(Angle(degrees: self.containers.txt[i].rotateState),anchor: self.containers.txt[i].rotationAnchor())
             .simultaneousGesture(RotationGesture()
                                     .onChanged { value in
-                                        self.containers.ls[i].pinRotate(degrees: value.degrees)
+                                        self.containers.txt[i].pinRotate(degrees: value.degrees)
                                         self.containers.objectWillChange.send()
                                     })
     }

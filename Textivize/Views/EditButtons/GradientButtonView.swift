@@ -27,14 +27,14 @@ struct GradientButtonView: View {
     
     private func onTapGradientButton() {
         if self.selectedCustomizeIndex != nil {
-            if self.containers.ls[self.selectedCustomizeIndex!].grState < 2 {
+            if self.containers.txt[self.selectedCustomizeIndex!].grState < 2 {
                 self.minMaxGradientPresented = true//!self.minMaxGradientPresented
             } else {
                 self.minMaxGradientPresented = false
             }
-            self.containers.ls[self.selectedCustomizeIndex!].sameWidth = false
-            self.containers.ls[self.selectedCustomizeIndex!].circleBool = false
-            self.containers.ls[self.selectedCustomizeIndex!].calcFont()
+            self.containers.txt[self.selectedCustomizeIndex!].sameWidth = false
+            self.containers.txt[self.selectedCustomizeIndex!].circleBool = false
+            self.containers.txt[self.selectedCustomizeIndex!].calcFont()
         }
     }
 }
