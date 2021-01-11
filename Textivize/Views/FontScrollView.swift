@@ -42,7 +42,7 @@ struct FontScrollView: View {
     
     private func tapGestureEnded(_ i:Int) {
         if self.selectedCustomizeIndex != nil {
-            self.containers.ls[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
+            self.containers.txt[self.selectedCustomizeIndex!].setAllFonts(font: self.fontList[i])
         }
         self.selectedFont = i
     }

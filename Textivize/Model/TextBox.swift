@@ -119,8 +119,8 @@ struct TextBox: Box {
     }
     
     ///If SameWidth is true, return specific width for TextBox
-    func widthForTextBox() -> CGFloat {
-        return self.sameWidth == true ? 100 : 300
+    func widthForTextBox() -> CGFloat? {
+        return self.sameWidth == true ? 200 : nil
     }
     
     ///If kerningBool is true, return specific kerning for TextBox
