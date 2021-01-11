@@ -7,6 +7,8 @@
 
 class Constants {
     static var interstitialAdCode = "ca-app-pub-3940256099942544/4411468910"
+    static var sureAlertTitle = "Are you sure you want to save?"
+    static var sureAlertMessage = ""
     static var saveAlertTitle = "Save as JPG or PNG?"
     static var saveAlertMessage = """
                                     JPG is saved to Gallery

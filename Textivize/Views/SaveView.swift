@@ -14,7 +14,7 @@ enum ActiveAlert {
 }
 
 struct SaveButton: View {
-
+    
     @ObservedObject var interstitialService:InterstitialService
     @Environment(\.parrentFunc) var parentFunction
     @State var saveAlert:Bool = false
@@ -27,18 +27,14 @@ struct SaveButton: View {
     var body: some View {
         Text("")
             .alert(isPresented: self.$saveAlert) {
-            //self.presentAlert()
                 self.presentImageTypeAlert()
-        }.onReceive(NotificationCenter.default.publisher(for: NSNotification.canSaveImage)) { _ in
-            self.onDismissedAd()}
-            
+            }.onReceive(NotificationCenter.default.publisher(for: NSNotification.canSaveImage)) { _ in
+                self.onDismissedAd()}
         Button(action: {self.areYouSure.toggle()}) {
             Text("Save")
         }.alert(isPresented: self.$areYouSure) {
-            //self.presentAlert()
             self.presentAreYouSureAlert()
-        }//.onReceive(NotificationCenter.default.publisher(for: NSNotification.canSaveImage)) { _ in
-          //  self.onDismissedAd()}
+        }
     }
     
     private func onDismissedAd() {
@@ -54,7 +50,7 @@ struct SaveButton: View {
     }
     
     private func presentAreYouSureAlert() -> Alert {
-        return Alert(title: Text("Are you sure you want to save?"), message: Text(Constants.saveAlertMessage), primaryButton: .default(Text("Yes")) {
+        return Alert(title: Text(Constants.sureAlertTitle), message: Text(Constants.sureAlertMessage), primaryButton: .default(Text("Yes")) {
             self.interstitialService.showNextAlert = true
             self.onTapSaveButton()
         }, secondaryButton: .default(Text("No")) {

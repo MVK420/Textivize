@@ -13,9 +13,9 @@ import GoogleMobileAds
 
 struct ContentView: View {
     
-    //@State var interstitial:GADInterstitial = GADInterstitial(adUnitID: Constants.interstitialAdCode)
     @ObservedObject private var interstitialService:InterstitialService = InterstitialService()
-    @State private var navBar = false
+    ///Show navBar
+    @State private var navBar:Bool = false
     @State var backgroundColor:Color = Color.clear
     ///selectedColor
     @State private var selectedColor = Color(.black)
@@ -25,7 +25,7 @@ struct ContentView: View {
     @State private var displayKerningBox:Bool = false
     ///Bool that checks if the radius editor needs to be peresnted
     @State private var displayRadiusBox:Bool = false
-    //////Bool that checks if the spacing editor needs to be peresnted
+    ///Bool that checks if the spacing editor needs to be peresnted
     @State private var displaySpacingBox:Bool = false
     ///Bool that checks if Font List needs to be presented
     @State private var fontPresented:Bool = false
@@ -50,9 +50,6 @@ struct ContentView: View {
     ///IMAGESTUFF
     @State private var showFilePicker:Bool = false
     @State private var showImagePicker:Bool = false
-    ///SAVING stuff
-    ///To show alert
-    @State private var saveAlert:Bool = false
     ///To specify which area to save
     @State private var rect1: CGRect = .zero
             
@@ -62,7 +59,7 @@ struct ContentView: View {
         NavigationView {
             ZStack() {
                 self.backgroundColor
-                    .edgesIgnoringSafeArea(.all)
+                    .edgesIgnoringSafeArea(.bottom)
                 ///PopUp Editors
                 ZStack{
                     VStack{
@@ -106,6 +103,7 @@ struct ContentView: View {
                             AllCapsButton(containers: self._containers, selected: self.$selectedCustomizeIndex, allCaps: false)
                             CircleButtonView(containers: self.containers,selectedCustomizeIndex: self.selectedCustomizeIndex, displayRadiusBox: self.$displayRadiusBox, displayKerningBox: self.$displayKerningBox)
                             /*
+                             ///Not used, for installing fonts
                             NavigationLink(destination: FontSettingsView()) {
                                 Image(systemName: "scribble")
                             }
@@ -137,7 +135,7 @@ struct ContentView: View {
             .background(Color.gray.opacity(0.5))
             .contentShape(Rectangle())
             .onTapGesture {
-                self.onClickSaveButton()
+                self.onTap()
                 print("deselected")
             }
             .navigationBarHidden(navBar)
@@ -155,12 +153,19 @@ struct ContentView: View {
         }.environment(\.parrentFunc, onClickSaveButton)
         .onAppear {
             self.interstitialService.loadInterstitial()
-            //self.interstitial.load(req)
         }
+    }
+    
+    func onTap() {
+        self.hideEverything()
     }
     
     func onClickSaveButton() {
         self.displayEditList = false
+        self.hideEverything()
+    }
+    
+    func hideEverything() {
         self.displayKerningBox = false
         self.displayRadiusBox = false
         self.displaySpacingBox = false
