@@ -31,7 +31,7 @@ struct SaveButton: View {
             }.onReceive(NotificationCenter.default.publisher(for: NSNotification.canSaveImage)) { _ in
                 self.onDismissedAd()}
         Button(action: {self.areYouSure.toggle()}) {
-            Text("Save")
+            Image(systemName: "envelope.fill")
         }.alert(isPresented: self.$areYouSure) {
             self.presentAreYouSureAlert()
         }

@@ -21,7 +21,7 @@ struct ColorPickerView: View {
                 .onChange(of: self.selectedColor, perform: { value in
                     self.onChangeColorPicker()
                 })
-                .frame(width: 25.0, height: 25.0)
+                .frame(width: 5.0, height: 5.0)
                 .padding(.all)
                 .font(.title)
         } else {

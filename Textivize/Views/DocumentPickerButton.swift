@@ -14,8 +14,10 @@ struct DocumentPickerButton: View {
     
     var body: some View {
         Button(action: {self.showFilePicker.toggle()}) {
-            Image(systemName: "folder")
+            Image(systemName: "folder.fill")
         }
+        .frame(width: 50.0, height: 20)
+        .padding(.top)
     }
     
     init(showFilePicker:Binding<Bool>) {
