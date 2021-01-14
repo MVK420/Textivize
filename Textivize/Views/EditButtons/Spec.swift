@@ -19,7 +19,7 @@ struct SpecButton: View {
         Button(action: {self.onTapButton()
         }) {
             Image(systemName: self.findImage())
-        }.padding(.all)
+        }.padding(.top)
         .font(.title)
     }
     

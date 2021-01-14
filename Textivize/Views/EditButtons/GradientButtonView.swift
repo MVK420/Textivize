@@ -19,7 +19,7 @@ struct GradientButtonView: View {
         {
             Image(systemName: "g.circle.fill")
         }
-        .padding(.all)
+        .padding(.top)
         .font(.title)
         .isHidden(!self.selectedAndCircle(containers: containers, selectedCustomizeIndex: self.selectedCustomizeIndex))
         
