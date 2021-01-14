@@ -144,12 +144,12 @@ struct ContentView: View {
             }
             ,trailing:
                 HStack(){
-                    VStack(){
-                    CustomizeButtonView(displayEditList: self.$displayEditList)
-                    ImagePickerButton(showImagePicker: self.$showImagePicker)
-                    }
-                    VStack(){
-                    DocumentPickerButton(showFilePicker: self.$showFilePicker)
+                    VStack {
+                    Menu("Options") {
+                        CustomizeButtonView(displayEditList: self.$displayEditList)
+                        ImagePickerButton(showImagePicker: self.$showImagePicker)
+                        DocumentPickerButton(showFilePicker: self.$showFilePicker)
+                    }.padding(.top)
                     SaveButton(interstitialService: self.interstitialService, rect1: self.$rect1)
                     }
                     ColorPickerView(selectedColor: self.$selectedColor, backgroundColor: $backgroundColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)

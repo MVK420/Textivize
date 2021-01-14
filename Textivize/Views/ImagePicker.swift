@@ -14,7 +14,9 @@ struct ImagePickerButton: View {
     
     var body: some View {
         Button(action: {self.showImagePicker.toggle()}) {
-            Image(systemName: "photo.fill")
+            //Image(systemName: "photo.fill")
+            ///Text for menu
+            Text("Open Gallery") 
         }
     }
 }

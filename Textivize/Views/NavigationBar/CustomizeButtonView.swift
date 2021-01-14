@@ -14,7 +14,9 @@ struct CustomizeButtonView: View {
     
     var body: some View {
         Button(action: {self.displayEditList = !self.displayEditList}) {
-            Image(systemName: "scope")
+            //Image(systemName: "scope")
+            ///Text for menu
+            Text("Customize")
         }
         .frame(width: 50.0, height: 50.0)
         .cornerRadius(8)
