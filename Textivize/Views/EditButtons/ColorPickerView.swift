@@ -17,7 +17,8 @@ struct ColorPickerView: View {
     
     var body: some View {
         if #available(iOS 14.0, *) {
-            ColorPicker("", selection: self.$selectedColor).frame(height: 200)
+            ColorPicker("", selection: self.$selectedColor)
+                .frame(height: 200)
                 .onChange(of: self.selectedColor, perform: { value in
                     self.onChangeColorPicker()
                 })

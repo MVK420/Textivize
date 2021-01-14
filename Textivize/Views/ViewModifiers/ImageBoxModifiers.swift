@@ -79,6 +79,8 @@ struct DragModifierImage: ViewModifier {
     }
 }
 
+
+
 extension View {
     
     func RotationImage(i:Int, containers:Container) -> some View {

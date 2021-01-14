@@ -14,14 +14,13 @@ struct ImagePickerButton: View {
     
     var body: some View {
         Button(action: {self.showImagePicker.toggle()}) {
-            //Image(systemName: "photo.fill")
-            ///Text for menu
+            Image(systemName: "photo.fill")
             Text("Open Gallery") 
         }
     }
 }
 
-///Stackoverflow Voodoo
+///Stackoverflow
 public struct ImagePickerView: UIViewControllerRepresentable {
 
     private let sourceType: UIImagePickerController.SourceType
@@ -40,7 +39,9 @@ public struct ImagePickerView: UIViewControllerRepresentable {
         return picker
     }
 
-    public func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+    public func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
+        
+    }
 
     public func makeCoordinator() -> Coordinator {
         Coordinator(

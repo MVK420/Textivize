@@ -110,10 +110,14 @@ struct ContentView: View {
                             */
                         }.isHidden(self.displayEditList)
                         .frame(width: 50)
-                        .border(Color.orange, width: 2)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.orange, lineWidth: 5)
+                        )
+                        //.background(Color(UIColor.systemGroupedBackground).opacity(0.95))
                     }
                 }
-                ///Stackoverflow Voodoo to make 2 sheets presentable
+                ///Make 2 sheets presentable
                 Text("")
                     .sheet(isPresented: $showImagePicker) {
                         ImagePickerView(sourceType: .photoLibrary) { image in
@@ -126,17 +130,16 @@ struct ContentView: View {
                             self.containers.svgs.append(SVGBox(img:svgImage))
                         }
                     }
-                ///End of Stackoverflow Voodoo
+                ///User input views
                 TextBoxView(containers: self.containers, selectedCustomizeIndex: self.$selectedCustomizeIndex, selectedGesture: self.$selectedGesture)
                 ImageBoxView(containers: self.containers, selectedCustomizeImageIndex: self.$selectedCustomizeImageIndex, selectedImageGesture: self.$selectedImageGesture)
                 SVGBoxVIew(containers: self.containers, selectedCustomizeSVGIndex: self.$selectedCustomizeSVGIndex, selectedSVGGesture: self.$selectedSVGGesture)
             }
-            .background(RectGetter(rect: $rect1))
+            .background(RectGetter(rect: $rect1)) ///To Specify what to save
             .background(Color.gray.opacity(0.5))
             .contentShape(Rectangle())
             .onTapGesture {
                 self.onTap()
-                print("deselected")
             }
             .navigationBarHidden(navBar)
             .navigationBarItems(leading: HStack() {
@@ -154,22 +157,23 @@ struct ContentView: View {
                     }
                     ColorPickerView(selectedColor: self.$selectedColor, backgroundColor: $backgroundColor, selectedCustomizeIndex: self.selectedCustomizeIndex, containers: self.containers)
                 })
-        }.environment(\.parrentFunc, onClickSaveButton)
+        }
+        .environment(\.parrentFunc, onClickSaveButton)
         .onAppear {
             self.interstitialService.loadInterstitial()
         }
     }
     
-    func onTap() {
+    private func onTap() {
         self.hideEverything()
     }
     
-    func onClickSaveButton() {
+    private func onClickSaveButton() {
         self.displayEditList = false
         self.hideEverything()
     }
     
-    func hideEverything() {
+    private func hideEverything() {
         self.displayKerningBox = false
         self.displayRadiusBox = false
         self.displaySpacingBox = false
@@ -182,7 +186,6 @@ struct ContentView: View {
         self.selectedCustomizeIndex = nil
         self.selectedCustomizeSVGIndex = nil
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -190,6 +193,8 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
 
 extension View {
     
@@ -220,13 +225,7 @@ extension View {
         }
     }
     
-    ///if conditional is true, then apply modifier to view
-    ///.if(self.selectedCustomizeIndex == i ? true : false) {$0.RotationText(i: i, containers: self.containers)}
-    //    func `if`<Content: View>(_ conditional: Bool, content: (Self) -> Content) -> TupleView<(Self?, Content?)> {
-    //        if conditional { return TupleView((nil, content(self))) }
-    //        else { return TupleView((self, nil)) }
-    //    }
-    
+    ///When the user taps an object, the trash can is visible
     fileprivate func hideTrashCan(text: TextBox?, img: ImageBox?, svg: SVGBox?) -> Bool{
         if text == nil && img == nil && svg == nil{
             return false

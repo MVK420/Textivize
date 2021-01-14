@@ -10,7 +10,6 @@
 		1B7C6B4625A8F2C3000CC683 /* TextivizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B4525A8F2C3000CC683 /* TextivizeApp.swift */; };
 		1B7C6B4A25A8F2C5000CC683 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7C6B4925A8F2C5000CC683 /* Assets.xcassets */; };
 		1B7C6B4D25A8F2C5000CC683 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7C6B4C25A8F2C5000CC683 /* Preview Assets.xcassets */; };
-		1B7C6B7A25A8F2DE000CC683 /* ImageModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5825A8F2DE000CC683 /* ImageModifiers.swift */; };
 		1B7C6B7B25A8F2DE000CC683 /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5925A8F2DE000CC683 /* TextBox.swift */; };
 		1B7C6B7C25A8F2DE000CC683 /* ImageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5A25A8F2DE000CC683 /* ImageBox.swift */; };
 		1B7C6B7D25A8F2DE000CC683 /* BoxProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C6B5C25A8F2DE000CC683 /* BoxProtocol.swift */; };
@@ -54,7 +53,6 @@
 		1B7C6B4925A8F2C5000CC683 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B7C6B4C25A8F2C5000CC683 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1B7C6B4E25A8F2C5000CC683 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B7C6B5825A8F2DE000CC683 /* ImageModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModifiers.swift; sourceTree = "<group>"; };
 		1B7C6B5925A8F2DE000CC683 /* TextBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
 		1B7C6B5A25A8F2DE000CC683 /* ImageBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBox.swift; sourceTree = "<group>"; };
 		1B7C6B5C25A8F2DE000CC683 /* BoxProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxProtocol.swift; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 		1B7C6B5625A8F2DE000CC683 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1B7C6B5725A8F2DE000CC683 /* Modifiers */,
 				1B7C6B5925A8F2DE000CC683 /* TextBox.swift */,
 				1B7C6B5A25A8F2DE000CC683 /* ImageBox.swift */,
 				1B7C6B5B25A8F2DE000CC683 /* Protocol */,
@@ -158,14 +155,6 @@
 				1B7C6BCA25A91CF9000CC683 /* Constants.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		1B7C6B5725A8F2DE000CC683 /* Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-				1B7C6B5825A8F2DE000CC683 /* ImageModifiers.swift */,
-			);
-			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		1B7C6B5B25A8F2DE000CC683 /* Protocol */ = {
@@ -390,7 +379,6 @@
 				1B7C6B8825A8F2DE000CC683 /* InputTextFieldView.swift in Sources */,
 				1B7C6B9225A8F2DE000CC683 /* SVGBoxView.swift in Sources */,
 				1B7C6B9325A8F2DE000CC683 /* ContentView.swift in Sources */,
-				1B7C6B7A25A8F2DE000CC683 /* ImageModifiers.swift in Sources */,
 				1B7C6B7C25A8F2DE000CC683 /* ImageBox.swift in Sources */,
 				1B7C6B8D25A8F2DE000CC683 /* AllCapsButton.swift in Sources */,
 				1B7C6BCB25A91CF9000CC683 /* Constants.swift in Sources */,

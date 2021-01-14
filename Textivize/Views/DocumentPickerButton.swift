@@ -14,8 +14,7 @@ struct DocumentPickerButton: View {
     
     var body: some View {
         Button(action: {self.showFilePicker.toggle()}) {
-            //Image(systemName: "folder.fill")
-            ///Text for menu
+            Image(systemName: "folder.fill")
             Text("Open Files") 
         }
         .frame(width: 50.0, height: 20)

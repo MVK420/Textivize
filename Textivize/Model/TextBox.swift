@@ -79,8 +79,8 @@ struct TextBox: Box {
         }
     }
     
-    ///This is ugly, fix this shit
     mutating func allCaps() {
+        #warning("This is ugly, fix this")
         if allCapsState == 0 {
             for i in self.words.indices {
                 self.words[i].text = self.words[i].text.uppercased()
@@ -171,7 +171,9 @@ struct TextBox: Box {
     }
     
     /// Calculate font for each word in array, to gradually increase them
+    
     mutating func increasingFontSize() {
+        #warning("App crashes if there's only 1 word in the array")
         for i in self.words.indices {
             let step = Int(self.maxFontSize - self.minFontSize) / (self.words.count - 1)
             let res = (step * i) + Int(minFontSize)
